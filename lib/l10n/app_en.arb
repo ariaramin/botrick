@@ -1,3 +1,5 @@
 {
+  "connectionError": "Please check your network connection",
+  "getStarted": "Get Started",
   "examples": "Examples"
 }
