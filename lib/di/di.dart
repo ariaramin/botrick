@@ -7,6 +7,7 @@ import 'package:whiz/features/chat/data/datasource/chat_datasource.dart';
 import 'package:whiz/features/chat/data/datasource/chat_datasource_impl.dart';
 import 'package:whiz/features/chat/data/repository/chat_repository_impl.dart';
 import 'package:whiz/features/chat/domain/repository/chat_repository.dart';
+import 'package:whiz/features/chat/domain/usecase/send_message.dart';
 import 'package:whiz/features/splash/data/repository/splash_repository_impl.dart';
 import 'package:whiz/features/splash/domain/repository/splash_repository.dart';
 
@@ -25,6 +26,7 @@ Future initGetit() async {
     Dio(BaseOptions(
       baseUrl: Constants.BASE_URL,
       headers: {
+        "Content-Type": "application/json",
         "Authorization": "Bearer ${Constants.API_KEY}",
       },
     )),
@@ -36,4 +38,7 @@ Future initGetit() async {
   // repository
   locator.registerFactory<SplashRepository>(() => SplashRepositoryImpl());
   locator.registerFactory<ChatRepository>(() => ChatRepositoryImpl());
+
+  // usecase
+  locator.registerFactory<SendMessage>(() => SendMessage());
 }

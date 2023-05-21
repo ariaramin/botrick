@@ -7,6 +7,7 @@ class AppTheme {
     useMaterial3: true,
     scaffoldBackgroundColor: AppColors.backgroundColor,
     textTheme: GoogleFonts.nunitoTextTheme(),
+    fontFamily: "Shabnam",
     colorScheme: const ColorScheme(
       brightness: Brightness.light,
       primary: AppColors.primaryColor,
@@ -27,6 +28,7 @@ class AppTheme {
     useMaterial3: true,
     scaffoldBackgroundColor: AppColors.backgroundDarkColor,
     textTheme: GoogleFonts.nunitoTextTheme(),
+    fontFamily: "Shabnam",
     colorScheme: const ColorScheme(
       brightness: Brightness.dark,
       primary: AppColors.primaryColor,

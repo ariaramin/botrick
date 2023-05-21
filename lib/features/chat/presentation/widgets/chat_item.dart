@@ -19,30 +19,30 @@ class ChatItem extends StatelessWidget {
         mainAxisAlignment:
             isUser ? MainAxisAlignment.end : MainAxisAlignment.start,
         children: [
-          Expanded(
-            child: Container(
-              margin: isUser
-                  ? const EdgeInsets.only(left: 68)
-                  : const EdgeInsets.only(right: 68),
-              padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 18),
-              decoration: BoxDecoration(
-                color: isUser
-                    ? AppColors.primaryColor
-                    : AppColors.primaryContainerColor,
-                borderRadius: BorderRadius.only(
-                  topLeft: const Radius.circular(28),
-                  topRight: isUser ? Radius.zero : const Radius.circular(28),
-                  bottomLeft: isUser ? const Radius.circular(28) : Radius.zero,
-                  bottomRight: const Radius.circular(28),
-                ),
+          Container(
+            constraints: BoxConstraints(
+                maxWidth: MediaQuery.of(context).size.width - 120),
+            margin: isUser
+                ? const EdgeInsets.only(left: 68)
+                : const EdgeInsets.only(right: 68),
+            padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 18),
+            decoration: BoxDecoration(
+              color: isUser
+                  ? AppColors.primaryColor
+                  : AppColors.primaryContainerColor,
+              borderRadius: BorderRadius.only(
+                topLeft: const Radius.circular(28),
+                topRight: isUser ? Radius.zero : const Radius.circular(28),
+                bottomLeft: isUser ? const Radius.circular(28) : Radius.zero,
+                bottomRight: const Radius.circular(28),
               ),
-              child: Text(
-                text,
-                style: TextStyle(
-                  fontSize: 14,
-                  color: isUser ? Colors.white : Colors.black,
-                  fontWeight: FontWeight.bold,
-                ),
+            ),
+            child: Text(
+              text,
+              style: TextStyle(
+                fontSize: 14,
+                color: isUser ? Colors.white : Colors.black,
+                fontWeight: FontWeight.bold,
               ),
             ),
           ),

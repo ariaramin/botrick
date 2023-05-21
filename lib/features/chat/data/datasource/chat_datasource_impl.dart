@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:whiz/core/constants/constants.dart';
+import 'package:whiz/core/utils/api_exception.dart';
 import 'package:whiz/di/di.dart';
 import 'package:whiz/features/chat/data/datasource/chat_datasource.dart';
 import 'package:whiz/features/chat/data/models/message.dart';
@@ -9,7 +10,7 @@ class ChatDatasourceImpl extends ChatDatasource {
   final List<Message> messages = [];
 
   @override
-  Future<String> chatAPI(String prompt) async {
+  Future<List<Message>> chatAPI(String prompt) async {
     messages.add(Message(role: MessageRoleEnum.user, content: prompt));
     try {
       var response = await _dio.post(
@@ -24,11 +25,18 @@ class ChatDatasourceImpl extends ChatDatasource {
         content = content.trim();
         messages
             .add(Message(role: MessageRoleEnum.assistant, content: content));
-        return content;
+        // return content;
       }
-      return 'An internal error occurred';
+      // return 'An internal error occurred';
+      return messages;
+    } on DioError catch (error) {
+      throw ApiException(
+        code: error.response?.statusCode,
+        message: error.response?.data["message"],
+      );
     } catch (exception) {
-      return exception.toString();
+      // return exception.toString();
+      rethrow;
     }
   }
 }

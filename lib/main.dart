@@ -9,6 +9,7 @@ import 'package:whiz/di/di.dart';
 import 'config/route/app_route.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   await initGetit();
   runApp(MyApp());
 }

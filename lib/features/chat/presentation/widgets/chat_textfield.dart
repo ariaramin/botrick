@@ -1,11 +1,34 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:whiz/config/theme/app_colors.dart';
+import 'package:whiz/features/chat/domain/params/chat_params.dart';
+import 'package:whiz/features/chat/presentation/bloc/chat_bloc.dart';
+import 'package:whiz/features/chat/presentation/bloc/chat_event.dart';
 
-class ChatTextField extends StatelessWidget {
+class ChatTextField extends StatefulWidget {
   const ChatTextField({
     super.key,
   });
+
+  @override
+  State<ChatTextField> createState() => _ChatTextFieldState();
+}
+
+class _ChatTextFieldState extends State<ChatTextField> {
+  late TextEditingController? controller;
+
+  @override
+  void initState() {
+    super.initState();
+    controller = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    controller!.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,6 +50,7 @@ class ChatTextField extends StatelessWidget {
         children: [
           Expanded(
             child: TextFormField(
+              controller: controller,
               style: const TextStyle(
                 color: AppColors.primaryColor,
                 fontWeight: FontWeight.bold,
@@ -43,7 +67,16 @@ class ChatTextField extends StatelessWidget {
             ),
           ),
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              if (controller!.text.isNotEmpty) {
+                BlocProvider.of<ChatBloc>(context).add(
+                  SendMessageEvent(
+                    chatParams: ChatParams(prompt: controller!.text),
+                  ),
+                );
+                controller!.clear();
+              }
+            },
             icon: const Icon(
               Iconsax.send_1,
               size: 24,
