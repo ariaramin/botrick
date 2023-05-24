@@ -7,27 +7,40 @@ import 'package:whiz/features/chat/data/models/message.dart';
 
 class ChatDatasourceImpl extends ChatDatasource {
   final Dio _dio = locator.get();
-  final List<Message> messages = [];
 
   @override
   Future<List<Message>> chatAPI(String prompt) async {
-    messages.add(Message(role: MessageRoleEnum.user, content: prompt));
     try {
       var response = await _dio.post(
         "${Constants.BASE_URL}${Constants.COMPLETIONS_URL}",
         data: {
           "model": "gpt-3.5-turbo",
-          "messages": messages.map((element) => element.toJson()).toList(),
+          "messages": [
+            {
+              "role": "user",
+              "content": prompt,
+            }
+          ]
         },
       );
+      List<Message> messages = [];
       if (response.statusCode == 200) {
-        var content = response.data['choices'][0]['message']['content'];
-        content = content.trim();
-        messages
-            .add(Message(role: MessageRoleEnum.assistant, content: content));
-        // return content;
+        if (response.data["choices"].length > 0) {
+          messages = List.generate(
+            response.data["choices"].length,
+            (index) => Message(
+              content: response.data["choices"][index]["message"]["content"],
+              role: MessageRoleEnum.assistant,
+            ),
+          );
+        }
       }
-      // return 'An internal error occurred';
+      if (response.data['error'] != null) {
+        throw ApiException(
+          code: response.statusCode,
+          message: response.data['error']["message"],
+        );
+      }
       return messages;
     } on DioError catch (error) {
       throw ApiException(
@@ -35,7 +48,6 @@ class ChatDatasourceImpl extends ChatDatasource {
         message: error.response?.data["message"],
       );
     } catch (exception) {
-      // return exception.toString();
       rethrow;
     }
   }

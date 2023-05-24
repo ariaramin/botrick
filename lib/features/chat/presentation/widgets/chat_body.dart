@@ -10,38 +10,56 @@ import 'package:whiz/features/chat/presentation/widgets/chat_item.dart';
 import 'package:whiz/features/chat/presentation/widgets/chat_textfield.dart';
 import 'package:whiz/features/chat/presentation/widgets/features_item.dart';
 
-class ChatBody extends StatelessWidget im {
+class ChatBody extends StatefulWidget {
   const ChatBody({super.key});
+
+  @override
+  State<ChatBody> createState() => _ChatBodyState();
+}
+
+class _ChatBodyState extends State<ChatBody> {
+  bool _isTyping = false;
 
   @override
   Widget build(BuildContext context) {
     return Stack(
       alignment: AlignmentDirectional.bottomCenter,
       children: [
-        BlocBuilder<ChatBloc, ChatState>(
-          builder: (context, state) {
+        BlocConsumer<ChatBloc, ChatState>(
+          listener: (context, state) {
+            print(state);
             if (state is ChatLoadingState) {
-              return Center(child: const CircularProgressIndicator());
-            }
-            if (state is ChatResponseState) {
-              return state.chatResponse
-                  .fold((failure) => Center(child: Text(failure.message)),
-                      (response) {
-                return ListView.builder(
-                  itemCount: response.length,
-                  itemBuilder: (context, index) {
-                    return Padding(
-                      padding: index == (response.length - 1)
-                          ? const EdgeInsets.only(top: 14, bottom: 106)
-                          : const EdgeInsets.symmetric(vertical: 14),
-                      child: ChatItem(
-                        text: response[index].content!,
-                        isUser: response[index].role == MessageRoleEnum.user,
-                      ),
-                    );
-                  },
-                );
+              setState(() {
+                _isTyping = true;
               });
+            }
+            if (state is ChatMessagesState) {
+              setState(() {
+                _isTyping = false;
+              });
+            }
+            if (state is ChatErrorState) {
+              const snackBar = SnackBar(content: Text("message"));
+              ScaffoldMessenger.of(context).showSnackBar(snackBar);
+            }
+          },
+          builder: (context, state) {
+            if (state is ChatMessagesState) {
+              return ListView.builder(
+                itemCount: state.chatMessages.length,
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: index == (state.chatMessages.length - 1)
+                        ? const EdgeInsets.only(top: 14, bottom: 106)
+                        : const EdgeInsets.symmetric(vertical: 14),
+                    child: ChatItem(
+                      text: state.chatMessages[index].content!,
+                      isUser: state.chatMessages[index].role ==
+                          MessageRoleEnum.user,
+                    ),
+                  );
+                },
+              );
             }
             return ListView.builder(
               itemCount: Feature.getFeatures().length,
@@ -59,6 +77,12 @@ class ChatBody extends StatelessWidget im {
               },
             );
           },
+        ),
+        Visibility(
+          visible: _isTyping,
+          child: const Center(
+            child: CircularProgressIndicator(),
+          ),
         ),
         Positioned(
           left: 16,

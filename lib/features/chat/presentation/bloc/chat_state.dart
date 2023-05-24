@@ -15,6 +15,11 @@ class ChatLoadingState extends ChatState {
   List<Object?> get props => [];
 }
 
+class ChatErrorState extends ChatState {
+  @override
+  List<Object?> get props => [];
+}
+
 class ChatResponseState extends ChatState {
   final Either<Failure, List<Message>> chatResponse;
 
@@ -22,4 +27,13 @@ class ChatResponseState extends ChatState {
 
   @override
   List<Object?> get props => [];
+}
+
+class ChatMessagesState extends ChatState {
+  final List<Message> chatMessages;
+
+  ChatMessagesState({required this.chatMessages});
+
+  @override
+  List<Object?> get props => [chatMessages];
 }
