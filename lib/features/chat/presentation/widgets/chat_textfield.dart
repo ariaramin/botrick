@@ -7,8 +7,10 @@ import 'package:whiz/features/chat/presentation/bloc/chat_bloc.dart';
 import 'package:whiz/features/chat/presentation/bloc/chat_event.dart';
 
 class ChatTextField extends StatefulWidget {
+  final bool? enabled;
   const ChatTextField({
     super.key,
+    this.enabled,
   });
 
   @override
@@ -51,6 +53,10 @@ class _ChatTextFieldState extends State<ChatTextField> {
           Expanded(
             child: TextFormField(
               controller: controller,
+              onFieldSubmitted: (value) {
+                _sendMessage();
+              },
+              enabled: widget.enabled,
               style: const TextStyle(
                 color: AppColors.primaryColor,
                 fontWeight: FontWeight.bold,
@@ -67,16 +73,7 @@ class _ChatTextFieldState extends State<ChatTextField> {
             ),
           ),
           IconButton(
-            onPressed: () {
-              if (controller!.text.isNotEmpty) {
-                BlocProvider.of<ChatBloc>(context).add(
-                  SendMessageEvent(
-                    chatParams: ChatParams(prompt: controller!.text),
-                  ),
-                );
-                controller!.clear();
-              }
-            },
+            onPressed: _sendMessage,
             icon: const Icon(
               Iconsax.send_1,
               size: 24,
@@ -85,5 +82,16 @@ class _ChatTextFieldState extends State<ChatTextField> {
         ],
       ),
     );
+  }
+
+  _sendMessage() {
+    if (controller!.text.isNotEmpty) {
+      BlocProvider.of<ChatBloc>(context).add(
+        SendMessageEvent(
+          chatParams: ChatParams(prompt: controller!.text),
+        ),
+      );
+      controller!.clear();
+    }
   }
 }

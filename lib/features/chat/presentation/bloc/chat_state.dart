@@ -2,38 +2,60 @@ import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:whiz/core/utils/failure.dart';
 import 'package:whiz/features/chat/data/models/message.dart';
+import 'package:whiz/features/chat/presentation/bloc/chat_status.dart';
 
-abstract class ChatState extends Equatable {}
+class ChatState extends Equatable {
+  final ChatStatus status;
+  final List<Message> messages;
 
-class ChatInitState extends ChatState {
-  @override
-  List<Object?> get props => [];
-}
+  const ChatState({
+    required this.status,
+    required this.messages,
+  });
 
-class ChatLoadingState extends ChatState {
-  @override
-  List<Object?> get props => [];
-}
-
-class ChatErrorState extends ChatState {
-  @override
-  List<Object?> get props => [];
-}
-
-class ChatResponseState extends ChatState {
-  final Either<Failure, List<Message>> chatResponse;
-
-  ChatResponseState({required this.chatResponse});
+  ChatState copyWith({
+    ChatStatus? newStatus,
+    List<Message>? newMessages,
+  }) {
+    return ChatState(
+      status: newStatus ?? status,
+      messages: newMessages ?? messages,
+    );
+  }
 
   @override
-  List<Object?> get props => [];
+  List<Object?> get props => [status, messages];
 }
 
-class ChatMessagesState extends ChatState {
-  final List<Message> chatMessages;
+// class ChatInitState extends ChatState {
+//   @override
+//   List<Object?> get props => [];
+// }
 
-  ChatMessagesState({required this.chatMessages});
+// class ChatLoadingState extends ChatState {
+//   @override
+//   List<Object?> get props => [];
+// }
 
-  @override
-  List<Object?> get props => [chatMessages];
-}
+// class ChatErrorState extends ChatState {
+//   @override
+//   List<Object?> get props => [];
+// }
+
+// class ChatResponseState extends ChatState {
+//   final Either<Failure, List<Message>> chatResponse;
+
+//   ChatResponseState({required this.chatResponse});
+
+//   @override
+//   List<Object?> get props => [];
+// }
+
+// class ChatMessagesState extends ChatState {
+//   final List<Message> chatMessages;
+
+//   ChatMessagesState({required this.chatMessages});
+
+//   @override
+//   List<Object?> get props => [chatMessages];
+// }

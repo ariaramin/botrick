@@ -1,4 +1,6 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:whiz/config/theme/app_colors.dart';
 
 class ChatItem extends StatelessWidget {
@@ -37,15 +39,30 @@ class ChatItem extends StatelessWidget {
                 bottomRight: const Radius.circular(28),
               ),
             ),
-            child: Text(
-              text,
-              style: TextStyle(
-                fontSize: 14,
-                color: isUser ? Colors.white : Colors.black,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
+            child: isUser
+                ? Text(
+                    text,
+                    style: TextStyle(
+                      fontSize: 14,
+                      color: isUser ? Colors.white : Colors.black,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  )
+                : AnimatedTextKit(
+                    animatedTexts: [
+                      TypewriterAnimatedText(
+                        text,
+                        textStyle: TextStyle(
+                          fontSize: 14,
+                          color: isUser ? Colors.white : Colors.black,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        speed: const Duration(milliseconds: 50),
+                      ),
+                    ],
+                    isRepeatingAnimation: false,
+                  ),
+          ).animate().slide().fade(),
         ],
       ),
     );
