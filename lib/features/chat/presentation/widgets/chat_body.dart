@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:toastification/toastification.dart';
 import 'package:whiz/features/chat/data/models/message.dart';
 import 'package:whiz/features/chat/domain/entity/feature.dart';
 import 'package:whiz/features/chat/presentation/bloc/chat_bloc.dart';
@@ -45,29 +46,38 @@ class _ChatBodyState extends State<ChatBody> {
       children: [
         BlocConsumer<ChatBloc, ChatState>(
           listener: (context, state) {
-            if (state.status is ChatLoadingState ||
-                state.status is ChatLoadedState) {
+            if (state.status is ChatLoadingStatus ||
+                state.status is ChatLoadedStatus) {
               _changeTypingStatus();
             }
-            if (state.status is ChatErrorState) {
-              const snackBar = SnackBar(content: Text("message"));
-              ScaffoldMessenger.of(context).showSnackBar(snackBar);
+            if (state.status is ChatErrorStatus) {
+              _changeTypingStatus();
+              final errorStatus = state.status as ChatErrorStatus;
+              toastification.showError(
+                context: context,
+                title: errorStatus.errorMessage,
+                autoCloseDuration: const Duration(seconds: 5),
+                showProgressBar: true,
+                showCloseButton: true,
+              );
             }
           },
           builder: (context, state) {
             if (state.messages.isNotEmpty) {
               return ListView.builder(
                 controller: chatScrollController,
+                reverse: true,
                 itemCount: state.messages.length,
                 itemBuilder: (context, index) {
+                  final reverseIndex = state.messages.length - 1 - index;
                   return Padding(
-                    padding: index == (state.messages.length - 1)
-                        ? const EdgeInsets.only(top: 14, bottom: 108)
-                        : const EdgeInsets.symmetric(vertical: 14),
+                    padding: reverseIndex == (state.messages.length - 1)
+                        ? const EdgeInsets.only(top: 10, bottom: 108)
+                        : const EdgeInsets.symmetric(vertical: 10),
                     child: ChatItem(
-                      text: state.messages[index].content!,
-                      isUser:
-                          state.messages[index].role == MessageRoleEnum.user,
+                      text: state.messages[reverseIndex].content!,
+                      isUser: state.messages[reverseIndex].role ==
+                          MessageRoleEnum.user,
                     ),
                   );
                 },
@@ -78,8 +88,8 @@ class _ChatBodyState extends State<ChatBody> {
               itemBuilder: (context, index) {
                 return Padding(
                   padding: index == Feature.getFeatures().length - 1
-                      ? const EdgeInsets.only(top: 14, bottom: 108)
-                      : const EdgeInsets.symmetric(vertical: 14),
+                      ? const EdgeInsets.only(top: 12, bottom: 108)
+                      : const EdgeInsets.symmetric(vertical: 12),
                   child: FeaturesItem(
                     iconData: Feature.getFeatures()[index].iconData,
                     title: Feature.getFeatures()[index].title!,
@@ -90,12 +100,6 @@ class _ChatBodyState extends State<ChatBody> {
             );
           },
         ),
-        Visibility(
-          visible: _isTyping,
-          child: const Center(
-            child: CircularProgressIndicator(),
-          ),
-        ),
         ScrollButton(
           scrollButtonPosition: _scrollButtonPosition,
           onTap: _scrollToBottom,
@@ -104,7 +108,10 @@ class _ChatBodyState extends State<ChatBody> {
           left: 16,
           right: 16,
           bottom: MediaQuery.of(context).viewInsets.bottom + 18,
-          child: ChatTextField(enabled: !_isTyping),
+          child: ChatTextField(
+            enabled: !_isTyping,
+            onSendMessage: () => _scrollToBottom(),
+          ),
         ),
       ],
     );
@@ -112,7 +119,7 @@ class _ChatBodyState extends State<ChatBody> {
 
   _scrollToBottom() {
     if (chatScrollController.hasClients) {
-      final position = chatScrollController.position.maxScrollExtent;
+      final position = chatScrollController.position.minScrollExtent;
       chatScrollController
           .animateTo(
         position,
@@ -131,7 +138,7 @@ class _ChatBodyState extends State<ChatBody> {
     if (chatScrollController.position.userScrollDirection ==
         ScrollDirection.reverse) {
       if (chatScrollController.position.pixels ==
-          chatScrollController.position.maxScrollExtent) {
+          chatScrollController.position.minScrollExtent) {
         setState(() {
           _scrollButtonPosition = MediaQuery.of(context).viewInsets.bottom + 28;
         });

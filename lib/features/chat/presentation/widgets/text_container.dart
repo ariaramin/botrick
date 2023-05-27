@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:whiz/config/theme/app_colors.dart';
 
-class TextContainer extends StatelessWidget {
+class FeatureTextContainer extends StatelessWidget {
   final String text;
 
-  const TextContainer({
+  const FeatureTextContainer({
     super.key,
     required this.text,
   });
@@ -14,14 +13,15 @@ class TextContainer extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 16),
       decoration: BoxDecoration(
-        color: AppColors.primaryContainerColor,
+        color: Theme.of(context).colorScheme.primaryContainer,
         borderRadius: BorderRadius.circular(28),
       ),
       child: Center(
         child: Text(
           text,
-          style: const TextStyle(
+          style: TextStyle(
             fontSize: 14,
+            color: Theme.of(context).colorScheme.onBackground,
             fontWeight: FontWeight.bold,
           ),
           textAlign: TextAlign.center,

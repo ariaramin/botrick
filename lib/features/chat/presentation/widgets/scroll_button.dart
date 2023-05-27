@@ -23,12 +23,14 @@ class ScrollButton extends StatelessWidget {
         child: Container(
           width: 38,
           height: 38,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(68),
+          decoration: ShapeDecoration(
+            shape: ContinuousRectangleBorder(
+              borderRadius: BorderRadius.circular(42),
+            ),
             color: AppColors.primaryColor,
-            boxShadow: const [
+            shadows: const [
               BoxShadow(
-                color: AppColors.greyColor,
+                color: AppColors.backgroundDarkColor,
                 blurRadius: 25,
                 spreadRadius: -12,
                 offset: Offset(0, 6),

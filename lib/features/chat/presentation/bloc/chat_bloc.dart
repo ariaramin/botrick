@@ -9,17 +9,19 @@ import 'package:whiz/features/chat/presentation/bloc/chat_status.dart';
 class ChatBloc extends Bloc<ChatEvent, ChatState> {
   final SendMessage _sendMessage = locator.get();
 
-  ChatBloc() : super(ChatState(status: ChatInitState(), messages: [])) {
+  ChatBloc() : super(ChatState(status: ChatInitStatus(), messages: [])) {
     on<SendMessageEvent>(
       (event, emit) async {
         state.messages.add(Message(
             role: MessageRoleEnum.user, content: event.chatParams!.prompt));
-        emit(state.copyWith(newStatus: ChatLoadingState()));
+        emit(state.copyWith(newStatus: ChatLoadingStatus()));
         var response = await _sendMessage.call(event.chatParams);
-        response.fold((l) => emit(state.copyWith(newStatus: ChatErrorState())),
+        response.fold(
+            (failure) => emit(state.copyWith(
+                newStatus: ChatErrorStatus(errorMessage: failure.message))),
             (response) {
           state.messages.addAll(response);
-          emit(state.copyWith(newStatus: ChatLoadedState()));
+          emit(state.copyWith(newStatus: ChatLoadedStatus()));
         });
       },
     );

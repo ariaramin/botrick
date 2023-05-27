@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:whiz/config/route/app_route_names.dart';
@@ -29,7 +30,16 @@ class _SplashBodyState extends State<SplashBody> {
           child: Image.asset(
             "assets/images/whiz.png",
             width: MediaQuery.of(context).size.width / 2,
-          ),
+          )
+              .animate()
+              .moveY(
+                duration: const Duration(milliseconds: 300),
+                curve: Curves.easeOut,
+              )
+              .fade(
+                duration: const Duration(milliseconds: 300),
+                curve: Curves.easeOut,
+              ),
         ),
         BlocConsumer<SplashCubit, SplashState>(
           listener: (context, state) {

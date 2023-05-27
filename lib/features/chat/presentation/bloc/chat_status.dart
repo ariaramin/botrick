@@ -2,22 +2,26 @@ import 'package:equatable/equatable.dart';
 
 abstract class ChatStatus extends Equatable {}
 
-class ChatInitState extends ChatStatus {
+class ChatInitStatus extends ChatStatus {
   @override
   List<Object?> get props => [];
 }
 
-class ChatLoadingState extends ChatStatus {
+class ChatLoadingStatus extends ChatStatus {
   @override
   List<Object?> get props => [];
 }
 
-class ChatLoadedState extends ChatStatus {
+class ChatLoadedStatus extends ChatStatus {
   @override
   List<Object?> get props => [];
 }
 
-class ChatErrorState extends ChatStatus {
+class ChatErrorStatus extends ChatStatus {
+  final String errorMessage;
+
+  ChatErrorStatus({required this.errorMessage});
+
   @override
   List<Object?> get props => [];
 }

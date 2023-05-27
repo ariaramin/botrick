@@ -25,19 +25,21 @@ class FeaturesItem extends StatelessWidget {
         const SizedBox(height: 4),
         Text(
           title,
-          style: const TextStyle(
+          style: TextStyle(
             fontSize: 18,
+            color: Theme.of(context).colorScheme.onBackground,
             fontWeight: FontWeight.bold,
           ),
         ),
         const SizedBox(height: 14),
         ListView.builder(
           shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
           itemCount: descriptions!.length,
           itemBuilder: (context, index) {
             return Padding(
               padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 18),
-              child: TextContainer(text: descriptions![index].text!),
+              child: FeatureTextContainer(text: descriptions![index].text!),
             );
           },
         ),

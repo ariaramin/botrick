@@ -5,12 +5,16 @@ import 'package:whiz/config/theme/app_colors.dart';
 import 'package:whiz/features/chat/domain/params/chat_params.dart';
 import 'package:whiz/features/chat/presentation/bloc/chat_bloc.dart';
 import 'package:whiz/features/chat/presentation/bloc/chat_event.dart';
+import 'package:whiz/features/chat/presentation/widgets/send_button.dart';
 
 class ChatTextField extends StatefulWidget {
   final bool? enabled;
+  final Function()? onSendMessage;
+
   const ChatTextField({
     super.key,
     this.enabled,
+    this.onSendMessage,
   });
 
   @override
@@ -34,23 +38,26 @@ class _ChatTextFieldState extends State<ChatTextField> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.only(left: 18, right: 10, top: 4, bottom: 4),
-      decoration: BoxDecoration(
-        color: AppColors.backgroundColor,
-        borderRadius: BorderRadius.circular(32),
-        boxShadow: const [
-          BoxShadow(
-            color: AppColors.greyColor,
-            blurRadius: 25,
-            spreadRadius: -12,
-            offset: Offset(0, 6),
-          ),
-        ],
-      ),
-      child: Row(
-        children: [
-          Expanded(
+    return Row(
+      children: [
+        Expanded(
+          child: Container(
+            padding:
+                const EdgeInsets.only(left: 18, right: 10, top: 4, bottom: 4),
+            decoration: ShapeDecoration(
+              color: AppColors.primaryContainerDarkColor,
+              shape: ContinuousRectangleBorder(
+                borderRadius: BorderRadius.circular(42),
+              ),
+              shadows: const [
+                BoxShadow(
+                  color: AppColors.backgroundDarkColor,
+                  blurRadius: 25,
+                  spreadRadius: -12,
+                  offset: Offset(0, 6),
+                ),
+              ],
+            ),
             child: TextFormField(
               controller: controller,
               onFieldSubmitted: (value) {
@@ -58,34 +65,31 @@ class _ChatTextFieldState extends State<ChatTextField> {
               },
               enabled: widget.enabled,
               style: const TextStyle(
-                color: AppColors.primaryColor,
+                color: Colors.white,
                 fontWeight: FontWeight.bold,
               ),
               decoration: const InputDecoration(
                 border: InputBorder.none,
-                fillColor: Colors.white,
-                hintText: "Write your message",
+                hintText: "Write your message...",
                 hintStyle: TextStyle(
-                  color: AppColors.greyColor,
+                  color: Colors.white54,
                   fontWeight: FontWeight.bold,
                 ),
               ),
             ),
           ),
-          IconButton(
-            onPressed: _sendMessage,
-            icon: const Icon(
-              Iconsax.send_1,
-              size: 24,
-            ),
-          ),
-        ],
-      ),
+        ),
+        const SizedBox(width: 12),
+        SendButton(onTap: () => _sendMessage()),
+      ],
     );
   }
 
   _sendMessage() {
     if (controller!.text.isNotEmpty) {
+      if (widget.onSendMessage != null) {
+        widget.onSendMessage!();
+      }
       BlocProvider.of<ChatBloc>(context).add(
         SendMessageEvent(
           chatParams: ChatParams(prompt: controller!.text),
