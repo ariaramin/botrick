@@ -13,7 +13,10 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
     on<SendMessageEvent>(
       (event, emit) async {
         state.messages.add(Message(
-            role: MessageRoleEnum.user, content: event.chatParams!.prompt));
+          content: event.chatParams!.prompt,
+          role: MessageRoleEnum.user,
+          type: MessageTypeEnum.text,
+        ));
         emit(state.copyWith(newStatus: ChatLoadingStatus()));
         var response = await _sendMessage.call(event.chatParams);
         response.fold(

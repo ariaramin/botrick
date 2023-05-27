@@ -21,4 +21,17 @@ class ChatRepositoryImpl extends ChatRepository {
       return left(Failure.connectionFailure());
     }
   }
+
+  @override
+  Future<Either<Failure, List<Message>>> imageGeneratorAPI(
+      String prompt) async {
+    try {
+      var response = await _datasource.imageGeneratorAPI(prompt);
+      return right(response);
+    } on ApiException catch (error) {
+      return left(Failure.serverFailure(error.message));
+    } on SocketException {
+      return left(Failure.connectionFailure());
+    }
+  }
 }

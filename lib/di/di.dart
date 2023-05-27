@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:whiz/core/constants/constants.dart';
+import 'package:whiz/core/providers/sound_provider.dart';
 import 'package:whiz/features/chat/data/datasource/chat_datasource.dart';
 import 'package:whiz/features/chat/data/datasource/chat_datasource_impl.dart';
 import 'package:whiz/features/chat/data/repository/chat_repository_impl.dart';
@@ -16,6 +17,9 @@ Future initGetit() async {
   // shared preferences
   SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
   locator.registerSingleton(sharedPreferences);
+
+  // provider
+  locator.registerSingleton<SoundProvider>(SoundProvider());
 
   // dio
   locator.registerSingleton<Dio>(

@@ -20,18 +20,18 @@ class FeaturesItem extends StatelessWidget {
       children: [
         Icon(
           iconData,
-          size: 38,
+          size: 34,
         ),
         const SizedBox(height: 4),
         Text(
           title,
           style: TextStyle(
-            fontSize: 18,
+            fontSize: 16,
             color: Theme.of(context).colorScheme.onBackground,
             fontWeight: FontWeight.bold,
           ),
         ),
-        const SizedBox(height: 14),
+        const SizedBox(height: 8),
         ListView.builder(
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),

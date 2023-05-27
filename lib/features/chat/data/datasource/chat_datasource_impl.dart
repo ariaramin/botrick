@@ -31,9 +31,47 @@ class ChatDatasourceImpl extends ChatDatasource {
             (index) => Message(
               content: response.data["choices"][index]["message"]["content"],
               role: MessageRoleEnum.assistant,
+              type: MessageTypeEnum.text,
             ),
           );
         }
+      }
+      if (response.data['error'] != null) {
+        throw ApiException(
+          code: response.statusCode,
+          message: response.data['error']["message"],
+        );
+      }
+      return messages;
+    } on DioError catch (error) {
+      throw ApiException(
+        code: error.response?.statusCode,
+        message: error.response?.data["message"],
+      );
+    } catch (exception) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<List<Message>> imageGeneratorAPI(String prompt) async {
+    try {
+      var response = await _dio.post(
+        "${Constants.BASE_URL}${Constants.IMAGE_GENERATOR_URL}",
+        data: {
+          "prompt": prompt,
+          "n": 1,
+        },
+      );
+      List<Message> messages = [];
+      if (response.statusCode == 200) {
+        messages.add(
+          Message(
+            content: response.data['data'][0]['url'],
+            role: MessageRoleEnum.assistant,
+            type: MessageTypeEnum.image,
+          ),
+        );
       }
       if (response.data['error'] != null) {
         throw ApiException(

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class RefreshText extends StatelessWidget {
   final Function()? onTap;
@@ -15,16 +14,16 @@ class RefreshText extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Column(
-        children: [
-          const Icon(
+        children: const [
+          Icon(
             Iconsax.refresh_circle,
             color: Colors.white,
             size: 28,
           ),
-          const SizedBox(height: 6),
+          SizedBox(height: 6),
           Text(
-            AppLocalizations.of(context)!.connectionError,
-            style: const TextStyle(
+            "Check your network connection",
+            style: TextStyle(
               color: Colors.white,
             ),
           ),

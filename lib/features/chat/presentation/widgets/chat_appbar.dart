@@ -1,13 +1,12 @@
-import 'package:animated_theme_switcher/animated_theme_switcher.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:iconsax/iconsax.dart';
 import 'package:whiz/config/theme/app_colors.dart';
-import 'package:whiz/config/theme/app_theme.dart';
 import 'package:whiz/features/chat/presentation/bloc/chat_bloc.dart';
 import 'package:whiz/features/chat/presentation/bloc/chat_state.dart';
 import 'package:whiz/features/chat/presentation/bloc/chat_status.dart';
+import 'package:whiz/features/chat/presentation/widgets/mute_action.dart';
+import 'package:whiz/features/chat/presentation/widgets/theme_action.dart';
 
 class ChatAppBar extends StatelessWidget implements PreferredSizeWidget {
   const ChatAppBar({
@@ -17,11 +16,12 @@ class ChatAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: AppColors.backgroundDarkColor,
-      elevation: 8,
+      backgroundColor: AppColors.primaryContainerDarkColor,
+      toolbarHeight: 72,
       title: BlocBuilder<ChatBloc, ChatState>(
         builder: (context, state) {
           return Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Stack(
                 clipBehavior: Clip.none,
@@ -74,7 +74,7 @@ class ChatAppBar extends StatelessWidget implements PreferredSizeWidget {
                   Text(
                     state.status is ChatLoadingStatus ? "Typing..." : "Online",
                     style: TextStyle(
-                      fontSize: 14,
+                      fontSize: 12,
                       color: state.status is ChatLoadingStatus
                           ? AppColors.primaryColor
                           : AppColors.successColor,
@@ -88,30 +88,13 @@ class ChatAppBar extends StatelessWidget implements PreferredSizeWidget {
         },
       ),
       actions: [
-        ThemeSwitcher.withTheme(
-          clipper: const ThemeSwitcherCircleClipper(),
-          builder: (_, switcher, theme) {
-            return IconButton(
-              icon: Icon(
-                theme.brightness == Brightness.light
-                    ? Iconsax.moon5
-                    : Iconsax.sun_15,
-                color: Colors.white,
-              ),
-              onPressed: () => switcher.changeTheme(
-                theme: theme.brightness == Brightness.light
-                    ? AppTheme.dark
-                    : AppTheme.light,
-                isReversed: theme.brightness == Brightness.dark ? true : false,
-              ),
-            );
-          },
-        ),
-        const SizedBox(width: 18)
+        MuteAction(),
+        const ThemeAction(),
+        const SizedBox(width: 16),
       ],
     );
   }
 
   @override
-  Size get preferredSize => const Size.fromHeight(kToolbarHeight + 8);
+  Size get preferredSize => const Size.fromHeight(kToolbarHeight + 16);
 }

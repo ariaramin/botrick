@@ -30,9 +30,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  flutter_localizations:
-    sdk: flutter
-  intl: any
+
   google_fonts: ^4.0.4
   flutter_spinkit: ^5.2.0
   shared_preferences: ^2.1.1
@@ -45,7 +43,6 @@ dependencies:
   get_it: ^7.6.0
   bloc: ^8.1.1
   flutter_bloc: ^8.1.2
-  # speech_to_text: ^6.1.1
   toastification: ^0.0.3
   flutter_animate: ^4.1.1+1
   audioplayers: ^4.0.1
@@ -70,7 +67,6 @@ dev_dependencies:
 
 # The following section is specific to Flutter packages.
 flutter:
-  generate: true
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
@@ -80,6 +76,7 @@ flutter:
   assets:
     - assets/images/
     - assets/audios/
+    - assets/fonts/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
@@ -95,7 +92,7 @@ flutter:
   fonts:
     - family: Shabnam
       fonts:
-        - asset: fonts/ShabnamMedium.ttf
+        - asset: assets/fonts/ShabnamMedium.ttf
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro

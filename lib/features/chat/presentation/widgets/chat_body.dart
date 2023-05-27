@@ -1,7 +1,10 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:toastification/toastification.dart';
+import 'package:whiz/core/providers/sound_provider.dart';
+import 'package:whiz/di/di.dart';
 import 'package:whiz/features/chat/data/models/message.dart';
 import 'package:whiz/features/chat/domain/entity/feature.dart';
 import 'package:whiz/features/chat/presentation/bloc/chat_bloc.dart';
@@ -20,6 +23,7 @@ class ChatBody extends StatefulWidget {
 }
 
 class _ChatBodyState extends State<ChatBody> {
+  final SoundProvider _soundProvider = locator.get();
   late ScrollController chatScrollController;
   late double _scrollButtonPosition;
   bool _isTyping = false;
@@ -50,6 +54,9 @@ class _ChatBodyState extends State<ChatBody> {
                 state.status is ChatLoadedStatus) {
               _changeTypingStatus();
             }
+            if (state.status is ChatLoadedStatus) {
+              _playSound();
+            }
             if (state.status is ChatErrorStatus) {
               _changeTypingStatus();
               final errorStatus = state.status as ChatErrorStatus;
@@ -75,9 +82,11 @@ class _ChatBodyState extends State<ChatBody> {
                         ? const EdgeInsets.only(top: 10, bottom: 108)
                         : const EdgeInsets.symmetric(vertical: 10),
                     child: ChatItem(
-                      text: state.messages[reverseIndex].content!,
+                      content: state.messages[reverseIndex].content!,
                       isUser: state.messages[reverseIndex].role ==
                           MessageRoleEnum.user,
+                      isImage: state.messages[reverseIndex].type ==
+                          MessageTypeEnum.image,
                     ),
                   );
                 },
@@ -115,6 +124,13 @@ class _ChatBodyState extends State<ChatBody> {
         ),
       ],
     );
+  }
+
+  _playSound() {
+    if (!_soundProvider.isMute) {
+      final player = AudioPlayer();
+      player.play(AssetSource('audios/pop.mp3'));
+    }
   }
 
   _scrollToBottom() {

@@ -1,13 +1,15 @@
 class Message {
   final MessageRoleEnum? role;
   final String? content;
+  final MessageTypeEnum? type;
 
-  Message({this.role, this.content});
-
-  Map<String, String> toJson() => {
-        "role": role == MessageRoleEnum.user ? "user" : "assistant",
-        "content": content!,
-      };
+  Message({
+    this.role,
+    this.content,
+    this.type,
+  });
 }
 
 enum MessageRoleEnum { user, assistant }
+
+enum MessageTypeEnum { text, image }

@@ -12,6 +12,9 @@ class SendMessage extends Usecase<Failure, List<Message>> {
   @override
   Future<Either<Failure, List<Message>>> call(Params? params) {
     var chatParams = params != null ? params as ChatParams : null;
-    return _repository.chatAPI(chatParams!.prompt);
+    if (chatParams!.prompt.startsWith("/img")) {
+      return _repository.imageGeneratorAPI(chatParams.prompt);
+    }
+    return _repository.chatAPI(chatParams.prompt);
   }
 }

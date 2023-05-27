@@ -20,7 +20,7 @@ class FeatureTextContainer extends StatelessWidget {
         child: Text(
           text,
           style: TextStyle(
-            fontSize: 14,
+            fontSize: 12,
             color: Theme.of(context).colorScheme.onBackground,
             fontWeight: FontWeight.bold,
           ),

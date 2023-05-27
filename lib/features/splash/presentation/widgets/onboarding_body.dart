@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:whiz/config/route/app_route_names.dart';
 import 'package:whiz/config/theme/app_colors.dart';
 import 'package:whiz/features/splash/domain/utils/onboarding_manager.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class OnBoardingBody extends StatelessWidget {
   const OnBoardingBody({super.key});
@@ -56,9 +55,9 @@ class OnBoardingBody extends StatelessWidget {
                 fixedSize: const Size.fromHeight(56),
                 backgroundColor: AppColors.primaryColor,
               ),
-              child: Text(
-                AppLocalizations.of(context)!.getStarted,
-                style: const TextStyle(
+              child: const Text(
+                "Get Started",
+                style: TextStyle(
                   fontSize: 18,
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
