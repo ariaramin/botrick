@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:iconsax/iconsax.dart';
 import 'package:whiz/config/theme/app_colors.dart';
+import 'package:whiz/features/chat/presentation/widgets/chat_item_image.dart';
 
 class ChatItem extends StatelessWidget {
   final String content;
@@ -46,21 +46,7 @@ class ChatItem extends StatelessWidget {
               ),
             ),
             child: isImage
-                ? Stack(
-                    children: [
-                      Image.network(content),
-                      Positioned(
-                        right: 0,
-                        child: IconButton(
-                          icon: const Icon(
-                            Iconsax.arrow_down_2,
-                            color: Colors.white,
-                          ),
-                          onPressed: () async {},
-                        ),
-                      ),
-                    ],
-                  )
+                ? ChatItemImage(imageUrl: content)
                 : Text(
                     content,
                     style: TextStyle(

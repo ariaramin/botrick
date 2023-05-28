@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:iconsax/iconsax.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
+import 'package:whiz/core/constants/assets_manager.dart';
 import 'package:whiz/core/providers/sound_provider.dart';
 import 'package:whiz/di/di.dart';
 
@@ -18,10 +19,15 @@ class MuteAction extends StatelessWidget {
       child: Consumer<SoundProvider>(
         builder: (context, value, child) {
           return IconButton(
-            icon: Icon(
-              value.isMute ? Iconsax.volume_high : Iconsax.volume_slash,
-              color: Colors.white,
-            ),
+            icon: value.isMute
+                ? SvgPicture.asset(
+                    AssetsManager.volumeUp,
+                    color: Colors.white,
+                  )
+                : SvgPicture.asset(
+                    AssetsManager.mute,
+                    color: Colors.white,
+                  ),
             onPressed: () => _soundProvider.isMute = !_soundProvider.isMute,
           );
         },

@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:whiz/features/chat/domain/entity/feature.dart';
 import 'package:whiz/features/chat/presentation/widgets/text_container.dart';
 
 class FeaturesItem extends StatelessWidget {
-  final IconData? iconData;
+  final String? iconData;
   final String title;
   final List<FeatureDescription>? descriptions;
 
@@ -18,9 +19,10 @@ class FeaturesItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Icon(
-          iconData,
-          size: 34,
+        SvgPicture.asset(
+          iconData!,
+          color: Colors.black,
+          height: 34,
         ),
         const SizedBox(height: 4),
         Text(

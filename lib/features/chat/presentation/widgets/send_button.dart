@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:iconsax/iconsax.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:whiz/config/theme/app_colors.dart';
+import 'package:whiz/core/constants/assets_manager.dart';
 
 class SendButton extends StatelessWidget {
   final Function()? onTap;
@@ -31,11 +32,10 @@ class SendButton extends StatelessWidget {
             ),
           ],
         ),
-        child: const Center(
-          child: Icon(
-            Iconsax.send_1,
+        child: Center(
+          child: SvgPicture.asset(
+            AssetsManager.navigation,
             color: Colors.white,
-            size: 24,
           ),
         ),
       ),

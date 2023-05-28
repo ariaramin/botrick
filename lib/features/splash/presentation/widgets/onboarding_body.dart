@@ -27,7 +27,7 @@ class OnBoardingBody extends StatelessWidget {
               "Using this software,you can ask you \n questions and receive articles using \n artificial intelligence assistant",
               style: TextStyle(
                 fontSize: 16,
-                color: AppColors.greyColor,
+                color: AppColors.darkColor,
                 fontWeight: FontWeight.bold,
               ),
               textAlign: TextAlign.center,

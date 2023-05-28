@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:iconsax/iconsax.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:whiz/core/constants/assets_manager.dart';
 
 class RefreshText extends StatelessWidget {
   final Function()? onTap;
@@ -14,14 +15,13 @@ class RefreshText extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Column(
-        children: const [
-          Icon(
-            Iconsax.refresh_circle,
+        children: [
+          SvgPicture.asset(
+            AssetsManager.refresh,
             color: Colors.white,
-            size: 28,
           ),
-          SizedBox(height: 6),
-          Text(
+          const SizedBox(height: 6),
+          const Text(
             "Check your network connection",
             style: TextStyle(
               color: Colors.white,

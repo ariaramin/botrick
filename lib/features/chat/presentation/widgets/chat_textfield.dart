@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:iconsax/iconsax.dart';
 import 'package:whiz/config/theme/app_colors.dart';
 import 'package:whiz/features/chat/domain/params/chat_params.dart';
 import 'package:whiz/features/chat/presentation/bloc/chat_bloc.dart';
@@ -45,7 +44,9 @@ class _ChatTextFieldState extends State<ChatTextField> {
             padding:
                 const EdgeInsets.only(left: 18, right: 10, top: 4, bottom: 4),
             decoration: ShapeDecoration(
-              color: AppColors.primaryContainerDarkColor,
+              color: Theme.of(context).brightness == Brightness.light
+                  ? AppColors.darkColor
+                  : AppColors.primaryContainerDarkColor,
               shape: ContinuousRectangleBorder(
                 borderRadius: BorderRadius.circular(42),
               ),

@@ -1,8 +1,7 @@
-import 'package:flutter/material.dart';
-import 'package:iconsax/iconsax.dart';
+import 'package:whiz/core/constants/assets_manager.dart';
 
 class Feature {
-  final IconData? iconData;
+  final String? iconData;
   final String? title;
   final List<FeatureDescription>? descriptions;
 
@@ -15,7 +14,7 @@ class Feature {
   static List<Feature> getFeatures() {
     return [
       Feature(
-        iconData: Iconsax.sun_1,
+        iconData: AssetsManager.sunOutline,
         title: "Example",
         descriptions: [
           FeatureDescription(text: "Explain quantum computing in simple terms"),
@@ -26,7 +25,7 @@ class Feature {
         ],
       ),
       Feature(
-        iconData: Iconsax.flash_1,
+        iconData: AssetsManager.flash,
         title: "Capabilities",
         descriptions: [
           FeatureDescription(
@@ -37,7 +36,7 @@ class Feature {
         ],
       ),
       Feature(
-        iconData: Iconsax.danger,
+        iconData: AssetsManager.danger,
         title: "Limitations",
         descriptions: [
           FeatureDescription(

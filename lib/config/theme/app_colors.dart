@@ -13,7 +13,7 @@ class AppColors {
   static const Color primaryContainerDarkColor = Color(0xFF292250);
 
   // Others
-  static const Color greyColor = Color(0xff757575);
+  static const Color darkColor = Color(0xff1D1C21);
   static const Color successColor = Color(0xff1DB68B);
   static const Color errorColor = Color(0xffD02026);
 }

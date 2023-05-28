@@ -3,6 +3,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:whiz/config/route/app_route_names.dart';
+import 'package:whiz/core/constants/assets_manager.dart';
 import 'package:whiz/features/splash/domain/utils/onboarding_manager.dart';
 import 'package:whiz/features/splash/presentation/bloc/splash_cubit.dart';
 import 'package:whiz/features/splash/presentation/bloc/splash_state.dart';
@@ -28,7 +29,7 @@ class _SplashBodyState extends State<SplashBody> {
       children: [
         Expanded(
           child: Image.asset(
-            "assets/images/whiz.png",
+            AssetsManager.logo,
             width: MediaQuery.of(context).size.width / 2,
           )
               .animate()

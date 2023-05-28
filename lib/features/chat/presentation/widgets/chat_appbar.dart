@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:whiz/config/theme/app_colors.dart';
-import 'package:whiz/features/chat/presentation/bloc/chat_bloc.dart';
-import 'package:whiz/features/chat/presentation/bloc/chat_state.dart';
-import 'package:whiz/features/chat/presentation/bloc/chat_status.dart';
+import 'package:whiz/features/chat/presentation/widgets/chat_header.dart';
 import 'package:whiz/features/chat/presentation/widgets/mute_action.dart';
 import 'package:whiz/features/chat/presentation/widgets/theme_action.dart';
 
@@ -15,83 +11,33 @@ class ChatAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AppBar(
-      backgroundColor: AppColors.primaryContainerDarkColor,
-      toolbarHeight: 72,
-      title: BlocBuilder<ChatBloc, ChatState>(
-        builder: (context, state) {
-          return Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Stack(
-                clipBehavior: Clip.none,
-                children: [
-                  const CircleAvatar(
-                    backgroundColor: AppColors.primaryColor,
-                    backgroundImage: AssetImage("assets/images/whiz.png"),
-                    radius: 24,
-                  ),
-                  if (state.status is ChatLoadingStatus) ...{
-                    Positioned(
-                      right: -8,
-                      bottom: 2,
-                      child: Container(
-                        padding: const EdgeInsets.all(3),
-                        decoration: BoxDecoration(
-                          color: AppColors.primaryColor,
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        child: const SpinKitThreeBounce(
-                          color: Colors.white,
-                          size: 8,
-                        ),
-                      ),
-                    )
-                  } else ...{
-                    const Positioned(
-                      right: 0,
-                      bottom: 2,
-                      child: CircleAvatar(
-                        radius: 6,
-                        backgroundColor: AppColors.successColor,
-                      ),
-                    )
-                  },
-                ],
-              ),
-              const SizedBox(width: 12),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text(
-                    "Whiz",
-                    style: TextStyle(
-                      fontSize: 18,
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  Text(
-                    state.status is ChatLoadingStatus ? "Typing..." : "Online",
-                    style: TextStyle(
-                      fontSize: 12,
-                      color: state.status is ChatLoadingStatus
-                          ? AppColors.primaryColor
-                          : AppColors.successColor,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ],
-              ),
-            ],
-          );
-        },
+    return PreferredSize(
+      preferredSize: const Size.fromHeight(kToolbarHeight),
+      child: Container(
+        decoration: const BoxDecoration(
+          color: AppColors.primaryContainerDarkColor,
+          boxShadow: [
+            BoxShadow(
+              color: AppColors.backgroundDarkColor,
+              blurRadius: 25,
+              spreadRadius: -12,
+              offset: Offset(0, 2),
+            ),
+          ],
+        ),
+        child: AppBar(
+          backgroundColor: AppColors.primaryContainerDarkColor,
+          elevation: 0,
+          toolbarHeight: 72,
+          title: const ChatHeader(),
+          actions: [
+            MuteAction(),
+            const SizedBox(width: 16),
+            const ThemeAction(),
+            const SizedBox(width: 16),
+          ],
+        ),
       ),
-      actions: [
-        MuteAction(),
-        const ThemeAction(),
-        const SizedBox(width: 16),
-      ],
     );
   }
 

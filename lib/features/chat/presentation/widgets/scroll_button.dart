@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:iconsax/iconsax.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:whiz/config/theme/app_colors.dart';
+import 'package:whiz/core/constants/assets_manager.dart';
 
 class ScrollButton extends StatelessWidget {
   final double scrollButtonPosition;
@@ -37,9 +38,9 @@ class ScrollButton extends StatelessWidget {
               ),
             ],
           ),
-          child: const Center(
-            child: Icon(
-              Iconsax.arrow_down_1,
+          child: Center(
+            child: SvgPicture.asset(
+              AssetsManager.downArrow,
               color: Colors.white,
             ),
           ),
