@@ -43,8 +43,8 @@ dependencies:
   get_it: ^7.6.0
   bloc: ^8.1.1
   flutter_bloc: ^8.1.2
-  toastification: ^0.0.3
   flutter_animate: ^4.1.1+1
+  animated_text_kit: ^4.2.2
   audioplayers: ^4.0.1
   image_gallery_saver: '^1.7.1'
   cached_network_image: ^3.2.3

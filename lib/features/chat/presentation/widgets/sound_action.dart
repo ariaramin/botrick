@@ -5,10 +5,10 @@ import 'package:whiz/core/constants/assets_manager.dart';
 import 'package:whiz/core/providers/sound_provider.dart';
 import 'package:whiz/di/di.dart';
 
-class MuteAction extends StatelessWidget {
+class SoundAction extends StatelessWidget {
   final SoundProvider _soundProvider = locator.get();
 
-  MuteAction({
+  SoundAction({
     super.key,
   });
 
@@ -21,11 +21,11 @@ class MuteAction extends StatelessWidget {
           return IconButton(
             icon: value.isMute
                 ? SvgPicture.asset(
-                    AssetsManager.volumeUp,
+                    AssetsManager.mute,
                     color: Colors.white,
                   )
                 : SvgPicture.asset(
-                    AssetsManager.mute,
+                    AssetsManager.volumeUp,
                     color: Colors.white,
                   ),
             onPressed: () => _soundProvider.isMute = !_soundProvider.isMute,

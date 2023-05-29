@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:whiz/config/theme/app_colors.dart';
 import 'package:whiz/features/chat/presentation/widgets/chat_header.dart';
-import 'package:whiz/features/chat/presentation/widgets/mute_action.dart';
+import 'package:whiz/features/chat/presentation/widgets/sound_action.dart';
 import 'package:whiz/features/chat/presentation/widgets/theme_action.dart';
 
 class ChatAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -31,7 +31,7 @@ class ChatAppBar extends StatelessWidget implements PreferredSizeWidget {
           toolbarHeight: 72,
           title: const ChatHeader(),
           actions: [
-            MuteAction(),
+            SoundAction(),
             const SizedBox(width: 16),
             const ThemeAction(),
             const SizedBox(width: 16),

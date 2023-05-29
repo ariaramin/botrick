@@ -22,7 +22,7 @@ class FeaturesItem extends StatelessWidget {
         SvgPicture.asset(
           iconData!,
           color: Colors.black,
-          height: 34,
+          height: 30,
         ),
         const SizedBox(height: 4),
         Text(

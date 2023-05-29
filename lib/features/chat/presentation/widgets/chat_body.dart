@@ -2,8 +2,8 @@ import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:toastification/toastification.dart';
 import 'package:whiz/core/providers/sound_provider.dart';
+import 'package:whiz/core/utils/custom_snackbar.dart';
 import 'package:whiz/di/di.dart';
 import 'package:whiz/features/chat/data/models/message.dart';
 import 'package:whiz/features/chat/domain/entity/feature.dart';
@@ -49,26 +49,7 @@ class _ChatBodyState extends State<ChatBody> {
       alignment: AlignmentDirectional.bottomCenter,
       children: [
         BlocConsumer<ChatBloc, ChatState>(
-          listener: (context, state) {
-            if (state.status is ChatLoadingStatus ||
-                state.status is ChatLoadedStatus) {
-              _changeTypingStatus();
-            }
-            if (state.status is ChatLoadedStatus) {
-              _playSound();
-            }
-            if (state.status is ChatErrorStatus) {
-              _changeTypingStatus();
-              final errorStatus = state.status as ChatErrorStatus;
-              toastification.showError(
-                context: context,
-                title: errorStatus.errorMessage,
-                autoCloseDuration: const Duration(seconds: 5),
-                showProgressBar: true,
-                showCloseButton: true,
-              );
-            }
-          },
+          listener: (context, state) => _handleChatStateChanges(state),
           builder: (context, state) {
             if (state.messages.isNotEmpty) {
               return ListView.builder(
@@ -87,6 +68,7 @@ class _ChatBodyState extends State<ChatBody> {
                           MessageRoleEnum.user,
                       isImage: state.messages[reverseIndex].type ==
                           MessageTypeEnum.image,
+                      shouldAnimate: reverseIndex == state.messages.length - 1,
                     ),
                   );
                 },
@@ -119,11 +101,29 @@ class _ChatBodyState extends State<ChatBody> {
           bottom: MediaQuery.of(context).viewInsets.bottom + 18,
           child: ChatTextField(
             enabled: !_isTyping,
-            onSendMessage: () => _scrollToBottom(),
+            onSendMessage: _scrollToBottom,
           ),
         ),
       ],
     );
+  }
+
+  _handleChatStateChanges(ChatState state) {
+    if (state.status is ChatLoadingStatus || state.status is ChatLoadedStatus) {
+      _changeTypingStatus();
+    }
+    if (state.status is ChatLoadedStatus) {
+      _playSound();
+    }
+    if (state.status is ChatErrorStatus) {
+      _changeTypingStatus();
+      final errorStatus = state.status as ChatErrorStatus;
+      showSnackBar(
+        context: context,
+        message: errorStatus.errorMessage,
+        type: SnackBarTypeEnum.error,
+      );
+    }
   }
 
   _playSound() {

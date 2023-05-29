@@ -6,5 +6,7 @@ class Constants {
   static const String COMPLETIONS_URL = "chat/completions";
   static const String IMAGE_GENERATOR_URL = "images/generations";
   static const String NONE_TEXTUAL_ERROR_MESSAGE = "None textual error";
+  static const String ERROR_MESSAGE = "Something went wrong";
+  static const String IMAGE_SAVED_MESSAGE = "Image saved to gallery";
   static const String CONNECTION_ERROR_MESSAGE = "Network connection failed";
 }

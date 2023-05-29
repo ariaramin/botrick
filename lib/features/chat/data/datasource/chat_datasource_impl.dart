@@ -25,13 +25,15 @@ class ChatDatasourceImpl extends ChatDatasource {
       );
       List<Message> messages = [];
       if (response.statusCode == 200) {
-        if (response.data["choices"].length > 0) {
-          messages = List.generate(
-            response.data["choices"].length,
-            (index) => Message(
-              content: response.data["choices"][index]["message"]["content"],
-              role: MessageRoleEnum.assistant,
-              type: MessageTypeEnum.text,
+        final choices = response.data['choices'];
+        if (choices.isNotEmpty) {
+          messages.addAll(
+            choices.map<Message>(
+              (choice) => Message(
+                content: choice['message']['content'],
+                role: MessageRoleEnum.assistant,
+                type: MessageTypeEnum.text,
+              ),
             ),
           );
         }

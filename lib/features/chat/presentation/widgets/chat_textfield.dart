@@ -21,7 +21,7 @@ class ChatTextField extends StatefulWidget {
 }
 
 class _ChatTextFieldState extends State<ChatTextField> {
-  late TextEditingController? controller;
+  late TextEditingController controller;
 
   @override
   void initState() {
@@ -32,7 +32,7 @@ class _ChatTextFieldState extends State<ChatTextField> {
   @override
   void dispose() {
     super.dispose();
-    controller!.dispose();
+    controller.dispose();
   }
 
   @override
@@ -61,9 +61,7 @@ class _ChatTextFieldState extends State<ChatTextField> {
             ),
             child: TextFormField(
               controller: controller,
-              onFieldSubmitted: (value) {
-                _sendMessage();
-              },
+              onFieldSubmitted: (_) => _sendMessage(),
               enabled: widget.enabled,
               style: const TextStyle(
                 fontFamilyFallback: ["Shabnam"],
@@ -84,22 +82,21 @@ class _ChatTextFieldState extends State<ChatTextField> {
           ),
         ),
         const SizedBox(width: 12),
-        SendButton(onTap: () => _sendMessage()),
+        SendButton(onTap: _sendMessage),
       ],
     );
   }
 
   _sendMessage() {
-    if (controller!.text.isNotEmpty) {
+    final text = controller.text.trim();
+    if (text.isNotEmpty) {
       if (widget.onSendMessage != null) {
         widget.onSendMessage!();
       }
       BlocProvider.of<ChatBloc>(context).add(
-        SendMessageEvent(
-          chatParams: ChatParams(prompt: controller!.text),
-        ),
+        SendMessageEvent(chatParams: ChatParams(prompt: text)),
       );
-      controller!.clear();
+      controller.clear();
     }
   }
 }
