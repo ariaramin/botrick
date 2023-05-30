@@ -1,7 +1,7 @@
-import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:whiz/config/theme/app_colors.dart';
 import 'package:whiz/features/chat/presentation/widgets/chat_item_image.dart';
+import 'package:whiz/features/chat/presentation/widgets/chat_item_text.dart';
 
 class ChatItem extends StatelessWidget {
   final String content;
@@ -56,32 +56,13 @@ class ChatItem extends StatelessWidget {
   }
 
   Widget _buildContent(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
-
     if (isImage) {
       return ChatItemImage(imageUrl: content);
     }
-
-    return DefaultTextStyle.merge(
-      style: TextStyle(
-        fontFamilyFallback: const ["Shabnam"],
-        fontSize: 14,
-        color: isUser ? Colors.white : colorScheme.onBackground,
-        fontWeight: FontWeight.bold,
-      ),
-      child: isUser
-          ? Text(content)
-          : shouldAnimate
-              ? AnimatedTextKit(
-                  animatedTexts: [
-                    TyperAnimatedText(content),
-                  ],
-                  isRepeatingAnimation: false,
-                  repeatForever: false,
-                  displayFullTextOnTap: true,
-                  totalRepeatCount: 1,
-                )
-              : Text(content),
+    return ChatItemText(
+      isUser: isUser,
+      content: content,
+      shouldAnimate: shouldAnimate,
     );
   }
 }

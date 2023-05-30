@@ -65,7 +65,7 @@ class _ChatItemImageState extends State<ChatItemImage> {
     );
   }
 
-  Future<void> _saveImage(BuildContext context) async {
+  _saveImage(BuildContext context) async {
     setState(() {
       _isImageSaving = true;
     });

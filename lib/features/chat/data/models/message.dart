@@ -8,6 +8,11 @@ class Message {
     this.content,
     this.type,
   });
+
+  toJson() => {
+        "role": role == MessageRoleEnum.user ? "user" : "assistant",
+        "content": content,
+      };
 }
 
 enum MessageRoleEnum { user, assistant }

@@ -25,7 +25,7 @@ class ChatHeader extends StatelessWidget {
                 const CircleAvatar(
                   backgroundColor: AppColors.primaryContainerDarkColor,
                   backgroundImage: AssetImage(AssetsManager.logo),
-                  radius: 24,
+                  radius: 26,
                 ),
                 if (state.status is ChatLoadingStatus) ...{
                   Positioned(

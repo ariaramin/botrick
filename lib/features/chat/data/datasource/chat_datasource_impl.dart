@@ -7,26 +7,30 @@ import 'package:whiz/features/chat/data/models/message.dart';
 
 class ChatDatasourceImpl extends ChatDatasource {
   final Dio _dio = locator.get();
+  List<Message> messages = [];
 
   @override
   Future<List<Message>> chatAPI(String prompt) async {
     try {
+      // Adding user message to the list
+      messages.add(Message(
+        content: prompt,
+        role: MessageRoleEnum.user,
+        type: MessageTypeEnum.text,
+      ));
+
       var response = await _dio.post(
         "${Constants.BASE_URL}${Constants.COMPLETIONS_URL}",
         data: {
           "model": "gpt-3.5-turbo",
-          "messages": [
-            {
-              "role": "user",
-              "content": prompt,
-            }
-          ]
+          "messages": messages.map((element) => element.toJson()).toList()
         },
       );
-      List<Message> messages = [];
+
       if (response.statusCode == 200) {
         final choices = response.data['choices'];
         if (choices.isNotEmpty) {
+          // Adding assistant messages to the list
           messages.addAll(
             choices.map<Message>(
               (choice) => Message(
@@ -38,7 +42,9 @@ class ChatDatasourceImpl extends ChatDatasource {
           );
         }
       }
+
       if (response.data['error'] != null) {
+        // Throwing an ApiException if there's an error
         throw ApiException(
           code: response.statusCode,
           message: response.data['error']["message"],
@@ -46,11 +52,13 @@ class ChatDatasourceImpl extends ChatDatasource {
       }
       return messages;
     } on DioError catch (error) {
+      // Throwing an ApiException if there's a DioError
       throw ApiException(
         code: error.response?.statusCode,
         message: error.response?.data["message"],
       );
     } catch (exception) {
+      // Rethrowing any other exception
       rethrow;
     }
   }
@@ -58,6 +66,13 @@ class ChatDatasourceImpl extends ChatDatasource {
   @override
   Future<List<Message>> imageGeneratorAPI(String prompt) async {
     try {
+      // Adding user message to the list
+      messages.add(Message(
+        content: prompt,
+        role: MessageRoleEnum.user,
+        type: MessageTypeEnum.text,
+      ));
+
       var response = await _dio.post(
         "${Constants.BASE_URL}${Constants.IMAGE_GENERATOR_URL}",
         data: {
@@ -65,8 +80,9 @@ class ChatDatasourceImpl extends ChatDatasource {
           "n": 1,
         },
       );
-      List<Message> messages = [];
+
       if (response.statusCode == 200) {
+        // Adding assistant message with generated image URL to the list
         messages.add(
           Message(
             content: response.data['data'][0]['url'],
@@ -75,7 +91,9 @@ class ChatDatasourceImpl extends ChatDatasource {
           ),
         );
       }
+
       if (response.data['error'] != null) {
+        // Throwing an ApiException if there's an error
         throw ApiException(
           code: response.statusCode,
           message: response.data['error']["message"],
@@ -83,11 +101,13 @@ class ChatDatasourceImpl extends ChatDatasource {
       }
       return messages;
     } on DioError catch (error) {
+      // Throwing an ApiException if there's a DioError
       throw ApiException(
         code: error.response?.statusCode,
         message: error.response?.data["message"],
       );
     } catch (exception) {
+      // Rethrowing any other exception
       rethrow;
     }
   }

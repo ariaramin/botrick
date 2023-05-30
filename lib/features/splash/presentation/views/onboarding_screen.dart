@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:whiz/config/theme/app_colors.dart';
 import 'package:whiz/features/splash/presentation/widgets/onboarding_body.dart';
 
 class OnBoardingScreen extends StatelessWidget {
@@ -7,6 +8,7 @@ class OnBoardingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
+      backgroundColor: AppColors.backgroundColor,
       body: SafeArea(
         child: OnBoardingBody(),
       ),

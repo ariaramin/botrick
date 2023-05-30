@@ -3,7 +3,13 @@ class AssetsManager {
   static const String iconsPath = "assets/icons";
 
   // images
-  static const String logo = "assets/images/whiz.png";
+  static const String logo = "assets/images/icon.jpg";
+  static const String splash = "assets/images/splash.png";
+  static const String welcome = "assets/images/welcome.jpg";
+  static const String seeking = "assets/images/seeking.jpg";
+  static const String recommendation = "assets/images/recommendation.jpg";
+  static const String writing = "assets/images/writing.jpg";
+  static const String imageGeneration = "assets/images/image_generation.jpg";
 
   // icons
   static const String moon = "$iconsPath/moon.svg";

@@ -13,5 +13,5 @@ class Failure extends Equatable {
       const Failure(Constants.CONNECTION_ERROR_MESSAGE);
 
   factory Failure.serverFailure(String? message) =>
-      Failure(message ?? Constants.NONE_TEXTUAL_ERROR_MESSAGE);
+      Failure(message ?? Constants.ERROR_MESSAGE);
 }

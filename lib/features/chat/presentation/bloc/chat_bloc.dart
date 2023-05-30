@@ -23,7 +23,7 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
             (failure) => emit(state.copyWith(
                 newStatus: ChatErrorStatus(errorMessage: failure.message))),
             (response) {
-          state.messages.addAll(response);
+          state.messages.add(response.last);
           emit(state.copyWith(newStatus: ChatLoadedStatus()));
         });
       },

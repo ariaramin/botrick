@@ -29,23 +29,23 @@ class _SplashBodyState extends State<SplashBody> {
       children: [
         Expanded(
           child: Image.asset(
-            AssetsManager.logo,
-            width: MediaQuery.of(context).size.width / 2,
+            AssetsManager.splash,
+            width: MediaQuery.of(context).size.width / 1.1,
           )
               .animate()
               .moveY(
-                duration: const Duration(milliseconds: 300),
+                duration: const Duration(milliseconds: 500),
                 curve: Curves.easeOut,
               )
               .fade(
-                duration: const Duration(milliseconds: 300),
+                duration: const Duration(milliseconds: 500),
                 curve: Curves.easeOut,
               ),
         ),
         BlocConsumer<SplashCubit, SplashState>(
           listener: (context, state) {
             if (state is ConnectionOnState) {
-              navigateToAnotherScreen(context);
+              _navigateToAnotherScreen(context);
             }
           },
           builder: (context, state) {
@@ -70,7 +70,7 @@ class _SplashBodyState extends State<SplashBody> {
     );
   }
 
-  navigateToAnotherScreen(BuildContext context) {
+  _navigateToAnotherScreen(BuildContext context) {
     var isFirstTime = OnBoardingManager().getState();
     Future.delayed(const Duration(seconds: 3), () {
       if (isFirstTime) {
