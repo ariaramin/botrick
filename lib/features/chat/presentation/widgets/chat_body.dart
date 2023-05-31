@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:whiz/core/providers/sound_provider.dart';
-import 'package:whiz/core/utils/custom_snackbar.dart';
+import 'package:whiz/core/constants/custom_snackbar.dart';
 import 'package:whiz/di/di.dart';
 import 'package:whiz/features/chat/data/models/message.dart';
 import 'package:whiz/features/chat/domain/entity/feature.dart';

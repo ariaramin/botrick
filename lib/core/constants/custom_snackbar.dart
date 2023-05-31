@@ -25,6 +25,7 @@ showSnackBar({
     margin: const EdgeInsets.fromLTRB(15, 5, 15, 92),
     shape: ContinuousRectangleBorder(borderRadius: BorderRadius.circular(28)),
     showCloseIcon: true,
+    closeIconColor: Colors.white,
     behavior: SnackBarBehavior.floating,
   );
   ScaffoldMessenger.of(context).showSnackBar(snackBar);

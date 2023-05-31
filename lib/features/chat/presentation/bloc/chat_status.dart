@@ -8,6 +8,10 @@ class ChatInitStatus extends ChatStatus {
 }
 
 class ChatLoadingStatus extends ChatStatus {
+  final bool isTyping;
+
+  ChatLoadingStatus({this.isTyping = true});
+
   @override
   List<Object?> get props => [];
 }

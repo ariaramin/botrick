@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:whiz/features/chat/domain/entity/feature.dart';
 import 'package:whiz/features/chat/presentation/widgets/text_container.dart';
 
 class FeaturesItem extends StatelessWidget {
   final String? iconData;
   final String title;
-  final List<FeatureDescription>? descriptions;
+  final List<String>? descriptions;
 
   const FeaturesItem({
     super.key,
@@ -30,7 +29,7 @@ class FeaturesItem extends StatelessWidget {
           style: TextStyle(
             fontSize: 16,
             color: Theme.of(context).colorScheme.onBackground,
-            fontWeight: FontWeight.bold,
+            fontWeight: FontWeight.w800,
           ),
         ),
         const SizedBox(height: 8),
@@ -41,7 +40,7 @@ class FeaturesItem extends StatelessWidget {
           itemBuilder: (context, index) {
             return Padding(
               padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 18),
-              child: FeatureTextContainer(text: descriptions![index].text!),
+              child: FeatureTextContainer(text: descriptions![index]),
             );
           },
         ),

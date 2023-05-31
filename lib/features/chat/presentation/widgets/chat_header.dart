@@ -60,7 +60,7 @@ class ChatHeader extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const Text(
-                  "Whiz",
+                  "Botrick",
                   style: TextStyle(
                     fontSize: 16,
                     color: Colors.white,
@@ -68,7 +68,11 @@ class ChatHeader extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  state.status is ChatLoadingStatus ? "Typing..." : "Online",
+                  state.status is ChatLoadingStatus
+                      ? (state.status as ChatLoadingStatus).isTyping
+                          ? "Typing..."
+                          : "Generating..."
+                      : "Online",
                   style: TextStyle(
                     fontSize: 12,
                     color: state.status is ChatLoadingStatus

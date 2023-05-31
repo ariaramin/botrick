@@ -30,7 +30,7 @@ class _SplashBodyState extends State<SplashBody> {
         Expanded(
           child: Image.asset(
             AssetsManager.splash,
-            width: MediaQuery.of(context).size.width / 1.1,
+            width: MediaQuery.of(context).size.width / 1.3,
           )
               .animate()
               .moveY(

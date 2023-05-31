@@ -10,22 +10,38 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
   final SendMessage _sendMessage = locator.get();
 
   ChatBloc() : super(ChatState(status: ChatInitStatus(), messages: [])) {
+    // Event listener for SendMessageEvent
     on<SendMessageEvent>(
       (event, emit) async {
-        state.messages.add(Message(
+        // Create a new user message
+        final userMessage = Message(
           content: event.chatParams!.prompt,
           role: MessageRoleEnum.user,
           type: MessageTypeEnum.text,
+        );
+        // Add the user message to the state
+        state.messages.add(userMessage);
+        // Emit the state with updated loading status
+        emit(state.copyWith(
+          newStatus: ChatLoadingStatus(
+            isTyping: !event.chatParams!.prompt.startsWith("/img"),
+          ),
         ));
-        emit(state.copyWith(newStatus: ChatLoadingStatus()));
+        // Call the send message use case
         var response = await _sendMessage.call(event.chatParams);
         response.fold(
-            (failure) => emit(state.copyWith(
-                newStatus: ChatErrorStatus(errorMessage: failure.message))),
-            (response) {
-          state.messages.add(response.last);
-          emit(state.copyWith(newStatus: ChatLoadedStatus()));
-        });
+          // Handle failure response from send message use case
+          (failure) => emit(state.copyWith(
+            newStatus: ChatErrorStatus(errorMessage: failure.message),
+          )),
+          // Handle success response from send message use case
+          (response) {
+            // Add the response message to the state
+            state.messages.add(response.last);
+            // Emit the state with updated loaded status
+            emit(state.copyWith(newStatus: ChatLoadedStatus()));
+          },
+        );
       },
     );
   }

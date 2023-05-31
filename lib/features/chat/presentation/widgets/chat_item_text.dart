@@ -20,7 +20,6 @@ class ChatItemText extends StatelessWidget {
           _isPersianText(content) ? TextDirection.rtl : TextDirection.ltr,
       child: DefaultTextStyle.merge(
         style: TextStyle(
-          fontFamilyFallback: const ["Shabnam"],
           fontSize: 14,
           color: isUser
               ? Colors.white

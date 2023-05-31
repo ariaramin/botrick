@@ -8,7 +8,7 @@ import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:whiz/config/theme/app_colors.dart';
 import 'package:whiz/core/constants/assets_manager.dart';
 import 'package:whiz/core/constants/constants.dart';
-import 'package:whiz/core/utils/custom_snackbar.dart';
+import 'package:whiz/core/constants/custom_snackbar.dart';
 
 class ChatItemImage extends StatefulWidget {
   final String imageUrl;
@@ -86,11 +86,13 @@ class _ChatItemImageState extends State<ChatItemImage> {
           showSnackBar(
             context: context,
             message: Constants.IMAGE_SAVED_MESSAGE,
+            type: SnackBarTypeEnum.success,
           );
         } else {
           showSnackBar(
             context: context,
             message: Constants.ERROR_MESSAGE,
+            type: SnackBarTypeEnum.error,
           );
         }
       }
@@ -98,6 +100,7 @@ class _ChatItemImageState extends State<ChatItemImage> {
       showSnackBar(
         context: context,
         message: Constants.ERROR_MESSAGE,
+        type: SnackBarTypeEnum.error,
       );
     } finally {
       setState(() {

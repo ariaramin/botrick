@@ -64,10 +64,9 @@ class _ChatTextFieldState extends State<ChatTextField> {
               onFieldSubmitted: (_) => _sendMessage(),
               enabled: widget.enabled,
               style: const TextStyle(
-                fontFamilyFallback: ["Shabnam"],
                 fontSize: 14,
                 color: Colors.white,
-                fontWeight: FontWeight.bold,
+                fontWeight: FontWeight.w800,
               ),
               decoration: const InputDecoration(
                 border: InputBorder.none,
@@ -75,7 +74,7 @@ class _ChatTextFieldState extends State<ChatTextField> {
                 hintStyle: TextStyle(
                   fontSize: 14,
                   color: Colors.white54,
-                  fontWeight: FontWeight.bold,
+                  fontWeight: FontWeight.w800,
                 ),
               ),
             ),

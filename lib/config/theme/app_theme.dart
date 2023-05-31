@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:whiz/config/theme/app_colors.dart';
 
 class AppTheme {
   static ThemeData light = ThemeData(
     useMaterial3: true,
     scaffoldBackgroundColor: AppColors.backgroundColor,
-    textTheme: GoogleFonts.nunitoTextTheme(),
-    fontFamilyFallback: const ["Shabnam"],
+    fontFamilyFallback: const ["Nunito", "Shabnam"],
     colorScheme: const ColorScheme(
       brightness: Brightness.light,
       primary: AppColors.primaryColor,
@@ -27,8 +25,7 @@ class AppTheme {
   static ThemeData dark = ThemeData(
     useMaterial3: true,
     scaffoldBackgroundColor: AppColors.backgroundDarkColor,
-    textTheme: GoogleFonts.nunitoTextTheme(),
-    fontFamilyFallback: const ["Shabnam"],
+    fontFamilyFallback: const ["Nunito", "Shabnam"],
     colorScheme: const ColorScheme(
       brightness: Brightness.dark,
       primary: AppColors.primaryColor,
