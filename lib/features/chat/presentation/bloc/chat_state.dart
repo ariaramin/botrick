@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
-import 'package:whiz/features/chat/data/models/message.dart';
-import 'package:whiz/features/chat/presentation/bloc/chat_status.dart';
+import 'package:botrick/features/chat/data/models/message.dart';
+import 'package:botrick/features/chat/presentation/bloc/chat_status.dart';
 
 class ChatState extends Equatable {
   final ChatStatus status;

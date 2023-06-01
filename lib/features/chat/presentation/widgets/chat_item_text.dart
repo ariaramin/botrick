@@ -24,7 +24,7 @@ class ChatItemText extends StatelessWidget {
           color: isUser
               ? Colors.white
               : Theme.of(context).colorScheme.onBackground,
-          fontWeight: FontWeight.bold,
+          fontWeight: FontWeight.w800,
         ),
         child: isUser
             ? Text(content)

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:whiz/core/constants/assets_manager.dart';
+import 'package:botrick/core/constants/assets_manager.dart';
 
 class RefreshText extends StatelessWidget {
   final Function()? onTap;

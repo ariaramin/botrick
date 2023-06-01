@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:whiz/config/theme/app_colors.dart';
-import 'package:whiz/features/chat/presentation/widgets/chat_item_image.dart';
-import 'package:whiz/features/chat/presentation/widgets/chat_item_text.dart';
+import 'package:botrick/config/theme/app_colors.dart';
+import 'package:botrick/features/chat/presentation/widgets/chat_item_image.dart';
+import 'package:botrick/features/chat/presentation/widgets/chat_item_text.dart';
 
 class ChatItem extends StatelessWidget {
   final String content;

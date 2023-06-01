@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:whiz/features/chat/presentation/widgets/text_container.dart';
+import 'package:botrick/features/chat/presentation/widgets/text_container.dart';
 
 class FeaturesItem extends StatelessWidget {
   final String? iconData;

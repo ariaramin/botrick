@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:whiz/config/theme/app_colors.dart';
-import 'package:whiz/core/constants/assets_manager.dart';
-import 'package:whiz/features/chat/presentation/bloc/chat_bloc.dart';
-import 'package:whiz/features/chat/presentation/bloc/chat_state.dart';
-import 'package:whiz/features/chat/presentation/bloc/chat_status.dart';
+import 'package:botrick/config/theme/app_colors.dart';
+import 'package:botrick/core/constants/assets_manager.dart';
+import 'package:botrick/features/chat/presentation/bloc/chat_bloc.dart';
+import 'package:botrick/features/chat/presentation/bloc/chat_state.dart';
+import 'package:botrick/features/chat/presentation/bloc/chat_status.dart';
 
 class ChatHeader extends StatelessWidget {
   const ChatHeader({

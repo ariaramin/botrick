@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:whiz/config/theme/app_colors.dart';
-import 'package:whiz/core/constants/assets_manager.dart';
+import 'package:botrick/config/theme/app_colors.dart';
+import 'package:botrick/core/constants/assets_manager.dart';
 
 class ScrollButton extends StatelessWidget {
   final double scrollButtonPosition;

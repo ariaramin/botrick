@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:whiz/config/theme/app_colors.dart';
-import 'package:whiz/features/chat/domain/params/chat_params.dart';
-import 'package:whiz/features/chat/presentation/bloc/chat_bloc.dart';
-import 'package:whiz/features/chat/presentation/bloc/chat_event.dart';
-import 'package:whiz/features/chat/presentation/widgets/send_button.dart';
+import 'package:botrick/config/theme/app_colors.dart';
+import 'package:botrick/features/chat/domain/params/chat_params.dart';
+import 'package:botrick/features/chat/presentation/bloc/chat_bloc.dart';
+import 'package:botrick/features/chat/presentation/bloc/chat_event.dart';
+import 'package:botrick/features/chat/presentation/widgets/send_button.dart';
 
 class ChatTextField extends StatefulWidget {
   final bool? enabled;

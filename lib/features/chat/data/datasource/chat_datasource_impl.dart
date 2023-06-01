@@ -1,9 +1,9 @@
 import 'package:dio/dio.dart';
-import 'package:whiz/core/constants/constants.dart';
-import 'package:whiz/core/utils/api_exception.dart';
-import 'package:whiz/di/di.dart';
-import 'package:whiz/features/chat/data/datasource/chat_datasource.dart';
-import 'package:whiz/features/chat/data/models/message.dart';
+import 'package:botrick/core/constants/constants.dart';
+import 'package:botrick/core/utils/api_exception.dart';
+import 'package:botrick/di/di.dart';
+import 'package:botrick/features/chat/data/datasource/chat_datasource.dart';
+import 'package:botrick/features/chat/data/models/message.dart';
 
 class ChatDatasourceImpl extends ChatDatasource {
   final Dio _dio = locator.get();

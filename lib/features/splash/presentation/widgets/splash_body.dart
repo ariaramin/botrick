@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:whiz/config/route/app_route_names.dart';
-import 'package:whiz/core/constants/assets_manager.dart';
-import 'package:whiz/features/splash/domain/utils/onboarding_manager.dart';
-import 'package:whiz/features/splash/presentation/bloc/splash_cubit.dart';
-import 'package:whiz/features/splash/presentation/bloc/splash_state.dart';
-import 'package:whiz/features/splash/presentation/widgets/refresh_text.dart';
+import 'package:botrick/config/route/app_route_names.dart';
+import 'package:botrick/core/constants/assets_manager.dart';
+import 'package:botrick/features/splash/domain/utils/onboarding_manager.dart';
+import 'package:botrick/features/splash/presentation/bloc/splash_cubit.dart';
+import 'package:botrick/features/splash/presentation/bloc/splash_state.dart';
+import 'package:botrick/features/splash/presentation/widgets/refresh_text.dart';
 
 class SplashBody extends StatefulWidget {
   const SplashBody({super.key});

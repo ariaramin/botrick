@@ -1,4 +1,4 @@
-import 'package:whiz/core/constants/assets_manager.dart';
+import 'package:botrick/core/constants/assets_manager.dart';
 
 class SliderModel {
   final String? image;

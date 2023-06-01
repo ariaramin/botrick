@@ -1,8 +1,8 @@
 import 'package:animated_theme_switcher/animated_theme_switcher.dart';
 import 'package:flutter/material.dart';
-import 'package:whiz/config/route/app_route_names.dart';
-import 'package:whiz/config/theme/app_theme.dart';
-import 'package:whiz/di/di.dart';
+import 'package:botrick/config/route/app_route_names.dart';
+import 'package:botrick/config/theme/app_theme.dart';
+import 'package:botrick/di/di.dart';
 import 'config/route/app_route.dart';
 
 void main() async {

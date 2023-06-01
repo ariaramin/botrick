@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-import 'package:whiz/config/route/app_route_names.dart';
-import 'package:whiz/config/theme/app_colors.dart';
-import 'package:whiz/features/splash/domain/entity/slider.dart';
-import 'package:whiz/features/splash/domain/utils/onboarding_manager.dart';
-import 'package:whiz/features/splash/presentation/widgets/slider_item.dart';
+import 'package:botrick/config/route/app_route_names.dart';
+import 'package:botrick/config/theme/app_colors.dart';
+import 'package:botrick/features/splash/domain/entity/slider.dart';
+import 'package:botrick/features/splash/domain/utils/onboarding_manager.dart';
+import 'package:botrick/features/splash/presentation/widgets/slider_item.dart';
 
 class OnBoardingBody extends StatefulWidget {
   const OnBoardingBody({super.key});

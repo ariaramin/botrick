@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:whiz/config/theme/app_colors.dart';
-import 'package:whiz/features/splash/presentation/widgets/onboarding_body.dart';
+import 'package:botrick/config/theme/app_colors.dart';
+import 'package:botrick/features/splash/presentation/widgets/onboarding_body.dart';
 
 class OnBoardingScreen extends StatelessWidget {
   const OnBoardingScreen({super.key});

@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:whiz/features/chat/domain/params/chat_params.dart';
+import 'package:botrick/features/chat/domain/params/chat_params.dart';
 
 abstract class ChatEvent extends Equatable {}
 

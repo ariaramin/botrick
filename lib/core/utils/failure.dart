@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:whiz/core/constants/constants.dart';
+import 'package:botrick/core/constants/constants.dart';
 
 class Failure extends Equatable {
   final String message;

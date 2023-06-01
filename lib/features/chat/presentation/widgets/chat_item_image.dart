@@ -5,10 +5,10 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
-import 'package:whiz/config/theme/app_colors.dart';
-import 'package:whiz/core/constants/assets_manager.dart';
-import 'package:whiz/core/constants/constants.dart';
-import 'package:whiz/core/constants/custom_snackbar.dart';
+import 'package:botrick/config/theme/app_colors.dart';
+import 'package:botrick/core/constants/assets_manager.dart';
+import 'package:botrick/core/constants/constants.dart';
+import 'package:botrick/core/constants/custom_snackbar.dart';
 
 class ChatItemImage extends StatefulWidget {
   final String imageUrl;

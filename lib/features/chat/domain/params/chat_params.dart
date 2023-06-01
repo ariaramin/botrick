@@ -1,4 +1,4 @@
-import 'package:whiz/core/usecase/usecase.dart';
+import 'package:botrick/core/usecase/usecase.dart';
 
 class ChatParams extends Params {
   final String prompt;

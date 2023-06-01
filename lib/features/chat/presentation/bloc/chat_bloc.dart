@@ -1,10 +1,10 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:whiz/di/di.dart';
-import 'package:whiz/features/chat/data/models/message.dart';
-import 'package:whiz/features/chat/domain/usecase/send_message.dart';
-import 'package:whiz/features/chat/presentation/bloc/chat_event.dart';
-import 'package:whiz/features/chat/presentation/bloc/chat_state.dart';
-import 'package:whiz/features/chat/presentation/bloc/chat_status.dart';
+import 'package:botrick/di/di.dart';
+import 'package:botrick/features/chat/data/models/message.dart';
+import 'package:botrick/features/chat/domain/usecase/send_message.dart';
+import 'package:botrick/features/chat/presentation/bloc/chat_event.dart';
+import 'package:botrick/features/chat/presentation/bloc/chat_state.dart';
+import 'package:botrick/features/chat/presentation/bloc/chat_status.dart';
 
 class ChatBloc extends Bloc<ChatEvent, ChatState> {
   final SendMessage _sendMessage = locator.get();

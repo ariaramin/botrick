@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:whiz/di/di.dart';
+import 'package:botrick/di/di.dart';
 
 class SoundProvider extends ChangeNotifier {
   final SharedPreferences _preferences = locator.get();

@@ -1,11 +1,11 @@
 import 'dart:io';
 import 'package:dartz/dartz.dart';
-import 'package:whiz/core/utils/api_exception.dart';
-import 'package:whiz/core/utils/failure.dart';
-import 'package:whiz/di/di.dart';
-import 'package:whiz/features/chat/data/datasource/chat_datasource.dart';
-import 'package:whiz/features/chat/data/models/message.dart';
-import 'package:whiz/features/chat/domain/repository/chat_repository.dart';
+import 'package:botrick/core/utils/api_exception.dart';
+import 'package:botrick/core/utils/failure.dart';
+import 'package:botrick/di/di.dart';
+import 'package:botrick/features/chat/data/datasource/chat_datasource.dart';
+import 'package:botrick/features/chat/data/models/message.dart';
+import 'package:botrick/features/chat/domain/repository/chat_repository.dart';
 
 class ChatRepositoryImpl extends ChatRepository {
   final ChatDatasource _datasource = locator.get();

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
-import 'package:whiz/core/constants/assets_manager.dart';
-import 'package:whiz/core/providers/sound_provider.dart';
-import 'package:whiz/di/di.dart';
+import 'package:botrick/core/constants/assets_manager.dart';
+import 'package:botrick/core/providers/sound_provider.dart';
+import 'package:botrick/di/di.dart';
 
 class SoundAction extends StatelessWidget {
   final SoundProvider _soundProvider = locator.get();
