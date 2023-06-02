@@ -11,3 +11,12 @@ class SendMessageEvent extends ChatEvent {
   @override
   List<Object?> get props => [];
 }
+
+class ReSendMessageEvent extends ChatEvent {
+  final ChatParams? chatParams;
+
+  ReSendMessageEvent({this.chatParams});
+
+  @override
+  List<Object?> get props => [];
+}

@@ -1,5 +1,4 @@
 import 'dart:typed_data';
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
@@ -36,7 +35,15 @@ class _ChatItemImageState extends State<ChatItemImage> {
               imageUrl: widget.imageUrl,
               fit: BoxFit.cover,
               placeholder: (context, url) => const CircularProgressIndicator(),
-              errorWidget: (context, url, error) => const Icon(Icons.error),
+              errorWidget: (context, url, error) => GestureDetector(
+                onTap: () => setState(() {}),
+                child: SvgPicture.asset(
+                  AssetsManager.refresh,
+                  color: Theme.of(context).brightness == Brightness.light
+                      ? AppColors.darkColor
+                      : Colors.white,
+                ),
+              ),
             ),
           ),
         ),

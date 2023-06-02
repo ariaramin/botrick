@@ -8,7 +8,7 @@ import 'package:botrick/features/chat/presentation/widgets/send_button.dart';
 
 class ChatTextField extends StatefulWidget {
   final bool? enabled;
-  final Function()? onSendMessage;
+  final Function(String value)? onSendMessage;
 
   const ChatTextField({
     super.key,
@@ -90,7 +90,7 @@ class _ChatTextFieldState extends State<ChatTextField> {
     final text = controller.text.trim();
     if (text.isNotEmpty) {
       if (widget.onSendMessage != null) {
-        widget.onSendMessage!();
+        widget.onSendMessage!(text);
       }
       BlocProvider.of<ChatBloc>(context).add(
         SendMessageEvent(chatParams: ChatParams(prompt: text)),

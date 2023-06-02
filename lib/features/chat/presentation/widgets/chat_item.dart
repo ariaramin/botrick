@@ -41,10 +41,10 @@ class ChatItem extends StatelessWidget {
                   : Theme.of(context).colorScheme.primaryContainer,
               shape: ContinuousRectangleBorder(
                 borderRadius: BorderRadius.only(
-                  topLeft: const Radius.circular(38),
-                  bottomRight: isUser ? Radius.zero : const Radius.circular(38),
-                  bottomLeft: isUser ? const Radius.circular(38) : Radius.zero,
-                  topRight: const Radius.circular(38),
+                  topLeft: const Radius.circular(42),
+                  bottomRight: isUser ? Radius.zero : const Radius.circular(42),
+                  bottomLeft: isUser ? const Radius.circular(42) : Radius.zero,
+                  topRight: const Radius.circular(42),
                 ),
               ),
             ),

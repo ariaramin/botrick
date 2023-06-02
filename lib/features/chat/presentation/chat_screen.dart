@@ -13,11 +13,15 @@ class ChatScreen extends StatelessWidget {
     return BlocProvider(
       create: (context) => ChatBloc(),
       child: ThemeSwitchingArea(
-        child: const Scaffold(
-          appBar: ChatAppBar(),
-          body: SafeArea(
-            child: ChatBody(),
-          ),
+        child: Builder(
+          builder: (context) {
+            return const Scaffold(
+              appBar: ChatAppBar(),
+              body: SafeArea(
+                child: ChatBody(),
+              ),
+            );
+          },
         ),
       ),
     );

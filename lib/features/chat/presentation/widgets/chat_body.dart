@@ -1,4 +1,6 @@
 import 'package:audioplayers/audioplayers.dart';
+import 'package:botrick/features/chat/domain/params/chat_params.dart';
+import 'package:botrick/features/chat/presentation/bloc/chat_event.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -24,23 +26,24 @@ class ChatBody extends StatefulWidget {
 
 class _ChatBodyState extends State<ChatBody> {
   final SoundProvider _soundProvider = locator.get();
-  late ScrollController chatScrollController;
+  late ScrollController _chatScrollController;
   late double _scrollButtonPosition;
+  late String _inputText;
   bool _isTyping = false;
 
   @override
   void initState() {
     super.initState();
-    chatScrollController = ScrollController();
-    chatScrollController.addListener(_scrollListener);
+    _chatScrollController = ScrollController();
+    _chatScrollController.addListener(_scrollListener);
     _scrollButtonPosition = 28;
   }
 
   @override
   void dispose() {
     super.dispose();
-    chatScrollController.removeListener(_scrollListener);
-    chatScrollController.dispose();
+    _chatScrollController.removeListener(_scrollListener);
+    _chatScrollController.dispose();
   }
 
   @override
@@ -53,7 +56,7 @@ class _ChatBodyState extends State<ChatBody> {
           builder: (context, state) {
             if (state.messages.isNotEmpty) {
               return ListView.builder(
-                controller: chatScrollController,
+                controller: _chatScrollController,
                 reverse: true,
                 itemCount: state.messages.length,
                 itemBuilder: (context, index) {
@@ -101,7 +104,10 @@ class _ChatBodyState extends State<ChatBody> {
           bottom: MediaQuery.of(context).viewInsets.bottom + 18,
           child: ChatTextField(
             enabled: !_isTyping,
-            onSendMessage: _scrollToBottom,
+            onSendMessage: (value) {
+              _scrollToBottom();
+              _inputText = value;
+            },
           ),
         ),
       ],
@@ -122,6 +128,13 @@ class _ChatBodyState extends State<ChatBody> {
         context: context,
         message: errorStatus.errorMessage,
         type: SnackBarTypeEnum.error,
+        onTapAction: () {
+          if (_inputText.isNotEmpty) {
+            BlocProvider.of<ChatBloc>(context).add(
+              ReSendMessageEvent(chatParams: ChatParams(prompt: _inputText)),
+            );
+          }
+        },
       );
     }
   }
@@ -134,9 +147,9 @@ class _ChatBodyState extends State<ChatBody> {
   }
 
   _scrollToBottom() {
-    if (chatScrollController.hasClients) {
-      final position = chatScrollController.position.minScrollExtent;
-      chatScrollController
+    if (_chatScrollController.hasClients) {
+      final position = _chatScrollController.position.minScrollExtent;
+      _chatScrollController
           .animateTo(
         position,
         duration: const Duration(milliseconds: 300),
@@ -151,10 +164,10 @@ class _ChatBodyState extends State<ChatBody> {
   }
 
   _scrollListener() {
-    if (chatScrollController.position.userScrollDirection ==
+    if (_chatScrollController.position.userScrollDirection ==
         ScrollDirection.reverse) {
-      if (chatScrollController.position.pixels ==
-          chatScrollController.position.minScrollExtent) {
+      if (_chatScrollController.position.pixels ==
+          _chatScrollController.position.minScrollExtent) {
         setState(() {
           _scrollButtonPosition = MediaQuery.of(context).viewInsets.bottom + 28;
         });
@@ -164,7 +177,7 @@ class _ChatBodyState extends State<ChatBody> {
         });
       }
     }
-    if (chatScrollController.position.userScrollDirection ==
+    if (_chatScrollController.position.userScrollDirection ==
         ScrollDirection.forward) {
       setState(() {
         _scrollButtonPosition = MediaQuery.of(context).viewInsets.bottom + 28;

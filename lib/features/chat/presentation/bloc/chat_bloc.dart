@@ -44,5 +44,32 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
         );
       },
     );
+
+    // Event listener for ReSendMessageEvent
+    on<ReSendMessageEvent>(
+      (event, emit) async {
+        // Emit the state with updated loading status
+        emit(state.copyWith(
+          newStatus: ChatLoadingStatus(
+            isTyping: !event.chatParams!.prompt.startsWith("/img"),
+          ),
+        ));
+        // Call the send message use case
+        var response = await _sendMessage.call(event.chatParams);
+        response.fold(
+          // Handle failure response from send message use case
+          (failure) => emit(state.copyWith(
+            newStatus: ChatErrorStatus(errorMessage: failure.message),
+          )),
+          // Handle success response from send message use case
+          (response) {
+            // Add the response message to the state
+            state.messages.add(response.last);
+            // Emit the state with updated loaded status
+            emit(state.copyWith(newStatus: ChatLoadedStatus()));
+          },
+        );
+      },
+    );
   }
 }

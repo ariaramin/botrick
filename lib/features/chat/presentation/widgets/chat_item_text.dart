@@ -1,5 +1,8 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:botrick/core/constants/constants.dart';
+import 'package:botrick/core/constants/custom_snackbar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class ChatItemText extends StatelessWidget {
   final bool isUser;
@@ -29,25 +32,34 @@ class ChatItemText extends StatelessWidget {
         child: isUser
             ? Text(content)
             : shouldAnimate
-                ? AnimatedTextKit(
-                    animatedTexts: [
-                      TyperAnimatedText(content),
-                    ],
-                    isRepeatingAnimation: false,
-                    repeatForever: false,
-                    displayFullTextOnTap: true,
-                    totalRepeatCount: 1,
+                ? GestureDetector(
+                    onLongPress: () => _copyText(context),
+                    child: AnimatedTextKit(
+                      animatedTexts: [
+                        TyperAnimatedText(content),
+                      ],
+                      isRepeatingAnimation: false,
+                      repeatForever: false,
+                      displayFullTextOnTap: true,
+                      totalRepeatCount: 1,
+                    ),
                   )
                 : Text(content),
       ),
     );
   }
 
+  _copyText(BuildContext context) {
+    Clipboard.setData(ClipboardData(text: content));
+    showSnackBar(
+      context: context,
+      message: Constants.TEXT_COPIED_MESSAGE,
+      type: SnackBarTypeEnum.success,
+    );
+  }
+
   _isPersianText(String value) {
-    var persian = RegExp(r'[\u0600-\u06FF]');
-    if (persian.hasMatch(value)) {
-      return true;
-    }
-    return false;
+    final persian = RegExp(r'[\u0600-\u06FF]');
+    return persian.hasMatch(value);
   }
 }
