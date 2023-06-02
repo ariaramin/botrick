@@ -25,6 +25,7 @@ class RefreshText extends StatelessWidget {
             "Check your network connection",
             style: TextStyle(
               color: Colors.white,
+              fontWeight: FontWeight.bold,
             ),
           ),
         ],

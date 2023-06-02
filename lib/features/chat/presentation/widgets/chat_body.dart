@@ -8,14 +8,14 @@ import 'package:botrick/core/providers/sound_provider.dart';
 import 'package:botrick/core/constants/custom_snackbar.dart';
 import 'package:botrick/di/di.dart';
 import 'package:botrick/features/chat/data/models/message.dart';
-import 'package:botrick/features/chat/domain/entity/feature.dart';
 import 'package:botrick/features/chat/presentation/bloc/chat_bloc.dart';
 import 'package:botrick/features/chat/presentation/bloc/chat_state.dart';
 import 'package:botrick/features/chat/presentation/bloc/chat_status.dart';
 import 'package:botrick/features/chat/presentation/widgets/chat_item.dart';
 import 'package:botrick/features/chat/presentation/widgets/chat_textfield.dart';
-import 'package:botrick/features/chat/presentation/widgets/features_item.dart';
 import 'package:botrick/features/chat/presentation/widgets/scroll_button.dart';
+
+import 'features_list.dart';
 
 class ChatBody extends StatefulWidget {
   const ChatBody({super.key});
@@ -30,6 +30,7 @@ class _ChatBodyState extends State<ChatBody> {
   late double _scrollButtonPosition;
   late String _inputText;
   bool _isTyping = false;
+  bool _shouldAnimate = false;
 
   @override
   void initState() {
@@ -71,27 +72,15 @@ class _ChatBodyState extends State<ChatBody> {
                           MessageRoleEnum.user,
                       isImage: state.messages[reverseIndex].type ==
                           MessageTypeEnum.image,
-                      shouldAnimate: reverseIndex == state.messages.length - 1,
+                      shouldAnimate: _shouldAnimate &&
+                          reverseIndex == state.messages.length - 1,
+                      onTextAnimationFinished: () => _shouldAnimate = false,
                     ),
                   );
                 },
               );
             }
-            return ListView.builder(
-              itemCount: Feature.getFeatures().length,
-              itemBuilder: (context, index) {
-                return Padding(
-                  padding: index == Feature.getFeatures().length - 1
-                      ? const EdgeInsets.only(top: 12, bottom: 108)
-                      : const EdgeInsets.symmetric(vertical: 12),
-                  child: FeaturesItem(
-                    iconData: Feature.getFeatures()[index].iconData,
-                    title: Feature.getFeatures()[index].title!,
-                    descriptions: Feature.getFeatures()[index].descriptions,
-                  ),
-                );
-              },
-            );
+            return const FeaturesList();
           },
         ),
         ScrollButton(
@@ -119,6 +108,7 @@ class _ChatBodyState extends State<ChatBody> {
       _changeTypingStatus();
     }
     if (state.status is ChatLoadedStatus) {
+      _shouldAnimate = true;
       _playSound();
     }
     if (state.status is ChatErrorStatus) {

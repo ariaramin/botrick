@@ -20,7 +20,7 @@ class FeaturesItem extends StatelessWidget {
       children: [
         SvgPicture.asset(
           iconData!,
-          color: Colors.black,
+          color: Theme.of(context).colorScheme.onBackground,
           height: 30,
         ),
         const SizedBox(height: 4),

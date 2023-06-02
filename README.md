@@ -1,4 +1,4 @@
-# whiz
+# botrick
 
 A new Flutter project.
 

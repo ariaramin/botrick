@@ -8,12 +8,14 @@ class ChatItemText extends StatelessWidget {
   final bool isUser;
   final String content;
   final bool shouldAnimate;
+  final Function()? onFinished;
 
   const ChatItemText({
     super.key,
     required this.isUser,
     required this.content,
     required this.shouldAnimate,
+    this.onFinished,
   });
 
   @override
@@ -31,30 +33,32 @@ class ChatItemText extends StatelessWidget {
         ),
         child: isUser
             ? Text(content)
-            : shouldAnimate
-                ? GestureDetector(
-                    onLongPress: () => _copyText(context),
-                    child: AnimatedTextKit(
-                      animatedTexts: [
-                        TyperAnimatedText(content),
-                      ],
-                      isRepeatingAnimation: false,
-                      repeatForever: false,
-                      displayFullTextOnTap: true,
-                      totalRepeatCount: 1,
-                    ),
-                  )
-                : Text(content),
+            : GestureDetector(
+                onLongPress: () => _copyText(context),
+                child: shouldAnimate
+                    ? AnimatedTextKit(
+                        animatedTexts: [
+                          TyperAnimatedText(content),
+                        ],
+                        isRepeatingAnimation: false,
+                        repeatForever: false,
+                        displayFullTextOnTap: true,
+                        totalRepeatCount: 1,
+                        onFinished: onFinished,
+                      )
+                    : Text(content),
+              ),
       ),
     );
   }
 
   _copyText(BuildContext context) {
-    Clipboard.setData(ClipboardData(text: content));
-    showSnackBar(
-      context: context,
-      message: Constants.TEXT_COPIED_MESSAGE,
-      type: SnackBarTypeEnum.success,
+    Clipboard.setData(ClipboardData(text: content)).then(
+      (value) => showSnackBar(
+        context: context,
+        message: Constants.TEXT_COPIED_MESSAGE,
+        type: SnackBarTypeEnum.success,
+      ),
     );
   }
 

@@ -66,6 +66,15 @@ class _SplashBodyState extends State<SplashBody> {
           },
         ),
         const SizedBox(width: double.infinity, height: 26),
+        const Text(
+          "Developed with ❤️ by Aria Ramin",
+          style: TextStyle(
+            fontSize: 10,
+            color: Colors.white,
+          ),
+          textAlign: TextAlign.center,
+        ),
+        const SizedBox(width: double.infinity, height: 16),
       ],
     );
   }

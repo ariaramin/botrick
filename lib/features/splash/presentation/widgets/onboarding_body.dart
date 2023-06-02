@@ -71,7 +71,7 @@ class _OnBoardingBodyState extends State<OnBoardingBody> {
                   fixedSize: const Size.fromHeight(56),
                   backgroundColor: AppColors.primaryColor,
                   shape: ContinuousRectangleBorder(
-                    borderRadius: BorderRadius.circular(48),
+                    borderRadius: BorderRadius.circular(46),
                   ),
                 ),
                 child: Text(

@@ -8,6 +8,7 @@ class ChatItem extends StatelessWidget {
   final bool isUser;
   final bool isImage;
   final bool shouldAnimate;
+  final Function()? onTextAnimationFinished;
 
   const ChatItem({
     super.key,
@@ -15,6 +16,7 @@ class ChatItem extends StatelessWidget {
     required this.isUser,
     this.isImage = false,
     this.shouldAnimate = false,
+    this.onTextAnimationFinished,
   });
 
   @override
@@ -63,6 +65,7 @@ class ChatItem extends StatelessWidget {
       isUser: isUser,
       content: content,
       shouldAnimate: shouldAnimate,
+      onFinished: onTextAnimationFinished,
     );
   }
 }
