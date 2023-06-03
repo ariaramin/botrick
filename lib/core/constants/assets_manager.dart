@@ -1,6 +1,7 @@
 class AssetsManager {
   static const String imagesPath = "assets/images";
   static const String iconsPath = "assets/icons";
+  static const String audiosPath = "assets/audios";
 
   // images
   static const String logo = "assets/images/icon.jpg";
@@ -23,4 +24,7 @@ class AssetsManager {
   static const String refresh = "$iconsPath/refresh.svg";
   static const String flash = "$iconsPath/flash.svg";
   static const String danger = "$iconsPath/danger.svg";
+
+  // audios
+  static const String popAudio = "$audiosPath/pop.mp3";
 }

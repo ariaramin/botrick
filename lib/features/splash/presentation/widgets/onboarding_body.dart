@@ -26,6 +26,7 @@ class _OnBoardingBodyState extends State<OnBoardingBody> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
+    // Precache slider images
     for (var i = 0; i < SliderModel.getSliders().length; i++) {
       precacheImage(AssetImage(SliderModel.getSliders()[i].image!), context);
     }
@@ -94,17 +95,20 @@ class _OnBoardingBodyState extends State<OnBoardingBody> {
 
   _onNextButtonPressed() {
     if (currentIndex == SliderModel.getSliders().length - 1) {
+      // Set onboarding state and navigate to the chat screen
       OnBoardingManager().setState();
       Navigator.pushNamedAndRemoveUntil(
         context,
         AppRouteNames.chat,
         (route) => false,
       );
+    } else {
+      // Move to the next slide
+      _controller.nextPage(
+        duration: const Duration(milliseconds: 500),
+        curve: Curves.easeOut,
+      );
     }
-    _controller.nextPage(
-      duration: const Duration(milliseconds: 500),
-      curve: Curves.easeOut,
-    );
   }
 
   _buildSliderItem(int index) {

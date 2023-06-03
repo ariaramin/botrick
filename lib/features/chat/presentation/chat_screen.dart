@@ -1,4 +1,6 @@
 import 'package:animated_theme_switcher/animated_theme_switcher.dart';
+import 'package:botrick/features/splash/presentation/bloc/connectivity_bloc.dart';
+import 'package:botrick/features/splash/presentation/bloc/connectivity_event.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:botrick/features/chat/presentation/bloc/chat_bloc.dart';
@@ -10,8 +12,16 @@ class ChatScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => ChatBloc(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<ChatBloc>(
+          create: (BuildContext context) => ChatBloc(),
+        ),
+        BlocProvider<ConnectivityBloc>(
+          create: (BuildContext context) =>
+              ConnectivityBloc()..add(CheckConnectivityEvent()),
+        ),
+      ],
       child: ThemeSwitchingArea(
         child: const Scaffold(
           appBar: ChatAppBar(),

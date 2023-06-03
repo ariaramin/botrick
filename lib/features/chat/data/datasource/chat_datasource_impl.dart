@@ -78,6 +78,7 @@ class ChatDatasourceImpl extends ChatDatasource {
         data: {
           "prompt": prompt,
           "n": 1,
+          "size": "512x512",
         },
       );
 

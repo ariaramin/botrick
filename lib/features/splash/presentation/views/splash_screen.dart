@@ -1,7 +1,8 @@
+import 'package:botrick/features/splash/presentation/bloc/connectivity_event.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:botrick/config/theme/app_colors.dart';
-import 'package:botrick/features/splash/presentation/bloc/splash_cubit.dart';
+import 'package:botrick/features/splash/presentation/bloc/connectivity_bloc.dart';
 import 'package:botrick/features/splash/presentation/widgets/splash_body.dart';
 
 class SplashScreen extends StatelessWidget {
@@ -10,7 +11,7 @@ class SplashScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => SplashCubit(),
+      create: (context) => ConnectivityBloc()..add(CheckConnectivityEvent()),
       child: const Scaffold(
         backgroundColor: AppColors.primaryColor,
         body: SplashBody(),

@@ -2,6 +2,7 @@ import 'dart:typed_data';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:botrick/config/theme/app_colors.dart';
@@ -23,6 +24,13 @@ class ChatItemImage extends StatefulWidget {
 
 class _ChatItemImageState extends State<ChatItemImage> {
   bool _isImageSaving = false;
+  bool _shouldReload = false;
+
+  @override
+  void dispose() {
+    super.dispose();
+    DefaultCacheManager().removeFile(widget.imageUrl);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -32,12 +40,13 @@ class _ChatItemImageState extends State<ChatItemImage> {
           height: MediaQuery.of(context).size.width - 105,
           child: Center(
             child: CachedNetworkImage(
+              key: ValueKey<String>(_shouldReload ? "reload" : widget.imageUrl),
               imageUrl: widget.imageUrl,
               fit: BoxFit.cover,
               placeholder: (context, url) => const CircularProgressIndicator(),
-              errorWidget: (context, url, error) => GestureDetector(
-                onTap: () => setState(() {}),
-                child: SvgPicture.asset(
+              errorWidget: (context, url, error) => IconButton(
+                onPressed: _reloadImage,
+                icon: SvgPicture.asset(
                   AssetsManager.refresh,
                   color: Theme.of(context).brightness == Brightness.light
                       ? AppColors.darkColor
@@ -72,6 +81,12 @@ class _ChatItemImageState extends State<ChatItemImage> {
     );
   }
 
+  _reloadImage() {
+    setState(() {
+      _shouldReload = !_shouldReload;
+    });
+  }
+
   _saveImage(BuildContext context) async {
     setState(() {
       _isImageSaving = true;
@@ -84,7 +99,7 @@ class _ChatItemImageState extends State<ChatItemImage> {
       );
       final result = await ImageGallerySaver.saveImage(
         Uint8List.fromList(response.data),
-        quality: 100,
+        quality: 90,
         name: "${DateTime.now()}",
       );
 

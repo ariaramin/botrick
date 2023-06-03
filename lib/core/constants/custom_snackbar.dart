@@ -21,7 +21,10 @@ showSnackBar({
         const Spacer(),
         if (onTapAction != null) ...{
           GestureDetector(
-            onTap: onTapAction,
+            onTap: () {
+              onTapAction();
+              ScaffoldMessenger.of(context).hideCurrentSnackBar();
+            },
             child: const Text(
               "Try again",
               style: TextStyle(

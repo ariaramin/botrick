@@ -29,10 +29,10 @@ environment:
 # versions available, run `flutter pub outdated`.
 dependencies:
   flutter:
-    sdk: flutter
-
+    sdk: flutter  
+  
+  connectivity_plus: ^4.0.1
   flutter_spinkit: ^5.2.0
-  liquid_swipe: ^3.1.0
   smooth_page_indicator: ^1.1.0
   shared_preferences: ^2.1.1
   animated_theme_switcher: ^2.0.8
@@ -49,7 +49,7 @@ dependencies:
   audioplayers: ^4.0.1
   image_gallery_saver: '^1.7.1'
   cached_network_image: ^3.2.3
-
+  flutter_cache_manager: ^3.2.0
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -67,22 +67,11 @@ dev_dependencies:
   # rules and activating additional ones.
   flutter_lints: ^2.0.0
   flutter_launcher_icons: "^0.13.1"
-  flutter_native_splash: ^2.3.0
 
 flutter_icons:
   android: true
   ios: true
   image_path: "assets/images/icon.jpg"
-
-flutter_native_splash:
-  color: "#6F61E8"
-  image: assets/images/icon_large.jpg
-  branding: assets/images/icon_large.jpg
-
-  android_12:
-    image: assets/images/icon_large.jpg
-
-  web: false
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 

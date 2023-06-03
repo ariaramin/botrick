@@ -1,4 +1,5 @@
 import 'package:audioplayers/audioplayers.dart';
+import 'package:botrick/core/constants/assets_manager.dart';
 import 'package:botrick/features/chat/domain/params/chat_params.dart';
 import 'package:botrick/features/chat/presentation/bloc/chat_event.dart';
 import 'package:flutter/material.dart';
@@ -132,7 +133,7 @@ class _ChatBodyState extends State<ChatBody> {
   _playSound() {
     if (!_soundProvider.isMute) {
       final player = AudioPlayer();
-      player.play(AssetSource('audios/pop.mp3'));
+      player.play(AssetSource(AssetsManager.popAudio));
     }
   }
 

@@ -1,3 +1,4 @@
+import 'package:botrick/features/splash/presentation/bloc/connectivity_event.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -5,23 +6,12 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:botrick/config/route/app_route_names.dart';
 import 'package:botrick/core/constants/assets_manager.dart';
 import 'package:botrick/features/splash/domain/utils/onboarding_manager.dart';
-import 'package:botrick/features/splash/presentation/bloc/splash_cubit.dart';
-import 'package:botrick/features/splash/presentation/bloc/splash_state.dart';
+import 'package:botrick/features/splash/presentation/bloc/connectivity_bloc.dart';
+import 'package:botrick/features/splash/presentation/bloc/connectivity_state.dart';
 import 'package:botrick/features/splash/presentation/widgets/refresh_text.dart';
 
-class SplashBody extends StatefulWidget {
+class SplashBody extends StatelessWidget {
   const SplashBody({super.key});
-
-  @override
-  State<SplashBody> createState() => _SplashBodyState();
-}
-
-class _SplashBodyState extends State<SplashBody> {
-  @override
-  void initState() {
-    super.initState();
-    BlocProvider.of<SplashCubit>(context).checkConnection();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -42,27 +32,25 @@ class _SplashBodyState extends State<SplashBody> {
                 curve: Curves.easeOut,
               ),
         ),
-        BlocConsumer<SplashCubit, SplashState>(
+        BlocConsumer<ConnectivityBloc, ConnectivityState>(
           listener: (context, state) {
-            if (state is ConnectionOnState) {
+            if (state is ConnectivityUpdated && state.isConnected) {
               _navigateToAnotherScreen(context);
             }
           },
           builder: (context, state) {
-            if (state is SplashInitState || state is ConnectionOnState) {
-              return const SpinKitThreeBounce(
-                color: Colors.white,
-                size: 26,
-              );
-            }
-            if (state is ConnectionOffState) {
+            if (state is ConnectivityUpdated && !state.isConnected) {
               return RefreshText(
                 onTap: () {
-                  BlocProvider.of<SplashCubit>(context).checkConnection();
+                  BlocProvider.of<ConnectivityBloc>(context)
+                      .add(CheckConnectivityEvent());
                 },
               );
             }
-            return const SizedBox();
+            return const SpinKitThreeBounce(
+              color: Colors.white,
+              size: 26,
+            );
           },
         ),
         const SizedBox(width: double.infinity, height: 26),
@@ -82,19 +70,11 @@ class _SplashBodyState extends State<SplashBody> {
   _navigateToAnotherScreen(BuildContext context) {
     var isFirstTime = OnBoardingManager().getState();
     Future.delayed(const Duration(seconds: 3), () {
-      if (isFirstTime) {
-        Navigator.pushNamedAndRemoveUntil(
-          context,
-          AppRouteNames.onBoarding,
-          (route) => false,
-        );
-      } else {
-        Navigator.pushNamedAndRemoveUntil(
-          context,
-          AppRouteNames.chat,
-          (route) => false,
-        );
-      }
+      Navigator.pushNamedAndRemoveUntil(
+        context,
+        isFirstTime ? AppRouteNames.onBoarding : AppRouteNames.chat,
+        (route) => false,
+      );
     });
   }
 }
