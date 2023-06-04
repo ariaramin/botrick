@@ -24,7 +24,6 @@ class ChatHeader extends StatelessWidget {
                 : true;
 
             return Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Stack(
                   clipBehavior: Clip.none,
@@ -69,7 +68,7 @@ class ChatHeader extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const Text(
-                      "Botrick",
+                      'Botrick',
                       style: TextStyle(
                         fontSize: 16,
                         color: Colors.white,
@@ -79,11 +78,11 @@ class ChatHeader extends StatelessWidget {
                     Text(
                       isChatLoading
                           ? (chatState.status as ChatLoadingStatus).isTyping
-                              ? "Typing..."
-                              : "Generating..."
+                              ? 'Typing...'
+                              : 'Generating...'
                           : isConnected
-                              ? "Online"
-                              : "Offline",
+                              ? 'Online'
+                              : 'Offline',
                       style: TextStyle(
                         fontSize: 12,
                         color: isChatLoading

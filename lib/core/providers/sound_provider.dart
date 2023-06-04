@@ -4,7 +4,7 @@ import 'package:botrick/di/di.dart';
 
 class SoundProvider extends ChangeNotifier {
   final SharedPreferences _preferences = locator.get();
-  static const String soundKey = "sound_key";
+  static const String soundKey = 'sound_key';
   late bool _isMute;
 
   bool get isMute => _isMute;

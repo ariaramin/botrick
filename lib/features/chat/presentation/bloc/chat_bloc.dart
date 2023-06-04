@@ -24,7 +24,7 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
         // Emit the state with updated loading status
         emit(state.copyWith(
           newStatus: ChatLoadingStatus(
-            isTyping: !event.chatParams!.prompt.startsWith("/img"),
+            isTyping: !event.chatParams!.prompt.startsWith('/img'),
           ),
         ));
         // Call the send message use case
@@ -51,7 +51,7 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
         // Emit the state with updated loading status
         emit(state.copyWith(
           newStatus: ChatLoadingStatus(
-            isTyping: !event.chatParams!.prompt.startsWith("/img"),
+            isTyping: !event.chatParams!.prompt.startsWith('/img'),
           ),
         ));
         // Call the send message use case

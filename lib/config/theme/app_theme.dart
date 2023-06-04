@@ -5,7 +5,7 @@ class AppTheme {
   static ThemeData light = ThemeData(
     useMaterial3: true,
     scaffoldBackgroundColor: AppColors.backgroundColor,
-    fontFamilyFallback: const ["Nunito", "Shabnam"],
+    fontFamilyFallback: const ['Nunito', 'Shabnam'],
     colorScheme: const ColorScheme(
       brightness: Brightness.light,
       primary: AppColors.primaryColor,
@@ -25,7 +25,7 @@ class AppTheme {
   static ThemeData dark = ThemeData(
     useMaterial3: true,
     scaffoldBackgroundColor: AppColors.backgroundDarkColor,
-    fontFamilyFallback: const ["Nunito", "Shabnam"],
+    fontFamilyFallback: const ['Nunito', 'Shabnam'],
     colorScheme: const ColorScheme(
       brightness: Brightness.dark,
       primary: AppColors.primaryColor,

@@ -20,10 +20,10 @@ class ChatDatasourceImpl extends ChatDatasource {
       ));
 
       var response = await _dio.post(
-        "${Constants.BASE_URL}${Constants.COMPLETIONS_URL}",
+        '${Constants.BASE_URL}${Constants.COMPLETIONS_URL}',
         data: {
-          "model": "gpt-3.5-turbo",
-          "messages": messages.map((element) => element.toJson()).toList()
+          'model': 'gpt-3.5-turbo',
+          'messages': messages.map((element) => element.toJson()).toList()
         },
       );
 
@@ -47,7 +47,7 @@ class ChatDatasourceImpl extends ChatDatasource {
         // Throwing an ApiException if there's an error
         throw ApiException(
           code: response.statusCode,
-          message: response.data['error']["message"],
+          message: response.data['error']['message'],
         );
       }
       return messages;
@@ -55,7 +55,7 @@ class ChatDatasourceImpl extends ChatDatasource {
       // Throwing an ApiException if there's a DioError
       throw ApiException(
         code: error.response?.statusCode,
-        message: error.response?.data["message"],
+        message: error.response?.data['message'],
       );
     } catch (exception) {
       // Rethrowing any other exception
@@ -74,11 +74,11 @@ class ChatDatasourceImpl extends ChatDatasource {
       ));
 
       var response = await _dio.post(
-        "${Constants.BASE_URL}${Constants.IMAGE_GENERATOR_URL}",
+        '${Constants.BASE_URL}${Constants.IMAGE_GENERATOR_URL}',
         data: {
-          "prompt": prompt,
-          "n": 1,
-          "size": "512x512",
+          'prompt': prompt,
+          'n': 1,
+          'size': '512x512',
         },
       );
 
@@ -97,7 +97,7 @@ class ChatDatasourceImpl extends ChatDatasource {
         // Throwing an ApiException if there's an error
         throw ApiException(
           code: response.statusCode,
-          message: response.data['error']["message"],
+          message: response.data['error']['message'],
         );
       }
       return messages;
@@ -105,7 +105,7 @@ class ChatDatasourceImpl extends ChatDatasource {
       // Throwing an ApiException if there's a DioError
       throw ApiException(
         code: error.response?.statusCode,
-        message: error.response?.data["message"],
+        message: error.response?.data['message'],
       );
     } catch (exception) {
       // Rethrowing any other exception

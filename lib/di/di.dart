@@ -26,8 +26,8 @@ Future initGetit() async {
     Dio(BaseOptions(
       baseUrl: Constants.BASE_URL,
       headers: {
-        "Content-Type": "application/json",
-        "Authorization": "Bearer ${Constants.API_KEY}",
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ${Constants.API_KEY}',
       },
     )),
   );

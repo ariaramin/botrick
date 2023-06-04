@@ -22,7 +22,7 @@ class RefreshText extends StatelessWidget {
           ),
           const SizedBox(height: 6),
           const Text(
-            "Check your network connection",
+            'Check your network connection',
             style: TextStyle(
               color: Colors.white,
               fontWeight: FontWeight.bold,

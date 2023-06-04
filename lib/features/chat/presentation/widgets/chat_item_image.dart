@@ -2,7 +2,6 @@ import 'dart:typed_data';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:botrick/config/theme/app_colors.dart';
@@ -27,12 +26,6 @@ class _ChatItemImageState extends State<ChatItemImage> {
   bool _shouldReload = false;
 
   @override
-  void dispose() {
-    super.dispose();
-    DefaultCacheManager().removeFile(widget.imageUrl);
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
@@ -40,7 +33,7 @@ class _ChatItemImageState extends State<ChatItemImage> {
           height: MediaQuery.of(context).size.width - 105,
           child: Center(
             child: CachedNetworkImage(
-              key: ValueKey<String>(_shouldReload ? "reload" : widget.imageUrl),
+              key: ValueKey<String>(_shouldReload ? 'reload' : widget.imageUrl),
               imageUrl: widget.imageUrl,
               fit: BoxFit.cover,
               placeholder: (context, url) => const CircularProgressIndicator(),
@@ -100,7 +93,7 @@ class _ChatItemImageState extends State<ChatItemImage> {
       final result = await ImageGallerySaver.saveImage(
         Uint8List.fromList(response.data),
         quality: 90,
-        name: "${DateTime.now()}",
+        name: '${DateTime.now()}',
       );
 
       if (mounted) {

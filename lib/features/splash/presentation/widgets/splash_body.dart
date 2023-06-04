@@ -55,7 +55,7 @@ class SplashBody extends StatelessWidget {
         ),
         const SizedBox(width: double.infinity, height: 26),
         const Text(
-          "Developed with ❤️ by Aria Ramin",
+          'Developed with ❤️ by Aria Ramin',
           style: TextStyle(
             fontSize: 10,
             color: Colors.white,
@@ -68,7 +68,7 @@ class SplashBody extends StatelessWidget {
   }
 
   _navigateToAnotherScreen(BuildContext context) {
-    var isFirstTime = OnBoardingManager().getState();
+    bool isFirstTime = OnBoardingManager().getState();
     Future.delayed(const Duration(seconds: 3), () {
       Navigator.pushNamedAndRemoveUntil(
         context,

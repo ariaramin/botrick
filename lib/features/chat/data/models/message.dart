@@ -10,8 +10,8 @@ class Message {
   });
 
   toJson() => {
-        "role": role == MessageRoleEnum.user ? "user" : "assistant",
-        "content": content,
+        'role': role == MessageRoleEnum.user ? 'user' : 'assistant',
+        'content': content,
       };
 }
 

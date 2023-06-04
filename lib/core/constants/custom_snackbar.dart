@@ -26,7 +26,7 @@ showSnackBar({
               ScaffoldMessenger.of(context).hideCurrentSnackBar();
             },
             child: const Text(
-              "Try again",
+              'Try again',
               style: TextStyle(
                 fontSize: 12,
                 color: Colors.white,

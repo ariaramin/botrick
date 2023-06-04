@@ -18,7 +18,6 @@ class ThemeAction extends StatelessWidget {
     return BlocBuilder<ChatBloc, ChatState>(
       builder: (context, state) {
         return ThemeSwitcher.withTheme(
-          clipper: const ThemeSwitcherCircleClipper(),
           builder: (_, switcher, theme) {
             return IconButton(
               icon: theme.brightness == Brightness.light

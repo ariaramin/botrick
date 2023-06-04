@@ -46,7 +46,6 @@ class _OnBoardingBodyState extends State<OnBoardingBody> {
         Expanded(
           child: PageView.builder(
             controller: _controller,
-            scrollDirection: Axis.horizontal,
             itemCount: SliderModel.getSliders().length,
             itemBuilder: (context, index) => _buildSliderItem(index),
             onPageChanged: _onPageChanged,
@@ -56,7 +55,6 @@ class _OnBoardingBodyState extends State<OnBoardingBody> {
           padding: const EdgeInsets.fromLTRB(18, 0, 18, 38),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               SmoothPageIndicator(
                 controller: _controller, // PageController
@@ -77,8 +75,8 @@ class _OnBoardingBodyState extends State<OnBoardingBody> {
                 ),
                 child: Text(
                   currentIndex == SliderModel.getSliders().length - 1
-                      ? "Get Started"
-                      : "Next",
+                      ? 'Get Started'
+                      : 'Next',
                   style: const TextStyle(
                     fontSize: 16,
                     color: Colors.white,

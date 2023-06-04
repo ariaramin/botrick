@@ -86,7 +86,7 @@ class _ChatTextFieldState extends State<ChatTextField> {
                   ),
                   decoration: const InputDecoration(
                     border: InputBorder.none,
-                    hintText: "Write your message...",
+                    hintText: 'Write your message...',
                     hintStyle: TextStyle(
                       fontSize: 14,
                       color: Colors.white54,

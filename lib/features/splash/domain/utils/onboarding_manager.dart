@@ -3,7 +3,7 @@ import 'package:botrick/di/di.dart';
 
 class OnBoardingManager {
   final SharedPreferences _preferences = locator.get();
-  static const String isFirstTime = "is_first_time";
+  static const String isFirstTime = 'is_first_time';
 
   setState() {
     _preferences.setBool(isFirstTime, false);
