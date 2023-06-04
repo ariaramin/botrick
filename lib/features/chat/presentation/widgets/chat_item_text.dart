@@ -41,9 +41,9 @@ class ChatItemText extends StatelessWidget {
                           TyperAnimatedText(content),
                         ],
                         isRepeatingAnimation: false,
-                        repeatForever: false,
                         displayFullTextOnTap: true,
                         totalRepeatCount: 1,
+                        onTap: onFinished,
                         onFinished: onFinished,
                       )
                     : Text(content),

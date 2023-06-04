@@ -13,6 +13,7 @@ class ConnectivityBloc extends Bloc<ConnectivityEvent, ConnectivityState> {
   // Handle CheckConnectivityEvent
   ConnectivityBloc() : super(ConnectivityInitial()) {
     on<CheckConnectivityEvent>((event, emit) async {
+      emit(ConnectivityInitial());
       bool isConnected = await _splashRepository.checkConnectivity();
       emit(ConnectivityUpdated(isConnected));
     });
