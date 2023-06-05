@@ -19,10 +19,9 @@ class ConnectivityBloc extends Bloc<ConnectivityEvent, ConnectivityState> {
     });
 
     // Listen for connectivity changes
-    _connectivitySubscription =
-        Connectivity().onConnectivityChanged.listen((result) async {
-      add(CheckConnectivityEvent());
-    });
+    _connectivitySubscription = Connectivity()
+        .onConnectivityChanged
+        .listen((event) => add(CheckConnectivityEvent()));
   }
 
   @override

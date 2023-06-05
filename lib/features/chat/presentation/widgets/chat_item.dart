@@ -30,7 +30,7 @@ class ChatItem extends StatelessWidget {
           Container(
             clipBehavior: Clip.antiAlias,
             constraints: BoxConstraints(
-              maxWidth: MediaQuery.of(context).size.width - 106,
+              maxWidth: MediaQuery.of(context).size.width - 105,
             ),
             padding: isImage
                 ? EdgeInsets.zero

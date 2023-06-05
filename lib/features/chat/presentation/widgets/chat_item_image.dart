@@ -30,8 +30,8 @@ class _ChatItemImageState extends State<ChatItemImage> {
     return Stack(
       children: [
         SizedBox(
-          width: MediaQuery.of(context).size.width - 106,
-          height: MediaQuery.of(context).size.width - 106,
+          width: MediaQuery.of(context).size.width - 105,
+          height: MediaQuery.of(context).size.width - 105,
           child: CachedNetworkImage(
             key: ValueKey<String>(_shouldReload ? 'reload' : widget.imageUrl),
             imageUrl: widget.imageUrl,
