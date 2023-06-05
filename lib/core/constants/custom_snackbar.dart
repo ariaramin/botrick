@@ -10,12 +10,15 @@ showSnackBar({
   final snackBar = SnackBar(
     content: Row(
       children: [
-        Text(
-          message,
-          style: const TextStyle(
-            fontSize: 14,
-            color: Colors.white,
-            fontWeight: FontWeight.bold,
+        Flexible(
+          flex: 12,
+          child: Text(
+            message,
+            style: const TextStyle(
+              fontSize: 14,
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+            ),
           ),
         ),
         const Spacer(),
@@ -41,9 +44,7 @@ showSnackBar({
         ? type == SnackBarTypeEnum.success
             ? AppColors.successColor
             : AppColors.errorColor
-        : Theme.of(context).brightness == Brightness.light
-            ? AppColors.darkColor
-            : AppColors.primaryContainerDarkColor,
+        : Colors.blue,
     margin: const EdgeInsets.fromLTRB(15, 5, 15, 92),
     shape: ContinuousRectangleBorder(borderRadius: BorderRadius.circular(28)),
     showCloseIcon: onTapAction != null ? false : true,

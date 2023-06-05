@@ -30,13 +30,11 @@ class ChatItem extends StatelessWidget {
           Container(
             clipBehavior: Clip.antiAlias,
             constraints: BoxConstraints(
-                maxWidth: MediaQuery.of(context).size.width - 105),
-            margin: isUser
-                ? const EdgeInsets.only(left: 68)
-                : const EdgeInsets.only(right: 68),
+              maxWidth: MediaQuery.of(context).size.width - 106,
+            ),
             padding: isImage
                 ? EdgeInsets.zero
-                : const EdgeInsets.symmetric(vertical: 16, horizontal: 18),
+                : const EdgeInsets.symmetric(vertical: 14, horizontal: 16),
             decoration: ShapeDecoration(
               color: isUser
                   ? AppColors.primaryColor

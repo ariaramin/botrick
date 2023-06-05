@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:botrick/features/chat/presentation/widgets/text_container.dart';
+import 'package:botrick/features/chat/presentation/widgets/feature_text_container.dart';
 
-class FeaturesItem extends StatelessWidget {
+class FeatureItem extends StatelessWidget {
   final String? iconData;
   final String title;
   final List<String>? descriptions;
 
-  const FeaturesItem({
+  const FeatureItem({
     super.key,
     this.iconData,
     required this.title,

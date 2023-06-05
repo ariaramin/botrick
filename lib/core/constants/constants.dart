@@ -8,5 +8,7 @@ class Constants {
   static const String ERROR_MESSAGE = 'Something went wrong';
   static const String IMAGE_SAVED_MESSAGE = 'Image saved to gallery';
   static const String TEXT_COPIED_MESSAGE = 'Text copied to clipboard';
+  static const String CANNOT_CHANGE_THEME_MESSAGE =
+      'Wait until you receive the answer';
   static const String CONNECTION_ERROR_MESSAGE = 'Network connection failed';
 }

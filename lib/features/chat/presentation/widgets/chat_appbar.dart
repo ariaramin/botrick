@@ -42,5 +42,5 @@ class ChatAppBar extends StatelessWidget implements PreferredSizeWidget {
   }
 
   @override
-  Size get preferredSize => const Size.fromHeight(kToolbarHeight + 16);
+  Size get preferredSize => const Size.fromHeight(kToolbarHeight + 14);
 }

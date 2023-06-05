@@ -1,4 +1,6 @@
 import 'package:animated_theme_switcher/animated_theme_switcher.dart';
+import 'package:botrick/core/constants/constants.dart';
+import 'package:botrick/core/constants/custom_snackbar.dart';
 import 'package:botrick/features/chat/presentation/bloc/chat_bloc.dart';
 import 'package:botrick/features/chat/presentation/bloc/chat_state.dart';
 import 'package:botrick/features/chat/presentation/bloc/chat_status.dart';
@@ -15,7 +17,8 @@ class ThemeAction extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ChatBloc, ChatState>(
+    return BlocConsumer<ChatBloc, ChatState>(
+      listener: (context, state) => print(state),
       builder: (context, state) {
         return ThemeSwitcher.withTheme(
           builder: (_, switcher, theme) {
@@ -37,11 +40,18 @@ class ThemeAction extends StatelessWidget {
                       isReversed:
                           theme.brightness == Brightness.dark ? true : false,
                     )
-                  : null,
+                  : _raiseSnackBar(context),
             );
           },
         );
       },
+    );
+  }
+
+  _raiseSnackBar(BuildContext context) {
+    showSnackBar(
+      context: context,
+      message: Constants.CANNOT_CHANGE_THEME_MESSAGE,
     );
   }
 }

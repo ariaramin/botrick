@@ -13,5 +13,5 @@ class ConnectivityUpdated extends ConnectivityState {
   ConnectivityUpdated(this.isConnected);
 
   @override
-  List<Object?> get props => [];
+  List<Object?> get props => [isConnected];
 }

@@ -1,5 +1,5 @@
 import 'package:botrick/features/chat/domain/entity/feature.dart';
-import 'package:botrick/features/chat/presentation/widgets/features_item.dart';
+import 'package:botrick/features/chat/presentation/widgets/feature_item.dart';
 import 'package:flutter/material.dart';
 
 class FeaturesList extends StatelessWidget {
@@ -19,7 +19,7 @@ class FeaturesList extends StatelessWidget {
           padding: index == features.length - 1
               ? const EdgeInsets.only(top: 12, bottom: 108)
               : const EdgeInsets.symmetric(vertical: 12),
-          child: FeaturesItem(
+          child: FeatureItem(
             iconData: feature.iconData,
             title: feature.title!,
             descriptions: feature.descriptions,

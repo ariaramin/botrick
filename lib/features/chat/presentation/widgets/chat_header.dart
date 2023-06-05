@@ -14,15 +14,14 @@ class ChatHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ChatBloc, ChatState>(
-      builder: (context, chatState) {
-        return BlocBuilder<ConnectivityBloc, ConnectivityState>(
-          builder: (context, connectivityState) {
-            final bool isChatLoading = chatState.status is ChatLoadingStatus;
-            final bool isConnected = connectivityState is ConnectivityUpdated
+    return BlocBuilder<ConnectivityBloc, ConnectivityState>(
+      builder: (context, connectivityState) {
+        return BlocBuilder<ChatBloc, ChatState>(
+          builder: (context, chatState) {
+            final isChatLoading = chatState.status is ChatLoadingStatus;
+            final isConnected = connectivityState is ConnectivityUpdated
                 ? connectivityState.isConnected
                 : true;
-
             return Row(
               children: [
                 Stack(

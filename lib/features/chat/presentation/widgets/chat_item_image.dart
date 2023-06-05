@@ -30,14 +30,17 @@ class _ChatItemImageState extends State<ChatItemImage> {
     return Stack(
       children: [
         SizedBox(
-          height: MediaQuery.of(context).size.width - 105,
-          child: Center(
-            child: CachedNetworkImage(
-              key: ValueKey<String>(_shouldReload ? 'reload' : widget.imageUrl),
-              imageUrl: widget.imageUrl,
-              fit: BoxFit.cover,
-              placeholder: (context, url) => const CircularProgressIndicator(),
-              errorWidget: (context, url, error) => IconButton(
+          width: MediaQuery.of(context).size.width - 106,
+          height: MediaQuery.of(context).size.width - 106,
+          child: CachedNetworkImage(
+            key: ValueKey<String>(_shouldReload ? 'reload' : widget.imageUrl),
+            imageUrl: widget.imageUrl,
+            fit: BoxFit.cover,
+            placeholder: (context, url) => const Center(
+              child: CircularProgressIndicator(),
+            ),
+            errorWidget: (context, url, error) => Center(
+              child: IconButton(
                 onPressed: _reloadImage,
                 icon: SvgPicture.asset(
                   AssetsManager.refresh,
