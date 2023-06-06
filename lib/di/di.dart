@@ -1,3 +1,4 @@
+import 'package:botrick/config/theme/theme_preferences.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -17,6 +18,9 @@ Future initGetit() async {
   // shared preferences
   SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
   locator.registerSingleton(sharedPreferences);
+
+  // theme preferences
+  locator.registerSingleton<ThemePreferences>(ThemePreferences());
 
   // provider
   locator.registerSingleton<SoundProvider>(SoundProvider());

@@ -65,8 +65,8 @@ class _ChatBodyState extends State<ChatBody> {
                   final reverseIndex = state.messages.length - 1 - index;
                   return Padding(
                     padding: reverseIndex == (state.messages.length - 1)
-                        ? const EdgeInsets.only(top: 10, bottom: 108)
-                        : const EdgeInsets.symmetric(vertical: 10),
+                        ? const EdgeInsets.only(top: 8, bottom: 108)
+                        : const EdgeInsets.symmetric(vertical: 8),
                     child: ChatItem(
                       content: state.messages[reverseIndex].content!,
                       isUser: state.messages[reverseIndex].role ==

@@ -10,8 +10,7 @@ showSnackBar({
   final snackBar = SnackBar(
     content: Row(
       children: [
-        Flexible(
-          flex: 12,
+        Expanded(
           child: Text(
             message,
             style: const TextStyle(
@@ -21,7 +20,6 @@ showSnackBar({
             ),
           ),
         ),
-        const Spacer(),
         if (onTapAction != null) ...{
           GestureDetector(
             onTap: () {

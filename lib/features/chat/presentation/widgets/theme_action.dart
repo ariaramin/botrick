@@ -1,6 +1,8 @@
 import 'package:animated_theme_switcher/animated_theme_switcher.dart';
+import 'package:botrick/config/theme/theme_preferences.dart';
 import 'package:botrick/core/constants/constants.dart';
 import 'package:botrick/core/constants/custom_snackbar.dart';
+import 'package:botrick/di/di.dart';
 import 'package:botrick/features/chat/presentation/bloc/chat_bloc.dart';
 import 'package:botrick/features/chat/presentation/bloc/chat_state.dart';
 import 'package:botrick/features/chat/presentation/bloc/chat_status.dart';
@@ -17,8 +19,7 @@ class ThemeAction extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<ChatBloc, ChatState>(
-      listener: (context, state) => print(state),
+    return BlocBuilder<ChatBloc, ChatState>(
       builder: (context, state) {
         return ThemeSwitcher.withTheme(
           builder: (_, switcher, theme) {
@@ -32,19 +33,27 @@ class ThemeAction extends StatelessWidget {
                       AssetsManager.sun,
                       color: Colors.white,
                     ),
-              onPressed: () => state.status is! ChatLoadingStatus
-                  ? switcher.changeTheme(
-                      theme: theme.brightness == Brightness.light
-                          ? AppTheme.dark
-                          : AppTheme.light,
-                      isReversed:
-                          theme.brightness == Brightness.dark ? true : false,
-                    )
-                  : _raiseSnackBar(context),
+              onPressed: () => _onThemeChanged(context, state, switcher, theme),
             );
           },
         );
       },
+    );
+  }
+
+  _onThemeChanged(BuildContext context, ChatState state,
+      ThemeSwitcherState switcher, ThemeData theme) async {
+    if (state.status is ChatLoadingStatus) {
+      _raiseSnackBar(context);
+      return;
+    }
+    final ThemePreferences themePrefs = locator.get();
+    final isDarkModeEnabled = themePrefs.isDarkModeEnabled();
+    final newTheme = isDarkModeEnabled ? AppTheme.light : AppTheme.dark;
+    await themePrefs.setDarkModeEnabled(!isDarkModeEnabled);
+    switcher.changeTheme(
+      theme: newTheme,
+      isReversed: isDarkModeEnabled,
     );
   }
 
