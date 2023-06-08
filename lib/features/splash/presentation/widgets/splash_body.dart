@@ -1,4 +1,5 @@
 import 'package:botrick/features/splash/presentation/bloc/connectivity_event.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -54,9 +55,9 @@ class SplashBody extends StatelessWidget {
           },
         ),
         const SizedBox(width: double.infinity, height: 26),
-        const Text(
-          'Developed with ❤️ by Aria Ramin',
-          style: TextStyle(
+        Text(
+          'developer_name'.tr(),
+          style: const TextStyle(
             fontSize: 10,
             color: Colors.white,
           ),

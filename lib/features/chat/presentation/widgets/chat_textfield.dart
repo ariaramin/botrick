@@ -2,6 +2,7 @@ import 'package:botrick/core/constants/constants.dart';
 import 'package:botrick/core/constants/custom_snackbar.dart';
 import 'package:botrick/features/splash/presentation/bloc/connectivity_bloc.dart';
 import 'package:botrick/features/splash/presentation/bloc/connectivity_state.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:botrick/config/theme/app_colors.dart';
@@ -84,10 +85,10 @@ class _ChatTextFieldState extends State<ChatTextField> {
                     color: Colors.white,
                     fontWeight: FontWeight.w800,
                   ),
-                  decoration: const InputDecoration(
+                  decoration: InputDecoration(
                     border: InputBorder.none,
-                    hintText: 'Write your message...',
-                    hintStyle: TextStyle(
+                    hintText: 'write_message'.tr(),
+                    hintStyle: const TextStyle(
                       fontSize: 14,
                       color: Colors.white54,
                       fontWeight: FontWeight.w800,

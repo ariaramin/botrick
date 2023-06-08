@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:botrick/core/constants/assets_manager.dart';
@@ -21,9 +22,9 @@ class RefreshText extends StatelessWidget {
             color: Colors.white,
           ),
           const SizedBox(height: 6),
-          const Text(
-            'Check your network connection',
-            style: TextStyle(
+          Text(
+            'check_connection'.tr(),
+            style: const TextStyle(
               color: Colors.white,
               fontWeight: FontWeight.bold,
             ),

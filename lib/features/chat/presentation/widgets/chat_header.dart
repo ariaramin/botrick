@@ -1,5 +1,7 @@
+import 'dart:ui' as ui;
 import 'package:botrick/features/splash/presentation/bloc/connectivity_bloc.dart';
 import 'package:botrick/features/splash/presentation/bloc/connectivity_state.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -14,6 +16,7 @@ class ChatHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isRTL = Directionality.of(context) == ui.TextDirection.rtl;
     return BlocBuilder<ConnectivityBloc, ConnectivityState>(
       builder: (context, connectivityState) {
         return BlocBuilder<ChatBloc, ChatState>(
@@ -34,7 +37,8 @@ class ChatHeader extends StatelessWidget {
                     ),
                     if (isChatLoading) ...{
                       Positioned(
-                        right: -8,
+                        right: isRTL ? null : -8,
+                        left: isRTL ? -8 : null,
                         bottom: 2,
                         child: Container(
                           padding: const EdgeInsets.all(3),
@@ -50,7 +54,8 @@ class ChatHeader extends StatelessWidget {
                       )
                     } else ...{
                       Positioned(
-                        right: 0,
+                        right: isRTL ? null : 0,
+                        left: isRTL ? 0 : null,
                         bottom: 2,
                         child: CircleAvatar(
                           radius: 6,
@@ -66,9 +71,9 @@ class ChatHeader extends StatelessWidget {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text(
-                      'Botrick',
-                      style: TextStyle(
+                    Text(
+                      'botrick'.tr(),
+                      style: const TextStyle(
                         fontSize: 16,
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
@@ -77,11 +82,11 @@ class ChatHeader extends StatelessWidget {
                     Text(
                       isChatLoading
                           ? (chatState.status as ChatLoadingStatus).isTyping
-                              ? 'Typing...'
-                              : 'Generating...'
+                              ? 'typing'.tr()
+                              : 'generating'.tr()
                           : isConnected
-                              ? 'Online'
-                              : 'Offline',
+                              ? 'online'.tr()
+                              : 'offline'.tr(),
                       style: TextStyle(
                         fontSize: 12,
                         color: isChatLoading

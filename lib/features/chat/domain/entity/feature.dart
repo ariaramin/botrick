@@ -1,4 +1,5 @@
 import 'package:botrick/core/constants/assets_manager.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class Feature {
   final String? iconData;
@@ -15,29 +16,29 @@ class Feature {
     return [
       Feature(
         iconData: AssetsManager.sunOutline,
-        title: 'Example',
+        title: 'example'.tr(),
         descriptions: [
-          'Explain quantum computing in simple terms',
-          'Got any creative ideas for a 10 year old’s birthday?',
-          '/img portrait of a white cat that looks curious',
+          'example_1'.tr(),
+          'example_2'.tr(),
+          'example_3'.tr(),
         ],
       ),
       Feature(
         iconData: AssetsManager.flash,
-        title: 'Capabilities',
+        title: 'capabilities'.tr(),
         descriptions: [
-          'Remembers what user said earlier in the conversation',
-          'Allows user to provide follow-up corrections',
-          'Trained to decline inappropriate requests',
+          'capabilities_1'.tr(),
+          'capabilities_2'.tr(),
+          'capabilities_3'.tr(),
         ],
       ),
       Feature(
         iconData: AssetsManager.danger,
-        title: 'Limitations',
+        title: 'limitations'.tr(),
         descriptions: [
-          'May occasionally generate incorrect information',
-          'May occasionally produce harmful instructions or biased content',
-          'Limited knowledge of world and events after 2021',
+          'limitations_1'.tr(),
+          'limitations_2'.tr(),
+          'limitations_3'.tr(),
         ],
       ),
     ];

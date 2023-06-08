@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:botrick/config/theme/app_colors.dart';
 
@@ -26,9 +27,9 @@ showSnackBar({
               onTapAction();
               ScaffoldMessenger.of(context).hideCurrentSnackBar();
             },
-            child: const Text(
-              'Try again',
-              style: TextStyle(
+            child: Text(
+              'try_again'.tr(),
+              style: const TextStyle(
                 fontSize: 12,
                 color: Colors.white,
                 fontWeight: FontWeight.bold,

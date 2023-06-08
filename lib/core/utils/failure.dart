@@ -10,7 +10,7 @@ class Failure extends Equatable {
   List<Object?> get props => [];
 
   factory Failure.connectionFailure() =>
-      const Failure(Constants.CONNECTION_ERROR_MESSAGE);
+      Failure(Constants.CONNECTION_ERROR_MESSAGE);
 
   factory Failure.serverFailure(String? message) =>
       Failure(message ?? Constants.ERROR_MESSAGE);

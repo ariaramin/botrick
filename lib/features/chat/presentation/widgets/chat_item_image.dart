@@ -27,6 +27,7 @@ class _ChatItemImageState extends State<ChatItemImage> {
 
   @override
   Widget build(BuildContext context) {
+    final isRTL = Directionality.of(context) == TextDirection.rtl;
     return Stack(
       children: [
         SizedBox(
@@ -54,7 +55,8 @@ class _ChatItemImageState extends State<ChatItemImage> {
         ),
         Positioned(
           top: 8,
-          right: 8,
+          right: isRTL ? null : 8,
+          left: isRTL ? 8 : null,
           child: CircleAvatar(
             backgroundColor: AppColors.darkColor,
             radius: 16,

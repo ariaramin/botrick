@@ -1,3 +1,5 @@
+import 'package:easy_localization/easy_localization.dart';
+
 class Constants {
   // urls
   static const String BASE_URL = 'https://api.openai.com/v1/';
@@ -5,10 +7,10 @@ class Constants {
       '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';
   static const String COMPLETIONS_URL = 'chat/completions';
   static const String IMAGE_GENERATOR_URL = 'images/generations';
-  static const String ERROR_MESSAGE = 'Something went wrong';
-  static const String IMAGE_SAVED_MESSAGE = 'Image saved to gallery';
-  static const String TEXT_COPIED_MESSAGE = 'Text copied to clipboard';
-  static const String CANNOT_CHANGE_THEME_MESSAGE =
-      'Wait until you receive the answer';
-  static const String CONNECTION_ERROR_MESSAGE = 'Network connection failed';
+  static String ERROR_MESSAGE = 'error_message'.tr();
+  static String IMAGE_SAVED_MESSAGE = 'image_saved_message'.tr();
+  static String TEXT_COPIED_MESSAGE = 'text_copied_message'.tr();
+  static String CANNOT_CHANGE_THEME_MESSAGE =
+      'cannot_change_theme_message'.tr();
+  static String CONNECTION_ERROR_MESSAGE = 'connection_error_message'.tr();
 }

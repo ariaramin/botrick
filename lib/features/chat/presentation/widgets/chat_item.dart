@@ -21,6 +21,7 @@ class ChatItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isRTL = Directionality.of(context) == TextDirection.rtl;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 18),
       child: Row(
@@ -42,8 +43,16 @@ class ChatItem extends StatelessWidget {
               shape: ContinuousRectangleBorder(
                 borderRadius: BorderRadius.only(
                   topLeft: const Radius.circular(42),
-                  bottomRight: isUser ? Radius.zero : const Radius.circular(42),
-                  bottomLeft: isUser ? const Radius.circular(42) : Radius.zero,
+                  bottomRight: isUser && !isRTL
+                      ? Radius.zero
+                      : !isUser && isRTL
+                          ? Radius.zero
+                          : const Radius.circular(42),
+                  bottomLeft: isUser && !isRTL
+                      ? const Radius.circular(42)
+                      : !isUser && isRTL
+                          ? const Radius.circular(42)
+                          : Radius.zero,
                   topRight: const Radius.circular(42),
                 ),
               ),

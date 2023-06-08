@@ -10,6 +10,12 @@ class AssetsManager {
   static const String recommendation = '$imagesPath/recommendation.jpg';
   static const String writing = '$imagesPath/writing.jpg';
   static const String imageGeneration = '$imagesPath/image_generation.jpg';
+  static const String iran = '$imagesPath/iran.png';
+  static const String unitedStates = '$imagesPath/united_states.png';
+  static const String france = '$imagesPath/france.png';
+  static const String germany = '$imagesPath/germany.png';
+  static const String turkey = '$imagesPath/turkey.png';
+  static const String saudiArabia = '$imagesPath/saudi_arabia.png';
 
   // icons
   static const String moon = '$iconsPath/moon.svg';
@@ -23,6 +29,7 @@ class AssetsManager {
   static const String refresh = '$iconsPath/refresh.svg';
   static const String flash = '$iconsPath/flash.svg';
   static const String danger = '$iconsPath/danger.svg';
+  static const String website = '$iconsPath/website.svg';
 
   // audios
   static const String popAudio = 'audios/pop.mp3';
