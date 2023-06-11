@@ -73,7 +73,7 @@ class SplashBody extends StatelessWidget {
     Future.delayed(const Duration(seconds: 3), () {
       Navigator.pushNamedAndRemoveUntil(
         context,
-        isFirstTime ? AppRouteNames.onBoarding : AppRouteNames.chat,
+        isFirstTime ? AppRouteNames.selectLanguage : AppRouteNames.chat,
         (route) => false,
       );
     });

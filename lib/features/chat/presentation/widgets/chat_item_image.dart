@@ -105,13 +105,13 @@ class _ChatItemImageState extends State<ChatItemImage> {
         if (result['isSuccess'] as bool) {
           showSnackBar(
             context: context,
-            message: Constants.IMAGE_SAVED_MESSAGE,
+            message: Constants().IMAGE_SAVED_MESSAGE,
             type: SnackBarTypeEnum.success,
           );
         } else {
           showSnackBar(
             context: context,
-            message: Constants.ERROR_MESSAGE,
+            message: Constants().ERROR_MESSAGE,
             type: SnackBarTypeEnum.error,
           );
         }
@@ -119,7 +119,7 @@ class _ChatItemImageState extends State<ChatItemImage> {
     } catch (error) {
       showSnackBar(
         context: context,
-        message: Constants.ERROR_MESSAGE,
+        message: Constants().ERROR_MESSAGE,
         type: SnackBarTypeEnum.error,
       );
     } finally {

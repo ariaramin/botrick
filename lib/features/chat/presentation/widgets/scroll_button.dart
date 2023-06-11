@@ -15,8 +15,10 @@ class ScrollButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isRTL = Directionality.of(context) == TextDirection.rtl;
     return AnimatedPositioned(
-      right: 18,
+      right: isRTL ? null : 18,
+      left: isRTL ? 18 : null,
       bottom: scrollButtonPosition,
       duration: const Duration(milliseconds: 150),
       child: GestureDetector(

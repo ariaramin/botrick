@@ -7,10 +7,9 @@ class Constants {
       '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';
   static const String COMPLETIONS_URL = 'chat/completions';
   static const String IMAGE_GENERATOR_URL = 'images/generations';
-  static String ERROR_MESSAGE = 'error_message'.tr();
-  static String IMAGE_SAVED_MESSAGE = 'image_saved_message'.tr();
-  static String TEXT_COPIED_MESSAGE = 'text_copied_message'.tr();
-  static String CANNOT_CHANGE_THEME_MESSAGE =
-      'cannot_change_theme_message'.tr();
-  static String CONNECTION_ERROR_MESSAGE = 'connection_error_message'.tr();
+  String ERROR_MESSAGE = 'error_message'.tr();
+  String IMAGE_SAVED_MESSAGE = 'image_saved_message'.tr();
+  String TEXT_COPIED_MESSAGE = 'text_copied_message'.tr();
+  String CANNOT_CHANGE_THEME_MESSAGE = 'cannot_change_theme_message'.tr();
+  String CONNECTION_ERROR_MESSAGE = 'connection_error_message'.tr();
 }

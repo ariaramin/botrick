@@ -56,7 +56,7 @@ class ChatItemText extends StatelessWidget {
     Clipboard.setData(ClipboardData(text: content)).then(
       (value) => showSnackBar(
         context: context,
-        message: Constants.TEXT_COPIED_MESSAGE,
+        message: Constants().TEXT_COPIED_MESSAGE,
         type: SnackBarTypeEnum.success,
       ),
     );

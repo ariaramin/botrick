@@ -49,7 +49,7 @@ class MyApp extends StatelessWidget {
           theme: theme,
           darkTheme: AppTheme.dark,
           onGenerateRoute: (settings) => AppRoute.generate(settings),
-          initialRoute: AppRouteNames.splash,
+          initialRoute: AppRouteNames.selectLanguage,
         );
       },
     );

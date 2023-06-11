@@ -27,6 +27,7 @@ class SliderItem extends StatelessWidget {
                   color: Colors.black,
                   fontWeight: FontWeight.w900,
                 ),
+                textAlign: TextAlign.center,
               ),
               const SizedBox(height: 12),
               Text(

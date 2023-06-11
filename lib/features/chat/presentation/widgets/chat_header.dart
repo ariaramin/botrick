@@ -72,7 +72,7 @@ class ChatHeader extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'botrick'.tr(),
+                      'botrick'.tr(context: context),
                       style: const TextStyle(
                         fontSize: 16,
                         color: Colors.white,
@@ -82,11 +82,11 @@ class ChatHeader extends StatelessWidget {
                     Text(
                       isChatLoading
                           ? (chatState.status as ChatLoadingStatus).isTyping
-                              ? 'typing'.tr()
-                              : 'generating'.tr()
+                              ? 'typing'.tr(context: context)
+                              : 'generating'.tr(context: context)
                           : isConnected
-                              ? 'online'.tr()
-                              : 'offline'.tr(),
+                              ? 'online'.tr(context: context)
+                              : 'offline'.tr(context: context),
                       style: TextStyle(
                         fontSize: 12,
                         color: isChatLoading

@@ -110,7 +110,7 @@ class _ChatTextFieldState extends State<ChatTextField> {
   _raiseErrorSnackBar() {
     showSnackBar(
       context: context,
-      message: Constants.CONNECTION_ERROR_MESSAGE,
+      message: Constants().CONNECTION_ERROR_MESSAGE,
       type: SnackBarTypeEnum.error,
     );
   }

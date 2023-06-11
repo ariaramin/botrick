@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 class AssetsManager {
   static const String imagesPath = 'assets/images';
   static const String iconsPath = 'assets/icons';
@@ -33,4 +35,23 @@ class AssetsManager {
 
   // audios
   static const String popAudio = 'audios/pop.mp3';
+
+  static String getCountryImage(Locale locale) {
+    switch (locale.languageCode) {
+      case 'en':
+        return AssetsManager.unitedStates;
+      case 'fa':
+        return AssetsManager.iran;
+      case 'de':
+        return AssetsManager.germany;
+      case 'fr':
+        return AssetsManager.france;
+      case 'tr':
+        return AssetsManager.turkey;
+      case 'ar':
+        return AssetsManager.saudiArabia;
+      default:
+        return AssetsManager.unitedStates;
+    }
+  }
 }

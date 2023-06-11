@@ -60,7 +60,7 @@ class ThemeAction extends StatelessWidget {
   _raiseSnackBar(BuildContext context) {
     showSnackBar(
       context: context,
-      message: Constants.CANNOT_CHANGE_THEME_MESSAGE,
+      message: Constants().CANNOT_CHANGE_THEME_MESSAGE,
     );
   }
 }

@@ -1,4 +1,4 @@
-import 'package:botrick/features/chat/presentation/widgets/popup_menu.dart';
+import 'package:botrick/features/chat/presentation/widgets/language_popup_menu.dart';
 import 'package:flutter/material.dart';
 import 'package:botrick/config/theme/app_colors.dart';
 import 'package:botrick/features/chat/presentation/widgets/chat_header.dart';
@@ -32,7 +32,7 @@ class ChatAppBar extends StatelessWidget implements PreferredSizeWidget {
           toolbarHeight: 72,
           title: const ChatHeader(),
           actions: [
-            const PopupMenu(),
+            const LanguagePopupMenu(),
             const SizedBox(width: 10),
             SoundAction(),
             const SizedBox(width: 10),

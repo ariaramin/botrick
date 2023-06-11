@@ -38,7 +38,7 @@ class SendButton extends StatelessWidget {
         child: Center(
           child: Transform(
             alignment: Alignment.center,
-            transform: isRTL ? Matrix4.rotationY(math.pi) : Matrix4.zero(),
+            transform: isRTL ? Matrix4.rotationY(math.pi) : Matrix4.identity(),
             child: SvgPicture.asset(
               AssetsManager.navigation,
               color: Colors.white,
