@@ -12,7 +12,7 @@ class Feature {
     this.descriptions,
   });
 
-  List<Feature> getFeatures() {
+  static List<Feature> getFeatures() {
     return [
       Feature(
         iconData: AssetsManager.sunOutline,

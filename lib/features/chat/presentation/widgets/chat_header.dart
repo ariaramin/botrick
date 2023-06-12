@@ -68,36 +68,40 @@ class ChatHeader extends StatelessWidget {
                   ],
                 ),
                 const SizedBox(width: 12),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'botrick'.tr(context: context),
-                      style: const TextStyle(
-                        fontSize: 16,
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'botrick'.tr(context: context),
+                        style: const TextStyle(
+                          fontSize: 16,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
-                    ),
-                    Text(
-                      isChatLoading
-                          ? (chatState.status as ChatLoadingStatus).isTyping
-                              ? 'typing'.tr(context: context)
-                              : 'generating'.tr(context: context)
-                          : isConnected
-                              ? 'online'.tr(context: context)
-                              : 'offline'.tr(context: context),
-                      style: TextStyle(
-                        fontSize: 12,
-                        color: isChatLoading
-                            ? AppColors.primaryColor
+                      const SizedBox(height: 2),
+                      Text(
+                        isChatLoading
+                            ? (chatState.status as ChatLoadingStatus).isTyping
+                                ? 'typing'.tr(context: context)
+                                : 'generating'.tr(context: context)
                             : isConnected
-                                ? AppColors.successColor
-                                : AppColors.errorColor,
-                        fontWeight: FontWeight.bold,
+                                ? 'online'.tr(context: context)
+                                : 'offline'.tr(context: context),
+                        maxLines: 2,
+                        style: TextStyle(
+                          fontSize: 12,
+                          color: isChatLoading
+                              ? AppColors.primaryColor
+                              : isConnected
+                                  ? AppColors.successColor
+                                  : AppColors.errorColor,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ],
             );

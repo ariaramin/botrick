@@ -48,19 +48,19 @@ class LanguageItem extends StatelessWidget {
   String _getLanguageName(Locale locale) {
     switch (locale.languageCode) {
       case 'en':
-        return 'English';
+        return 'en'.tr();
       case 'fa':
-        return 'Farsi';
+        return 'fa'.tr();
       case 'de':
-        return 'Deutsch';
+        return 'de'.tr();
       case 'fr':
-        return 'French';
+        return 'fr'.tr();
       case 'tr':
-        return 'Turkish';
+        return 'tr'.tr();
       case 'ar':
-        return 'Arabic';
+        return 'ar'.tr();
       default:
-        return 'English';
+        return 'en'.tr();
     }
   }
 }

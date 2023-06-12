@@ -33,16 +33,15 @@ class SliderItem extends StatelessWidget {
               Text(
                 description!,
                 style: const TextStyle(
-                  fontSize: 15,
+                  fontSize: 14,
                   color: Colors.black87,
                   fontWeight: FontWeight.bold,
                 ),
                 textAlign: TextAlign.center,
               ),
-              const SizedBox(height: 18),
+              // const SizedBox(height: 18),
             ],
           ),
-          // const SizedBox(height: 38),
         ],
       ),
     );

@@ -29,7 +29,7 @@ class ChatAppBar extends StatelessWidget implements PreferredSizeWidget {
         child: AppBar(
           backgroundColor: AppColors.primaryContainerDarkColor,
           elevation: 0,
-          toolbarHeight: 72,
+          toolbarHeight: kToolbarHeight + 16,
           title: const ChatHeader(),
           actions: [
             const LanguagePopupMenu(),
@@ -45,5 +45,5 @@ class ChatAppBar extends StatelessWidget implements PreferredSizeWidget {
   }
 
   @override
-  Size get preferredSize => const Size.fromHeight(kToolbarHeight + 14);
+  Size get preferredSize => const Size.fromHeight(kToolbarHeight + 16);
 }

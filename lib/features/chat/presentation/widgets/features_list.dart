@@ -9,7 +9,7 @@ class FeaturesList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final features = Feature().getFeatures();
+    final features = Feature.getFeatures();
     return ListView.separated(
       itemCount: features.length,
       itemBuilder: (context, index) {

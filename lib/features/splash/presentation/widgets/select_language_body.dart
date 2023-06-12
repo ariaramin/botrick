@@ -17,11 +17,7 @@ class _SelectLanguageBodyState extends State<SelectLanguageBody> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    final currentLocaleIndex = context.supportedLocales
-        .indexWhere((element) => element == context.deviceLocale);
-    if (currentLocaleIndex >= 0) {
-      _selectedIndex = currentLocaleIndex;
-    }
+    _setDefaultLocale();
   }
 
   @override
@@ -39,11 +35,12 @@ class _SelectLanguageBodyState extends State<SelectLanguageBody> {
               fontWeight: FontWeight.w900,
             ),
           ),
+          const SizedBox(height: 4),
           Text(
             'select_language_note'.tr(),
             style: const TextStyle(
               fontSize: 12,
-              color: Colors.black87,
+              color: Colors.black54,
               fontWeight: FontWeight.w900,
             ),
             textAlign: TextAlign.center,
@@ -76,13 +73,7 @@ class _SelectLanguageBodyState extends State<SelectLanguageBody> {
           Padding(
             padding: const EdgeInsets.only(bottom: 38),
             child: ElevatedButton(
-              onPressed: () {
-                final selectedLanguage =
-                    context.supportedLocales[_selectedIndex];
-                context.setLocale(selectedLanguage);
-                Navigator.pushNamedAndRemoveUntil(
-                    context, AppRouteNames.onBoarding, (route) => false);
-              },
+              onPressed: _setSelectedLocale,
               style: ElevatedButton.styleFrom(
                 fixedSize: const Size.fromHeight(56),
                 backgroundColor: AppColors.primaryColor,
@@ -103,5 +94,24 @@ class _SelectLanguageBodyState extends State<SelectLanguageBody> {
         ],
       ),
     );
+  }
+
+  _setSelectedLocale() {
+    final selectedLanguage = context.supportedLocales[_selectedIndex];
+    context.setLocale(selectedLanguage).then(
+          (value) => Navigator.pushNamedAndRemoveUntil(
+            context,
+            AppRouteNames.onBoarding,
+            (route) => false,
+          ),
+        );
+  }
+
+  _setDefaultLocale() {
+    final currentLocaleIndex = context.supportedLocales
+        .indexWhere((element) => element == context.deviceLocale);
+    if (currentLocaleIndex >= 0) {
+      _selectedIndex = currentLocaleIndex;
+    }
   }
 }

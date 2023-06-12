@@ -24,11 +24,12 @@ class _LanguagePopupMenuState extends State<LanguagePopupMenu> {
   Widget build(BuildContext context) {
     return PopupMenuButton<Locale>(
       icon: Image.asset(_menuButtonIcon, width: 30),
-      onSelected: (value) {
+      onSelected: (value) async {
         context.setLocale(value);
         setState(() {
           _updateMenuButtonImage();
         });
+        await WidgetsBinding.instance.reassembleApplication();
       },
       itemBuilder: (context) {
         return _buildItems(context);
@@ -56,11 +57,12 @@ class _LanguagePopupMenuState extends State<LanguagePopupMenu> {
       value: locale,
       child: ListTile(
         contentPadding: EdgeInsets.zero,
-        leading: Image.asset(AssetsManager.getCountryImage(locale), width: 30),
+        leading: Image.asset(AssetsManager.getCountryImage(locale), width: 32),
         title: Text(
           locale.languageCode.tr(),
           style: const TextStyle(
             fontSize: 12,
+            fontWeight: FontWeight.bold,
           ),
         ),
       ),
