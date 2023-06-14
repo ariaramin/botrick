@@ -9,7 +9,7 @@ import 'package:botrick/features/chat/presentation/bloc/chat_status.dart';
 class ChatBloc extends Bloc<ChatEvent, ChatState> {
   final SendMessage _sendMessage = locator.get();
 
-  ChatBloc() : super(ChatState(status: ChatInitStatus(), messages: [])) {
+  ChatBloc() : super(ChatState(status: ChatInitStatus(), messages: const [])) {
     // Event listener for SendMessageEvent
     on<SendMessageEvent>(
       (event, emit) async {

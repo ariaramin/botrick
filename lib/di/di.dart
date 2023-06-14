@@ -28,10 +28,10 @@ Future initGetit() async {
   // dio
   locator.registerSingleton<Dio>(
     Dio(BaseOptions(
-      baseUrl: Constants.BASE_URL,
+      baseUrl: Constants.baseUrl,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${Constants.API_KEY}',
+        'Authorization': 'Bearer ${Constants.apiKey}',
       },
     )),
   );

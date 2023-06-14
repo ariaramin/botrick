@@ -69,7 +69,7 @@ class SplashBody extends StatelessWidget {
   }
 
   _navigateToAnotherScreen(BuildContext context) {
-    bool isFirstTime = OnBoardingManager().getState();
+    bool isFirstTime = OnBoardingManager.getState();
     Future.delayed(const Duration(seconds: 3), () {
       Navigator.pushNamedAndRemoveUntil(
         context,

@@ -22,11 +22,13 @@ class SoundAction extends StatelessWidget {
             icon: value.isMute
                 ? SvgPicture.asset(
                     AssetsManager.mute,
-                    color: Colors.white,
+                    colorFilter:
+                        const ColorFilter.mode(Colors.white, BlendMode.srcIn),
                   )
                 : SvgPicture.asset(
                     AssetsManager.volumeUp,
-                    color: Colors.white,
+                    colorFilter:
+                        const ColorFilter.mode(Colors.white, BlendMode.srcIn),
                   ),
             onPressed: () => _soundProvider.isMute = !_soundProvider.isMute,
           );

@@ -32,14 +32,14 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
-  final ThemeData initTheme;
+  final ThemeData? initTheme;
 
-  const MyApp({super.key, required this.initTheme});
+  const MyApp({super.key, this.initTheme});
 
   @override
   Widget build(BuildContext context) {
     return ThemeProvider(
-      initTheme: initTheme,
+      initTheme: initTheme!,
       builder: (context, theme) {
         return MaterialApp(
           debugShowCheckedModeBanner: false,

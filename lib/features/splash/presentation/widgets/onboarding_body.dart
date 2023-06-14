@@ -21,7 +21,7 @@ class _OnBoardingBodyState extends State<OnBoardingBody> {
   @override
   void initState() {
     super.initState();
-    _controller = PageController(initialPage: 0);
+    _controller = PageController();
   }
 
   @override
@@ -95,7 +95,7 @@ class _OnBoardingBodyState extends State<OnBoardingBody> {
   _onNextButtonPressed() {
     if (currentIndex == SliderModel.getSliders().length - 1) {
       // Set onboarding state and navigate to the chat screen
-      OnBoardingManager().setState();
+      OnBoardingManager.setState();
       Navigator.pushNamedAndRemoveUntil(
         context,
         AppRouteNames.chat,

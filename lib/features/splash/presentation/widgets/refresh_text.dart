@@ -19,7 +19,7 @@ class RefreshText extends StatelessWidget {
         children: [
           SvgPicture.asset(
             AssetsManager.refresh,
-            color: Colors.white,
+            colorFilter: const ColorFilter.mode(Colors.white, BlendMode.srcIn),
           ),
           const SizedBox(height: 6),
           Text(

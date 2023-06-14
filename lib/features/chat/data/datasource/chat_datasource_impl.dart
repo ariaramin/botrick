@@ -20,7 +20,7 @@ class ChatDatasourceImpl extends ChatDatasource {
       ));
 
       var response = await _dio.post(
-        '${Constants.BASE_URL}${Constants.COMPLETIONS_URL}',
+        '${Constants.baseUrl}${Constants.completionsUrl}',
         data: {
           'model': 'gpt-3.5-turbo',
           'messages': messages.map((element) => element.toJson()).toList()
@@ -74,7 +74,7 @@ class ChatDatasourceImpl extends ChatDatasource {
       ));
 
       var response = await _dio.post(
-        '${Constants.BASE_URL}${Constants.IMAGE_GENERATOR_URL}',
+        '${Constants.baseUrl}${Constants.imageGeneratorUrl}',
         data: {
           'prompt': prompt,
           'n': 1,

@@ -13,8 +13,9 @@ class SendMessage extends Usecase<Failure, List<Message>> {
   Future<Either<Failure, List<Message>>> call(Params? params) {
     var chatParams = params != null ? params as ChatParams : null;
     if (chatParams!.prompt.startsWith('/img')) {
-      return _repository.imageGeneratorAPI(chatParams.prompt);
+      final prompt = chatParams.prompt.substring(4).trim();
+      return _repository.imageGeneratorAPI(prompt);
     }
-    return _repository.chatAPI(chatParams.prompt);
+    return _repository.chatAPI(chatParams.prompt.trim());
   }
 }

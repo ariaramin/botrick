@@ -27,11 +27,13 @@ class ThemeAction extends StatelessWidget {
               icon: theme.brightness == Brightness.light
                   ? SvgPicture.asset(
                       AssetsManager.moon,
-                      color: Colors.white,
+                      colorFilter:
+                          const ColorFilter.mode(Colors.white, BlendMode.srcIn),
                     )
                   : SvgPicture.asset(
                       AssetsManager.sun,
-                      color: Colors.white,
+                      colorFilter:
+                          const ColorFilter.mode(Colors.white, BlendMode.srcIn),
                     ),
               onPressed: () => _onThemeChanged(context, state, switcher, theme),
             );
@@ -60,7 +62,7 @@ class ThemeAction extends StatelessWidget {
   _raiseSnackBar(BuildContext context) {
     showSnackBar(
       context: context,
-      message: Constants().CANNOT_CHANGE_THEME_MESSAGE,
+      message: Constants().cannotChangeThemeMessage,
     );
   }
 }

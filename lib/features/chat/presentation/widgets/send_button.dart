@@ -41,7 +41,8 @@ class SendButton extends StatelessWidget {
             transform: isRTL ? Matrix4.rotationY(math.pi) : Matrix4.identity(),
             child: SvgPicture.asset(
               AssetsManager.navigation,
-              color: Colors.white,
+              colorFilter:
+                  const ColorFilter.mode(Colors.white, BlendMode.srcIn),
             ),
           ),
         ),

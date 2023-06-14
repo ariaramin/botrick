@@ -43,7 +43,8 @@ class ScrollButton extends StatelessWidget {
           child: Center(
             child: SvgPicture.asset(
               AssetsManager.downArrow,
-              color: Colors.white,
+              colorFilter:
+                  const ColorFilter.mode(Colors.white, BlendMode.srcIn),
             ),
           ),
         ),

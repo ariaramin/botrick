@@ -86,7 +86,8 @@ flutter:
   assets:
     - assets/images/
     - assets/audios/
-    - assets/fonts/
+    - assets/fonts/nunito/
+    - assets/fonts/shabnam/
     - assets/icons/
     - assets/translations/
   # An image asset can refer to one or more resolution-specific "variants", see
@@ -103,25 +104,34 @@ flutter:
   fonts:
     - family: Shabnam
       fonts:
-        - asset: assets/fonts/ShabnamMedium.ttf
+        - asset: assets/fonts/shabnam/ShabnamThin.ttf
+          weight: 200
+        - asset: assets/fonts/shabnam/ShabnamLight.ttf
+          weight: 300
+        - asset: assets/fonts/shabnam/ShabnamRegular.ttf
+          weight: 400
+        - asset: assets/fonts/shabnam/ShabnamMedium.ttf
+          weight: 500
+        - asset: assets/fonts/shabnam/ShabnamBold.ttf
+          weight: 600
 
     - family: Nunito
       fonts:
-        - asset: assets/fonts/NunitoExtraLight.ttf
+        - asset: assets/fonts/nunito/NunitoExtraLight.ttf
           weight: 200
-        - asset: assets/fonts/NunitoLight.ttf
+        - asset: assets/fonts/nunito/NunitoLight.ttf
           weight: 300
-        - asset: assets/fonts/NunitoRegular.ttf
+        - asset: assets/fonts/nunito/NunitoRegular.ttf
           weight: 400
-        - asset: assets/fonts/NunitoMedium.ttf
+        - asset: assets/fonts/nunito/NunitoMedium.ttf
           weight: 500
-        - asset: assets/fonts/NunitoSemiBold.ttf
+        - asset: assets/fonts/nunito/NunitoSemiBold.ttf
           weight: 600
-        - asset: assets/fonts/NunitoBold.ttf
+        - asset: assets/fonts/nunito/NunitoBold.ttf
           weight: 700
-        - asset: assets/fonts/NunitoExtraBold.ttf
+        - asset: assets/fonts/nunito/NunitoExtraBold.ttf
           weight: 800
-        - asset: assets/fonts/NunitoExtraLight.ttf
+        - asset: assets/fonts/nunito/NunitoExtraLight.ttf
           weight: 900
   #
   # For details regarding fonts from package dependencies,

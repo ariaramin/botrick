@@ -45,9 +45,10 @@ class _ChatItemImageState extends State<ChatItemImage> {
                 onPressed: _reloadImage,
                 icon: SvgPicture.asset(
                   AssetsManager.refresh,
-                  color: Theme.of(context).brightness == Brightness.light
-                      ? AppColors.darkColor
-                      : Colors.white,
+                  colorFilter: Theme.of(context).brightness == Brightness.light
+                      ? const ColorFilter.mode(
+                          AppColors.darkColor, BlendMode.srcIn)
+                      : const ColorFilter.mode(Colors.white, BlendMode.srcIn),
                 ),
               ),
             ),
@@ -68,7 +69,8 @@ class _ChatItemImageState extends State<ChatItemImage> {
                     )
                   : SvgPicture.asset(
                       AssetsManager.download,
-                      color: Colors.white,
+                      colorFilter:
+                          const ColorFilter.mode(Colors.white, BlendMode.srcIn),
                       width: 20,
                     ),
               onPressed: () => !_isImageSaving ? _saveImage(context) : null,
@@ -105,13 +107,13 @@ class _ChatItemImageState extends State<ChatItemImage> {
         if (result['isSuccess'] as bool) {
           showSnackBar(
             context: context,
-            message: Constants().IMAGE_SAVED_MESSAGE,
+            message: Constants().imageSavedMessage,
             type: SnackBarTypeEnum.success,
           );
         } else {
           showSnackBar(
             context: context,
-            message: Constants().ERROR_MESSAGE,
+            message: Constants().errorMessage,
             type: SnackBarTypeEnum.error,
           );
         }
@@ -119,7 +121,7 @@ class _ChatItemImageState extends State<ChatItemImage> {
     } catch (error) {
       showSnackBar(
         context: context,
-        message: Constants().ERROR_MESSAGE,
+        message: Constants().errorMessage,
         type: SnackBarTypeEnum.error,
       );
     } finally {

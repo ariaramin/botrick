@@ -80,7 +80,7 @@ class ChatHeader extends StatelessWidget {
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      const SizedBox(height: 2),
+                      const SizedBox(height: 1),
                       Text(
                         isChatLoading
                             ? (chatState.status as ChatLoadingStatus).isTyping

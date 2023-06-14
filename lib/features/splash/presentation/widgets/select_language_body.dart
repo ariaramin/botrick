@@ -41,7 +41,7 @@ class _SelectLanguageBodyState extends State<SelectLanguageBody> {
             style: const TextStyle(
               fontSize: 12,
               color: Colors.black54,
-              fontWeight: FontWeight.w900,
+              fontWeight: FontWeight.bold,
             ),
             textAlign: TextAlign.center,
           ),
@@ -108,10 +108,12 @@ class _SelectLanguageBodyState extends State<SelectLanguageBody> {
   }
 
   _setDefaultLocale() {
-    final currentLocaleIndex = context.supportedLocales
-        .indexWhere((element) => element == context.deviceLocale);
-    if (currentLocaleIndex >= 0) {
-      _selectedIndex = currentLocaleIndex;
+    if (_selectedIndex == 0) {
+      final currentLocaleIndex = context.supportedLocales
+          .indexWhere((element) => element == context.deviceLocale);
+      if (currentLocaleIndex >= 0) {
+        _selectedIndex = currentLocaleIndex;
+      }
     }
   }
 }
