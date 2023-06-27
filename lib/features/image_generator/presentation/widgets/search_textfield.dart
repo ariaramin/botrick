@@ -1,18 +1,15 @@
-import 'dart:ui' as ui;
-import 'dart:math' as math;
-
 import 'package:botrick/core/components/app_textfield.dart';
 import 'package:botrick/core/constants/assets_manager.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class ChatTextField extends StatelessWidget {
+class SearchTextField extends StatelessWidget {
   final TextEditingController controller;
   final Function() onSubmitted;
   final bool enabled;
 
-  const ChatTextField({
+  const SearchTextField({
     super.key,
     required this.controller,
     required this.onSubmitted,
@@ -21,21 +18,23 @@ class ChatTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isRTL = Directionality.of(context) == ui.TextDirection.rtl;
-
-    return AppTextField(
-      controller: controller,
-      hintText: 'write_message'.tr(),
-      enabled: enabled,
-      buttonIcon: Transform(
-        alignment: Alignment.center,
-        transform: isRTL ? Matrix4.rotationY(math.pi) : Matrix4.identity(),
-        child: SvgPicture.asset(
-          AssetsManager.navigation,
+    return Padding(
+      padding: const EdgeInsets.only(
+        top: 18,
+        left: 16,
+        right: 16,
+        bottom: 28,
+      ),
+      child: AppTextField(
+        controller: controller,
+        hintText: 'write_text'.tr(),
+        enabled: enabled,
+        buttonIcon: SvgPicture.asset(
+          AssetsManager.search,
           colorFilter: const ColorFilter.mode(Colors.white, BlendMode.srcIn),
         ),
+        onSubmitted: onSubmitted,
       ),
-      onSubmitted: onSubmitted,
     );
   }
 }

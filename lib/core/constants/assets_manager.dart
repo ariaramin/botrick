@@ -32,6 +32,7 @@ class AssetsManager {
   static const String flash = '$iconsPath/flash.svg';
   static const String danger = '$iconsPath/danger.svg';
   static const String website = '$iconsPath/website.svg';
+  static const String search = '$iconsPath/search.svg';
 
   // audios
   static const String popAudio = 'audios/pop.mp3';

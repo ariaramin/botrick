@@ -1,12 +1,10 @@
 class Message {
   final MessageRoleEnum? role;
   final String? content;
-  final MessageTypeEnum? type;
 
   Message({
     this.role,
     this.content,
-    this.type,
   });
 
   toJson() => {
@@ -16,5 +14,3 @@ class Message {
 }
 
 enum MessageRoleEnum { user, assistant }
-
-enum MessageTypeEnum { text, image }

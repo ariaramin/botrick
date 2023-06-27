@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:botrick/config/theme/app_colors.dart';
-import 'package:botrick/features/chat/presentation/widgets/chat_item_image.dart';
 import 'package:botrick/features/chat/presentation/widgets/chat_item_text.dart';
 
 class ChatItem extends StatelessWidget {
   final String content;
   final bool isUser;
-  final bool isImage;
   final bool shouldAnimate;
   final Function()? onTextAnimationFinished;
 
@@ -14,7 +12,6 @@ class ChatItem extends StatelessWidget {
     super.key,
     required this.content,
     required this.isUser,
-    this.isImage = false,
     this.shouldAnimate = false,
     this.onTextAnimationFinished,
   });
@@ -29,13 +26,10 @@ class ChatItem extends StatelessWidget {
             isUser ? MainAxisAlignment.end : MainAxisAlignment.start,
         children: [
           Container(
-            clipBehavior: Clip.antiAlias,
             constraints: BoxConstraints(
-              maxWidth: MediaQuery.of(context).size.width - 105,
+              maxWidth: MediaQuery.sizeOf(context).width - 105,
             ),
-            padding: isImage
-                ? EdgeInsets.zero
-                : const EdgeInsets.symmetric(vertical: 14, horizontal: 16),
+            padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 16),
             decoration: ShapeDecoration(
               color: isUser
                   ? AppColors.primaryColor
@@ -57,22 +51,15 @@ class ChatItem extends StatelessWidget {
                 ),
               ),
             ),
-            child: _buildContent(context),
+            child: ChatItemText(
+              isUser: isUser,
+              content: content,
+              shouldAnimate: shouldAnimate,
+              onFinished: onTextAnimationFinished,
+            ),
           ),
         ],
       ),
-    );
-  }
-
-  Widget _buildContent(BuildContext context) {
-    if (isImage) {
-      return ChatItemImage(imageUrl: content);
-    }
-    return ChatItemText(
-      isUser: isUser,
-      content: content,
-      shouldAnimate: shouldAnimate,
-      onFinished: onTextAnimationFinished,
     );
   }
 }

@@ -2,7 +2,6 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:botrick/config/route/app_route_names.dart';
-import 'package:botrick/config/theme/app_colors.dart';
 import 'package:botrick/features/splash/domain/entity/slider.dart';
 import 'package:botrick/features/splash/domain/utils/onboarding_manager.dart';
 import 'package:botrick/features/splash/presentation/widgets/slider_item.dart';
@@ -67,22 +66,10 @@ class _OnBoardingBodyState extends State<OnBoardingBody> {
               ),
               ElevatedButton(
                 onPressed: _onNextButtonPressed,
-                style: ElevatedButton.styleFrom(
-                  fixedSize: const Size.fromHeight(56),
-                  backgroundColor: AppColors.primaryColor,
-                  shape: ContinuousRectangleBorder(
-                    borderRadius: BorderRadius.circular(46),
-                  ),
-                ),
                 child: Text(
                   currentIndex == SliderModel.getSliders().length - 1
                       ? 'get_started'.tr()
                       : 'next'.tr(),
-                  style: const TextStyle(
-                    fontSize: 16,
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                  ),
                 ),
               ),
             ],

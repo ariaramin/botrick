@@ -1,25 +1,24 @@
 import 'package:animated_theme_switcher/animated_theme_switcher.dart';
-import 'package:botrick/core/providers/sound_provider.dart';
 import 'package:botrick/di/di.dart';
-import 'package:botrick/features/chat/domain/usecase/send_message.dart';
+import 'package:botrick/features/image_generator/domain/usecase/generate_image.dart';
+import 'package:botrick/features/image_generator/presentation/bloc/image_generator_bloc.dart';
+import 'package:botrick/features/image_generator/presentation/widgets/image_generator_appbar.dart';
+import 'package:botrick/features/image_generator/presentation/widgets/image_generator_body.dart';
 import 'package:botrick/features/splash/presentation/bloc/connectivity_bloc.dart';
 import 'package:botrick/features/splash/presentation/bloc/connectivity_event.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:botrick/features/chat/presentation/bloc/chat_bloc.dart';
-import 'package:botrick/features/chat/presentation/widgets/chat_appbar.dart';
-import 'package:botrick/features/chat/presentation/widgets/chat_body.dart';
 
-class ChatScreen extends StatelessWidget {
-  const ChatScreen({super.key});
+class ImageGeneratorScreen extends StatelessWidget {
+  const ImageGeneratorScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider<ChatBloc>(
-          create: (BuildContext context) => ChatBloc(
-            locator.get<SendMessage>(),
+        BlocProvider<ImageGeneratorBloc>(
+          create: (BuildContext context) => ImageGeneratorBloc(
+            locator.get<GenerateImage>(),
           ),
         ),
         BlocProvider<ConnectivityBloc>(
@@ -28,12 +27,10 @@ class ChatScreen extends StatelessWidget {
         ),
       ],
       child: ThemeSwitchingArea(
-        child: Scaffold(
-          appBar: const ChatAppBar(),
+        child: const Scaffold(
+          appBar: ImageGeneratorAppBar(),
           body: SafeArea(
-            child: ChatBody(
-              soundProvider: locator.get<SoundProvider>(),
-            ),
+            child: ImageGeneratorBody(),
           ),
         ),
       ),

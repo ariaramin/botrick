@@ -83,9 +83,7 @@ class ChatHeader extends StatelessWidget {
                       const SizedBox(height: 1),
                       Text(
                         isChatLoading
-                            ? (chatState.status as ChatLoadingStatus).isTyping
-                                ? 'typing'.tr(context: context)
-                                : 'generating'.tr(context: context)
+                            ? 'typing'.tr(context: context)
                             : isConnected
                                 ? 'online'.tr(context: context)
                                 : 'offline'.tr(context: context),

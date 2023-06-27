@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:botrick/config/theme/app_colors.dart';
 
-class AppTheme {
+class AppThemes {
   static ThemeData light = ThemeData(
     useMaterial3: true,
     scaffoldBackgroundColor: AppColors.backgroundColor,
@@ -19,6 +19,20 @@ class AppTheme {
       onBackground: Colors.black,
       surface: AppColors.backgroundColor,
       onSurface: Colors.black,
+    ),
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ElevatedButton.styleFrom(
+        fixedSize: const Size.fromHeight(56),
+        backgroundColor: AppColors.primaryColor,
+        shape: ContinuousRectangleBorder(
+          borderRadius: BorderRadius.circular(46),
+        ),
+        foregroundColor: Colors.white,
+        textStyle: const TextStyle(
+          fontSize: 16,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
     ),
   );
 
@@ -39,6 +53,20 @@ class AppTheme {
       onBackground: Colors.white,
       surface: AppColors.backgroundDarkColor,
       onSurface: Colors.white,
+    ),
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ElevatedButton.styleFrom(
+        fixedSize: const Size.fromHeight(56),
+        backgroundColor: AppColors.primaryColor,
+        shape: ContinuousRectangleBorder(
+          borderRadius: BorderRadius.circular(46),
+        ),
+        foregroundColor: Colors.white,
+        textStyle: const TextStyle(
+          fontSize: 16,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
     ),
   );
 }

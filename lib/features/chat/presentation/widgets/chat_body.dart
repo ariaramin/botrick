@@ -1,41 +1,45 @@
 import 'package:audioplayers/audioplayers.dart';
 import 'package:botrick/core/constants/assets_manager.dart';
-import 'package:botrick/features/chat/domain/params/chat_params.dart';
+import 'package:botrick/core/usecase/usecase.dart';
 import 'package:botrick/features/chat/presentation/bloc/chat_event.dart';
+import 'package:botrick/features/chat/presentation/widgets/chat_textfield.dart';
+import 'package:botrick/features/chat/presentation/widgets/features_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:botrick/core/providers/sound_provider.dart';
 import 'package:botrick/core/constants/custom_snackbar.dart';
-import 'package:botrick/di/di.dart';
 import 'package:botrick/features/chat/data/models/message.dart';
 import 'package:botrick/features/chat/presentation/bloc/chat_bloc.dart';
 import 'package:botrick/features/chat/presentation/bloc/chat_state.dart';
 import 'package:botrick/features/chat/presentation/bloc/chat_status.dart';
 import 'package:botrick/features/chat/presentation/widgets/chat_item.dart';
-import 'package:botrick/features/chat/presentation/widgets/chat_textfield.dart';
 import 'package:botrick/features/chat/presentation/widgets/scroll_button.dart';
 
-import 'features_list.dart';
-
 class ChatBody extends StatefulWidget {
-  const ChatBody({super.key});
+  final SoundProvider soundProvider;
+
+  const ChatBody({
+    super.key,
+    required this.soundProvider,
+  });
 
   @override
   State<ChatBody> createState() => _ChatBodyState();
 }
 
 class _ChatBodyState extends State<ChatBody> {
-  final SoundProvider _soundProvider = locator.get();
+  late TextEditingController _controller;
   late ScrollController _chatScrollController;
   late double _scrollButtonPosition;
-  late String _inputText;
-  bool _isTyping = false;
+  String _lastText = '';
+  bool _isLoading = false;
   bool _shouldAnimate = false;
 
   @override
   void initState() {
     super.initState();
+    _controller = TextEditingController();
     _chatScrollController = ScrollController();
     _chatScrollController.addListener(_scrollListener);
     _scrollButtonPosition = 28;
@@ -44,6 +48,7 @@ class _ChatBodyState extends State<ChatBody> {
   @override
   void dispose() {
     super.dispose();
+    _controller.dispose();
     _chatScrollController.removeListener(_scrollListener);
     _chatScrollController.dispose();
   }
@@ -71,8 +76,6 @@ class _ChatBodyState extends State<ChatBody> {
                       content: state.messages[reverseIndex].content!,
                       isUser: state.messages[reverseIndex].role ==
                           MessageRoleEnum.user,
-                      isImage: state.messages[reverseIndex].type ==
-                          MessageTypeEnum.image,
                       shouldAnimate: _shouldAnimate &&
                           reverseIndex == state.messages.length - 1,
                       onTextAnimationFinished: () => _shouldAnimate = false,
@@ -91,12 +94,13 @@ class _ChatBodyState extends State<ChatBody> {
         Positioned(
           left: 16,
           right: 16,
-          bottom: MediaQuery.of(context).viewInsets.bottom + 18,
+          bottom: MediaQuery.viewInsetsOf(context).bottom + 18,
           child: ChatTextField(
-            enabled: !_isTyping,
-            onSendMessage: (value) {
+            controller: _controller,
+            enabled: !_isLoading,
+            onSubmitted: () {
+              _sendMessage();
               _scrollToBottom();
-              _inputText = value;
             },
           ),
         ),
@@ -104,25 +108,36 @@ class _ChatBodyState extends State<ChatBody> {
     );
   }
 
+  _sendMessage() {
+    final text = _controller.text.trim();
+    _lastText = text;
+    if (text.isNotEmpty) {
+      BlocProvider.of<ChatBloc>(context).add(
+        SendMessageEvent(params: Params(prompt: text)),
+      );
+      _controller.clear();
+    }
+  }
+
   _handleChatStateChanges(ChatState state) {
     if (state.status is ChatLoadingStatus || state.status is ChatLoadedStatus) {
-      _changeTypingStatus();
+      _changeLoadingStatus();
     }
     if (state.status is ChatLoadedStatus) {
       _shouldAnimate = true;
       _playSound();
     }
     if (state.status is ChatErrorStatus) {
-      _changeTypingStatus();
+      _changeLoadingStatus();
       final errorStatus = state.status as ChatErrorStatus;
       showSnackBar(
         context: context,
         message: errorStatus.errorMessage,
         type: SnackBarTypeEnum.error,
         onTapAction: () {
-          if (_inputText.isNotEmpty) {
+          if (_lastText.isNotEmpty) {
             BlocProvider.of<ChatBloc>(context).add(
-              ReSendMessageEvent(chatParams: ChatParams(prompt: _inputText)),
+              SendMessageEvent(params: Params(prompt: _lastText)),
             );
           }
         },
@@ -131,7 +146,7 @@ class _ChatBodyState extends State<ChatBody> {
   }
 
   _playSound() {
-    if (!_soundProvider.isMute) {
+    if (!widget.soundProvider.isMute) {
       final player = AudioPlayer();
       player.play(AssetSource(AssetsManager.popAudio));
     }
@@ -148,7 +163,7 @@ class _ChatBodyState extends State<ChatBody> {
       )
           .then((value) {
         setState(() {
-          _scrollButtonPosition = MediaQuery.of(context).viewInsets.bottom + 28;
+          _scrollButtonPosition = MediaQuery.viewInsetsOf(context).bottom + 28;
         });
       });
     }
@@ -160,25 +175,25 @@ class _ChatBodyState extends State<ChatBody> {
       if (_chatScrollController.position.pixels ==
           _chatScrollController.position.minScrollExtent) {
         setState(() {
-          _scrollButtonPosition = MediaQuery.of(context).viewInsets.bottom + 28;
+          _scrollButtonPosition = MediaQuery.viewInsetsOf(context).bottom + 28;
         });
       } else {
         setState(() {
-          _scrollButtonPosition = MediaQuery.of(context).viewInsets.bottom + 88;
+          _scrollButtonPosition = MediaQuery.viewInsetsOf(context).bottom + 88;
         });
       }
     }
     if (_chatScrollController.position.userScrollDirection ==
         ScrollDirection.forward) {
       setState(() {
-        _scrollButtonPosition = MediaQuery.of(context).viewInsets.bottom + 28;
+        _scrollButtonPosition = MediaQuery.viewInsetsOf(context).bottom + 28;
       });
     }
   }
 
-  _changeTypingStatus() {
+  _changeLoadingStatus() {
     setState(() {
-      _isTyping = !_isTyping;
+      _isLoading = !_isLoading;
     });
   }
 }

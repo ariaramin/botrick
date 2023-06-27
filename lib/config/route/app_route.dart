@@ -1,3 +1,4 @@
+import 'package:botrick/features/image_generator/presentation/image_generator_screen.dart';
 import 'package:botrick/features/splash/presentation/views/select_language_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:botrick/config/route/app_route_names.dart';
@@ -23,6 +24,10 @@ class AppRoute {
       case AppRouteNames.chat:
         return MaterialPageRoute(
           builder: (context) => const ChatScreen(),
+        );
+      case AppRouteNames.imageGenerator:
+        return MaterialPageRoute(
+          builder: (context) => const ImageGeneratorScreen(),
         );
     }
   }

@@ -9,19 +9,19 @@ import 'package:botrick/core/constants/assets_manager.dart';
 import 'package:botrick/core/constants/constants.dart';
 import 'package:botrick/core/constants/custom_snackbar.dart';
 
-class ChatItemImage extends StatefulWidget {
+class ImageItem extends StatefulWidget {
   final String imageUrl;
 
-  const ChatItemImage({
+  const ImageItem({
     super.key,
     required this.imageUrl,
   });
 
   @override
-  State<ChatItemImage> createState() => _ChatItemImageState();
+  State<ImageItem> createState() => _ImageItemState();
 }
 
-class _ChatItemImageState extends State<ChatItemImage> {
+class _ImageItemState extends State<ImageItem> {
   bool _isImageSaving = false;
   bool _shouldReload = false;
 
@@ -30,9 +30,14 @@ class _ChatItemImageState extends State<ChatItemImage> {
     final isRTL = Directionality.of(context) == TextDirection.rtl;
     return Stack(
       children: [
-        SizedBox(
-          width: MediaQuery.of(context).size.width - 105,
-          height: MediaQuery.of(context).size.width - 105,
+        Container(
+          clipBehavior: Clip.antiAlias,
+          decoration: ShapeDecoration(
+            color: Theme.of(context).colorScheme.primaryContainer,
+            shape: ContinuousRectangleBorder(
+              borderRadius: BorderRadius.circular(48),
+            ),
+          ),
           child: CachedNetworkImage(
             key: ValueKey<String>(_shouldReload ? 'reload' : widget.imageUrl),
             imageUrl: widget.imageUrl,

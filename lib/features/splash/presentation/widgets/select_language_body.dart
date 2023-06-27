@@ -1,5 +1,4 @@
 import 'package:botrick/config/route/app_route_names.dart';
-import 'package:botrick/config/theme/app_colors.dart';
 import 'package:botrick/features/splash/presentation/widgets/language_item.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -74,21 +73,7 @@ class _SelectLanguageBodyState extends State<SelectLanguageBody> {
             padding: const EdgeInsets.only(bottom: 38),
             child: ElevatedButton(
               onPressed: _setSelectedLocale,
-              style: ElevatedButton.styleFrom(
-                fixedSize: const Size.fromHeight(56),
-                backgroundColor: AppColors.primaryColor,
-                shape: ContinuousRectangleBorder(
-                  borderRadius: BorderRadius.circular(46),
-                ),
-              ),
-              child: Text(
-                'select'.tr(),
-                style: const TextStyle(
-                  fontSize: 16,
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
+              child: Text('select'.tr()),
             ),
           ),
         ],

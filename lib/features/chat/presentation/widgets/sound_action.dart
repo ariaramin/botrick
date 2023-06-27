@@ -3,19 +3,19 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 import 'package:botrick/core/constants/assets_manager.dart';
 import 'package:botrick/core/providers/sound_provider.dart';
-import 'package:botrick/di/di.dart';
 
 class SoundAction extends StatelessWidget {
-  final SoundProvider _soundProvider = locator.get();
+  final SoundProvider soundProvider;
 
-  SoundAction({
+  const SoundAction({
     super.key,
+    required this.soundProvider,
   });
 
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider.value(
-      value: _soundProvider,
+      value: soundProvider,
       child: Consumer<SoundProvider>(
         builder: (context, value, child) {
           return IconButton(
@@ -30,7 +30,7 @@ class SoundAction extends StatelessWidget {
                     colorFilter:
                         const ColorFilter.mode(Colors.white, BlendMode.srcIn),
                   ),
-            onPressed: () => _soundProvider.isMute = !_soundProvider.isMute,
+            onPressed: () => soundProvider.isMute = !soundProvider.isMute,
           );
         },
       ),

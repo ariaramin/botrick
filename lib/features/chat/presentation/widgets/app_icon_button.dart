@@ -1,21 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:botrick/config/theme/app_colors.dart';
-import 'package:botrick/core/constants/assets_manager.dart';
-import 'dart:math' as math;
 
-class SendButton extends StatelessWidget {
+class AppIconButton extends StatelessWidget {
+  final Widget icon;
   final Function()? onTap;
 
-  const SendButton({
+  const AppIconButton({
     super.key,
+    required this.icon,
     this.onTap,
   });
 
   @override
   Widget build(BuildContext context) {
-    final isRTL = Directionality.of(context) == TextDirection.rtl;
-
     return GestureDetector(
       onTap: onTap,
       child: Container(
@@ -35,17 +32,7 @@ class SendButton extends StatelessWidget {
             ),
           ],
         ),
-        child: Center(
-          child: Transform(
-            alignment: Alignment.center,
-            transform: isRTL ? Matrix4.rotationY(math.pi) : Matrix4.identity(),
-            child: SvgPicture.asset(
-              AssetsManager.navigation,
-              colorFilter:
-                  const ColorFilter.mode(Colors.white, BlendMode.srcIn),
-            ),
-          ),
-        ),
+        child: Center(child: icon),
       ),
     );
   }
