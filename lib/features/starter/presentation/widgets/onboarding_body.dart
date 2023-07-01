@@ -85,7 +85,7 @@ class _OnBoardingBodyState extends State<OnBoardingBody> {
       OnBoardingManager.setState();
       Navigator.pushNamedAndRemoveUntil(
         context,
-        AppRouteNames.chat,
+        AppRouteNames.starter,
         (route) => false,
       );
     } else {

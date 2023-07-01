@@ -22,10 +22,10 @@ class _SelectLanguageBodyState extends State<SelectLanguageBody> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 18),
+      padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Column(
         children: [
-          const SizedBox(height: 28),
+          const SizedBox(height: 18),
           Text(
             'select_language'.tr(),
             style: const TextStyle(
@@ -53,8 +53,8 @@ class _SelectLanguageBodyState extends State<SelectLanguageBody> {
                   crossAxisCount: 2,
                   mainAxisSpacing: 14,
                   crossAxisSpacing: 28,
-                  childAspectRatio: MediaQuery.of(context).size.width /
-                      (MediaQuery.of(context).size.height / 1.8),
+                  childAspectRatio: MediaQuery.sizeOf(context).width /
+                      (MediaQuery.sizeOf(context).height / 1.8),
                 ),
                 itemCount: context.supportedLocales.length,
                 itemBuilder: (context, index) {
@@ -71,9 +71,12 @@ class _SelectLanguageBodyState extends State<SelectLanguageBody> {
           ),
           Padding(
             padding: const EdgeInsets.only(bottom: 38),
-            child: ElevatedButton(
-              onPressed: _setSelectedLocale,
-              child: Text('select'.tr()),
+            child: SizedBox(
+              width: double.infinity,
+              child: ElevatedButton(
+                onPressed: _setSelectedLocale,
+                child: Text('continue'.tr()),
+              ),
             ),
           ),
         ],
