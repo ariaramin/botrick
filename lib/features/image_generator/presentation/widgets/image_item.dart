@@ -7,7 +7,7 @@ import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:botrick/config/theme/app_colors.dart';
 import 'package:botrick/core/constants/assets_manager.dart';
 import 'package:botrick/core/constants/constants.dart';
-import 'package:botrick/core/constants/custom_snackbar.dart';
+import 'package:botrick/core/constants/snackbar_manager.dart';
 
 class ImageItem extends StatefulWidget {
   final String imageUrl;
@@ -110,24 +110,27 @@ class _ImageItemState extends State<ImageItem> {
 
       if (mounted) {
         if (result['isSuccess'] as bool) {
-          showSnackBar(
+          SnackBarManager.showSnackBar(
             context: context,
             message: Constants().imageSavedMessage,
             type: SnackBarTypeEnum.success,
+            bottomMargin: 18,
           );
         } else {
-          showSnackBar(
+          SnackBarManager.showSnackBar(
             context: context,
             message: Constants().errorMessage,
             type: SnackBarTypeEnum.error,
+            bottomMargin: 18,
           );
         }
       }
     } catch (error) {
-      showSnackBar(
+      SnackBarManager.showSnackBar(
         context: context,
         message: Constants().errorMessage,
         type: SnackBarTypeEnum.error,
+        bottomMargin: 18,
       );
     } finally {
       setState(() {

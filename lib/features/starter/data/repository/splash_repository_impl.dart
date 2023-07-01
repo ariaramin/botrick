@@ -1,5 +1,5 @@
 import 'dart:io';
-import 'package:botrick/features/splash/domain/repository/splash_repository.dart';
+import 'package:botrick/features/starter/domain/repository/splash_repository.dart';
 
 class SplashRepositoryImpl extends SplashRepository {
   @override

@@ -1,6 +1,6 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:botrick/core/constants/constants.dart';
-import 'package:botrick/core/constants/custom_snackbar.dart';
+import 'package:botrick/core/constants/snackbar_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -54,7 +54,7 @@ class ChatItemText extends StatelessWidget {
 
   _copyText(BuildContext context) {
     Clipboard.setData(ClipboardData(text: content)).then(
-      (value) => showSnackBar(
+      (value) => SnackBarManager.showSnackBar(
         context: context,
         message: Constants().textCopiedMessage,
         type: SnackBarTypeEnum.success,

@@ -1,7 +1,7 @@
 import 'package:animated_theme_switcher/animated_theme_switcher.dart';
 import 'package:botrick/config/theme/theme_preferences.dart';
 import 'package:botrick/core/constants/constants.dart';
-import 'package:botrick/core/constants/custom_snackbar.dart';
+import 'package:botrick/core/constants/snackbar_manager.dart';
 import 'package:botrick/di/di.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -13,7 +13,7 @@ class ThemeAction extends StatelessWidget {
 
   const ThemeAction({
     super.key,
-    required this.isLoading,
+    this.isLoading = false,
   });
 
   @override
@@ -55,7 +55,7 @@ class ThemeAction extends StatelessWidget {
   }
 
   _raiseSnackBar(BuildContext context) {
-    showSnackBar(
+    SnackBarManager.showSnackBar(
       context: context,
       message: Constants().cannotChangeThemeMessage,
     );

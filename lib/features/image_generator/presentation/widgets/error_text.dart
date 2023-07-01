@@ -1,4 +1,3 @@
-import 'package:botrick/core/constants/assets_manager.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
@@ -16,11 +15,9 @@ class ErrorText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Image.asset(AssetsManager.imageGeneration),
         Text(
           text,
           style: TextStyle(
-            fontSize: 16,
             color: Theme.of(context).colorScheme.onBackground,
             fontWeight: FontWeight.bold,
           ),

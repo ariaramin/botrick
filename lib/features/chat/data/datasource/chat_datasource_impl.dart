@@ -20,7 +20,7 @@ class ChatDatasourceImpl extends ChatDatasource {
       ));
 
       var response = await dio.post(
-        '${Constants.baseUrl}${Constants.completionsUrl}',
+        Constants.completionsUrl,
         data: {
           'model': 'gpt-3.5-turbo',
           'messages': messages.map((element) => element.toJson()).toList()

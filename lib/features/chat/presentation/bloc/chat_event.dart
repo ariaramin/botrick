@@ -5,8 +5,12 @@ abstract class ChatEvent extends Equatable {}
 
 class SendMessageEvent extends ChatEvent {
   final Params? params;
+  final bool isRetry;
 
-  SendMessageEvent({this.params});
+  SendMessageEvent({
+    this.params,
+    this.isRetry = false,
+  });
 
   @override
   List<Object?> get props => [];

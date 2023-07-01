@@ -21,6 +21,7 @@ class ChatAppBar extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       backgroundColor: AppColors.primaryContainerDarkColor,
       toolbarHeight: kToolbarHeight + 16,
+      automaticallyImplyLeading: false,
       title: const ChatHeader(),
       actions: [
         const LanguagePopupMenu(),

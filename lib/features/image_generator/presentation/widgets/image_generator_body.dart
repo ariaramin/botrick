@@ -1,6 +1,3 @@
-// ignore_for_file: prefer_const_constructors
-
-import 'package:botrick/core/constants/assets_manager.dart';
 import 'package:botrick/core/usecase/usecase.dart';
 import 'package:botrick/features/image_generator/presentation/bloc/image_generator_bloc.dart';
 import 'package:botrick/features/image_generator/presentation/bloc/image_generator_event.dart';
@@ -56,9 +53,9 @@ class _ImageGeneratorBodyState extends State<ImageGeneratorBody> {
                 _handleImageGeneratorStateChanges(state),
             builder: (context, state) {
               if (state.status is ImageGeneratorLoadingStatus) {
-                return SliverToBoxAdapter(
+                return const SliverToBoxAdapter(
                   child: Center(
-                    child: const CircularProgressIndicator(),
+                    child: CircularProgressIndicator(),
                   ),
                 );
               } else if (state.status is ImageGeneratorLoadedStatus) {
@@ -83,18 +80,14 @@ class _ImageGeneratorBodyState extends State<ImageGeneratorBody> {
                 );
               }
               return SliverToBoxAdapter(
-                child: Column(
-                  children: [
-                    Image.asset(AssetsManager.imageGeneration),
-                    Text(
-                      'nothing_to_show'.tr(),
-                      style: TextStyle(
-                        fontSize: 16,
-                        color: Theme.of(context).colorScheme.onBackground,
-                        fontWeight: FontWeight.bold,
-                      ),
+                child: Center(
+                  child: Text(
+                    'nothing_to_show_message'.tr(),
+                    style: TextStyle(
+                      color: Theme.of(context).colorScheme.onBackground,
+                      fontWeight: FontWeight.bold,
                     ),
-                  ],
+                  ),
                 ),
               );
             },

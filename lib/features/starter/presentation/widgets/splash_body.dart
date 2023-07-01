@@ -1,4 +1,4 @@
-import 'package:botrick/features/splash/presentation/bloc/connectivity_event.dart';
+import 'package:botrick/features/starter/presentation/bloc/connectivity_event.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -6,10 +6,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:botrick/config/route/app_route_names.dart';
 import 'package:botrick/core/constants/assets_manager.dart';
-import 'package:botrick/features/splash/domain/utils/onboarding_manager.dart';
-import 'package:botrick/features/splash/presentation/bloc/connectivity_bloc.dart';
-import 'package:botrick/features/splash/presentation/bloc/connectivity_state.dart';
-import 'package:botrick/features/splash/presentation/widgets/refresh_text.dart';
+import 'package:botrick/features/starter/domain/utils/onboarding_manager.dart';
+import 'package:botrick/features/starter/presentation/bloc/connectivity_bloc.dart';
+import 'package:botrick/features/starter/presentation/bloc/connectivity_state.dart';
+import 'package:botrick/features/starter/presentation/widgets/refresh_text.dart';
 
 class SplashBody extends StatelessWidget {
   const SplashBody({super.key});
@@ -73,7 +73,7 @@ class SplashBody extends StatelessWidget {
     Future.delayed(const Duration(seconds: 3), () {
       Navigator.pushNamedAndRemoveUntil(
         context,
-        isFirstTime ? AppRouteNames.selectLanguage : AppRouteNames.chat,
+        isFirstTime ? AppRouteNames.selectLanguage : AppRouteNames.starter,
         (route) => false,
       );
     });

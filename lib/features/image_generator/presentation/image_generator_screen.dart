@@ -4,8 +4,8 @@ import 'package:botrick/features/image_generator/domain/usecase/generate_image.d
 import 'package:botrick/features/image_generator/presentation/bloc/image_generator_bloc.dart';
 import 'package:botrick/features/image_generator/presentation/widgets/image_generator_appbar.dart';
 import 'package:botrick/features/image_generator/presentation/widgets/image_generator_body.dart';
-import 'package:botrick/features/splash/presentation/bloc/connectivity_bloc.dart';
-import 'package:botrick/features/splash/presentation/bloc/connectivity_event.dart';
+import 'package:botrick/features/starter/presentation/bloc/connectivity_bloc.dart';
+import 'package:botrick/features/starter/presentation/bloc/connectivity_event.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

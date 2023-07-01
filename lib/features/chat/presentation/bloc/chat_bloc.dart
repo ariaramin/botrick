@@ -13,8 +13,7 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
     on<SendMessageEvent>(
       (event, emit) async {
         // Check if the last message in the state is not a user message
-        if (state.messages.isEmpty ||
-            state.messages.last.role != MessageRoleEnum.user) {
+        if (!event.isRetry) {
           // Create a new user message
           final userMessage = Message(
             content: event.params!.prompt,

@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:botrick/core/providers/sound_provider.dart';
-import 'package:botrick/core/constants/custom_snackbar.dart';
+import 'package:botrick/core/constants/snackbar_manager.dart';
 import 'package:botrick/features/chat/data/models/message.dart';
 import 'package:botrick/features/chat/presentation/bloc/chat_bloc.dart';
 import 'package:botrick/features/chat/presentation/bloc/chat_state.dart';
@@ -130,14 +130,17 @@ class _ChatBodyState extends State<ChatBody> {
     if (state.status is ChatErrorStatus) {
       _changeLoadingStatus();
       final errorStatus = state.status as ChatErrorStatus;
-      showSnackBar(
+      SnackBarManager.showSnackBar(
         context: context,
         message: errorStatus.errorMessage,
         type: SnackBarTypeEnum.error,
         onTapAction: () {
           if (_lastText.isNotEmpty) {
             BlocProvider.of<ChatBloc>(context).add(
-              SendMessageEvent(params: Params(prompt: _lastText)),
+              SendMessageEvent(
+                params: Params(prompt: _lastText),
+                isRetry: true,
+              ),
             );
           }
         },

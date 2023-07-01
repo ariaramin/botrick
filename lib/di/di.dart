@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:botrick/config/theme/theme_preferences.dart';
 import 'package:botrick/features/image_generator/data/datasource/image_generator_datasource.dart';
 import 'package:botrick/features/image_generator/data/datasource/image_generator_datasource_impl.dart';
@@ -14,8 +16,8 @@ import 'package:botrick/features/chat/data/datasource/chat_datasource_impl.dart'
 import 'package:botrick/features/chat/data/repository/chat_repository_impl.dart';
 import 'package:botrick/features/chat/domain/repository/chat_repository.dart';
 import 'package:botrick/features/chat/domain/usecase/send_message.dart';
-import 'package:botrick/features/splash/data/repository/splash_repository_impl.dart';
-import 'package:botrick/features/splash/domain/repository/splash_repository.dart';
+import 'package:botrick/features/starter/data/repository/splash_repository_impl.dart';
+import 'package:botrick/features/starter/domain/repository/splash_repository.dart';
 
 final locator = GetIt.instance;
 
@@ -36,7 +38,8 @@ Future initGetit() async {
       baseUrl: Constants.baseUrl,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${Constants.apiKey}',
+        'Authorization':
+            'Bearer ${Constants.apiKeyList[Random().nextInt(Constants.apiKeyList.length)]}',
       },
     )),
   );

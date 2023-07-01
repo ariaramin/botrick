@@ -1,7 +1,7 @@
 import 'package:botrick/core/constants/constants.dart';
-import 'package:botrick/core/constants/custom_snackbar.dart';
-import 'package:botrick/features/splash/presentation/bloc/connectivity_bloc.dart';
-import 'package:botrick/features/splash/presentation/bloc/connectivity_state.dart';
+import 'package:botrick/core/constants/snackbar_manager.dart';
+import 'package:botrick/features/starter/presentation/bloc/connectivity_bloc.dart';
+import 'package:botrick/features/starter/presentation/bloc/connectivity_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:botrick/config/theme/app_colors.dart';
@@ -13,6 +13,7 @@ class AppTextField extends StatelessWidget {
   final bool enabled;
   final Function() onSubmitted;
   final Widget buttonIcon;
+  final double? snackBarBottomMargin;
 
   const AppTextField({
     super.key,
@@ -21,6 +22,7 @@ class AppTextField extends StatelessWidget {
     this.enabled = true,
     required this.onSubmitted,
     required this.buttonIcon,
+    this.snackBarBottomMargin,
   });
 
   @override
@@ -96,10 +98,11 @@ class AppTextField extends StatelessWidget {
   }
 
   _raiseErrorSnackBar(BuildContext context) {
-    showSnackBar(
+    SnackBarManager.showSnackBar(
       context: context,
       message: Constants().connectionErrorMessage,
       type: SnackBarTypeEnum.error,
+      bottomMargin: snackBarBottomMargin,
     );
   }
 }

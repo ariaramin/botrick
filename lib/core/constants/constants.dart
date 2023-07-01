@@ -2,9 +2,13 @@ import 'package:easy_localization/easy_localization.dart';
 
 class Constants {
   // urls
+
   static const String baseUrl = 'https://api.openai.com/v1/';
-  static const String apiKey =
-      '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';
+  static const List<String> apiKeyList = [
+    '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',
+    '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',
+    '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',
+  ];
   static const String completionsUrl = 'chat/completions';
   static const String imageGeneratorUrl = 'images/generations';
   String errorMessage = 'error_message'.tr();
