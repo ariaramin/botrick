@@ -4,12 +4,12 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class SearchTextField extends StatelessWidget {
+class GenerateTextField extends StatelessWidget {
   final TextEditingController controller;
   final Function() onSubmitted;
   final bool enabled;
 
-  const SearchTextField({
+  const GenerateTextField({
     super.key,
     required this.controller,
     required this.onSubmitted,
@@ -30,7 +30,7 @@ class SearchTextField extends StatelessWidget {
         hintText: 'write_text'.tr(),
         enabled: enabled,
         buttonIcon: SvgPicture.asset(
-          AssetsManager.search,
+          AssetsManager.flash,
           colorFilter: const ColorFilter.mode(Colors.white, BlendMode.srcIn),
         ),
         onSubmitted: onSubmitted,

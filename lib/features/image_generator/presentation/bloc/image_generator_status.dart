@@ -25,3 +25,13 @@ class ImageGeneratorErrorStatus extends ImageGeneratorStatus {
   @override
   List<Object?> get props => [];
 }
+
+class ImageSavingStatus extends ImageGeneratorStatus {
+  @override
+  List<Object?> get props => [];
+}
+
+class SaveImageResponseStatus extends ImageGeneratorStatus {
+  @override
+  List<Object?> get props => [];
+}

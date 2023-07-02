@@ -5,7 +5,7 @@ import 'package:botrick/features/image_generator/presentation/bloc/image_generat
 import 'package:botrick/features/image_generator/presentation/bloc/image_generator_status.dart';
 import 'package:botrick/features/image_generator/presentation/widgets/error_text.dart';
 import 'package:botrick/features/image_generator/presentation/widgets/image_item.dart';
-import 'package:botrick/features/image_generator/presentation/widgets/search_textfield.dart';
+import 'package:botrick/features/image_generator/presentation/widgets/generate_textfield.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -40,7 +40,7 @@ class _ImageGeneratorBodyState extends State<ImageGeneratorBody> {
     return CustomScrollView(
       slivers: [
         SliverToBoxAdapter(
-          child: SearchTextField(
+          child: GenerateTextField(
             controller: _controller,
             enabled: !_isLoading,
             onSubmitted: _generateImage,

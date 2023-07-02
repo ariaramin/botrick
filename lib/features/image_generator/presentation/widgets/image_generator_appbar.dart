@@ -19,6 +19,7 @@ class ImageGeneratorAppBar extends StatelessWidget
     return AppBar(
       backgroundColor: AppColors.primaryContainerDarkColor,
       automaticallyImplyLeading: false,
+      toolbarHeight: kToolbarHeight + 16,
       title: Text(
         'image_generator'.tr(),
         style: const TextStyle(
@@ -42,5 +43,5 @@ class ImageGeneratorAppBar extends StatelessWidget
   }
 
   @override
-  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
+  Size get preferredSize => const Size.fromHeight(kToolbarHeight + 16);
 }

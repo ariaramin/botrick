@@ -91,7 +91,7 @@ class ChatHeader extends StatelessWidget {
                         style: TextStyle(
                           fontSize: 12,
                           color: isChatLoading
-                              ? AppColors.primaryColor
+                              ? AppColors.successColor
                               : isConnected
                                   ? AppColors.successColor
                                   : AppColors.errorColor,

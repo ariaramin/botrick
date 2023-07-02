@@ -24,7 +24,7 @@ class Feature {
         ],
       ),
       Feature(
-        iconData: AssetsManager.flash,
+        iconData: AssetsManager.flashOutline,
         title: 'capabilities'.tr(),
         descriptions: [
           'capabilities_1'.tr(),

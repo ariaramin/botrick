@@ -13,6 +13,7 @@ class StarterBody extends StatelessWidget {
     return Column(
       children: [
         Expanded(
+          flex: 2,
           child: Container(
             width: double.infinity,
             decoration: const BoxDecoration(
@@ -27,14 +28,14 @@ class StarterBody extends StatelessWidget {
               ],
             ),
             child: Padding(
-              padding: const EdgeInsets.only(bottom: 18),
+              padding: const EdgeInsets.only(bottom: 28),
               child: Image.asset(AssetsManager.starter),
             ),
           ),
         ),
         const SizedBox(height: 14),
         Expanded(
-          flex: 2,
+          flex: 3,
           child: Column(
             children: [
               SelectScreenItem(

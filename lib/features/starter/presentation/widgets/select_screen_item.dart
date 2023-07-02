@@ -26,14 +26,14 @@ class SelectScreenItem extends StatelessWidget {
         decoration: ShapeDecoration(
           color: Theme.of(context).colorScheme.primaryContainer,
           shape: ContinuousRectangleBorder(
-            borderRadius: BorderRadius.circular(48),
+            borderRadius: BorderRadius.circular(58),
           ),
         ),
         child: Row(
           children: [
             Container(
-              width: 62,
-              height: 62,
+              width: 64,
+              height: 64,
               decoration: ShapeDecoration(
                 color: AppColors.primaryColor,
                 shape: ContinuousRectangleBorder(
@@ -60,14 +60,16 @@ class SelectScreenItem extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
+                  const SizedBox(height: 2),
                   Text(
                     text,
                     style: TextStyle(
-                      fontSize: 14,
+                      fontSize: 12,
                       color: Theme.of(context)
                           .colorScheme
                           .onBackground
-                          .withOpacity(.6),
+                          .withOpacity(.8),
+                      fontWeight: FontWeight.bold,
                     ),
                     overflow: TextOverflow.ellipsis,
                   ),

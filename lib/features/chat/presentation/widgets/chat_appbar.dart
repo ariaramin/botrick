@@ -32,6 +32,7 @@ class ChatAppBar extends StatelessWidget implements PreferredSizeWidget {
           builder: (context, state) {
             return ThemeAction(
               isLoading: (state.status is ChatLoadingStatus),
+              snackBarBottomMargin: 92,
             );
           },
         ),

@@ -10,10 +10,12 @@ import 'package:botrick/core/constants/assets_manager.dart';
 
 class ThemeAction extends StatelessWidget {
   final bool isLoading;
+  final double? snackBarBottomMargin;
 
   const ThemeAction({
     super.key,
     this.isLoading = false,
+    this.snackBarBottomMargin,
   });
 
   @override
@@ -58,6 +60,7 @@ class ThemeAction extends StatelessWidget {
     SnackBarManager.showSnackBar(
       context: context,
       message: Constants().cannotChangeThemeMessage,
+      bottomMargin: snackBarBottomMargin,
     );
   }
 }

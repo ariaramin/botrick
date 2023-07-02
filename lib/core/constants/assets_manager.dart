@@ -32,10 +32,10 @@ class AssetsManager {
   static const String mute = '$iconsPath/mute.svg';
   static const String volumeUp = '$iconsPath/volume_up.svg';
   static const String refresh = '$iconsPath/refresh.svg';
+  static const String flashOutline = '$iconsPath/flash_outline.svg';
   static const String flash = '$iconsPath/flash.svg';
   static const String danger = '$iconsPath/danger.svg';
   static const String website = '$iconsPath/website.svg';
-  static const String search = '$iconsPath/search.svg';
   static const String message = '$iconsPath/message.svg';
   static const String image = '$iconsPath/image.svg';
 

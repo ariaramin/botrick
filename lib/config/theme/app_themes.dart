@@ -29,6 +29,7 @@ class AppThemes {
         ),
         foregroundColor: Colors.white,
         textStyle: const TextStyle(
+          fontFamilyFallback: ['Nunito', 'Shabnam'],
           fontSize: 16,
           fontWeight: FontWeight.bold,
         ),
@@ -63,6 +64,7 @@ class AppThemes {
         ),
         foregroundColor: Colors.white,
         textStyle: const TextStyle(
+          fontFamilyFallback: ['Nunito', 'Shabnam'],
           fontSize: 16,
           fontWeight: FontWeight.bold,
         ),
