@@ -1,6 +1,6 @@
 # botrick
 
-A new Flutter project.
+![image](preview/intro.png)
 
 ## Getting Started
 
