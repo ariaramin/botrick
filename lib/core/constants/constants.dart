@@ -1,8 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 
 class Constants {
-  // urls
-
   static const String baseUrl = 'https://api.openai.com/v1/';
   static const List<String> apiKeyList = [
     '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',
